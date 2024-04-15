@@ -46,7 +46,7 @@ final class CarBaseApplication: SubApplication {
         }
     }
     
-    // MARK: -
+    // MARK: - Add a new car to the array
     
     private func addCar() {
         defer {
