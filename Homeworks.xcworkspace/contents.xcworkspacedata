@@ -4,4 +4,7 @@
    <FileRef
       location = "group:hw1/hw1.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:hw2/hw2.xcodeproj">
+   </FileRef>
 </Workspace>
