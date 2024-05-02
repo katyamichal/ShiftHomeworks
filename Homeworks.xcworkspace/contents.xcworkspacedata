@@ -7,4 +7,8 @@
    <FileRef
       location = "group:hw2/hw2.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:hw3/hw3.xcodeproj">
+   </FileRef>
 </Workspace>
+
