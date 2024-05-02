@@ -11,12 +11,14 @@ import UIKit
 final class HobbySingleView: UIView {
     
     private let inset: CGFloat = 16
+    private let hobbyLabelFontName = "Avenir Next Regular"
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -32,10 +34,10 @@ final class HobbySingleView: UIView {
         return stackView
     }()
     
-    private let hobbyName: UILabel = {
+    private lazy var hobbyName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Avenir Next Regular", size: 23)
+        label.font = UIFont(name: hobbyLabelFontName, size: 23)
         return label
     }()
     
@@ -47,10 +49,10 @@ final class HobbySingleView: UIView {
         return imageView
     }()
     
-    private let hobbyDescription: UILabel = {
+    private lazy var hobbyDescription: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Avenir Next Regular", size: 18)
+        label.font = UIFont(name: hobbyLabelFontName, size: 18)
         label.textColor = .black
         label.numberOfLines = 0
         return label

@@ -14,6 +14,7 @@ final class HobbiesView: UIView {
         setupView()
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -34,7 +35,8 @@ final class HobbiesView: UIView {
     
     
     private func setupScrollViewPages(_ hobbyInfo: [Hobby]) {
-        scrollView.frame = CGRect(x: .zero, y: .zero, width: Layout.width, height: Layout.height / 1.3)
+        let scrollViewAspectRation = 1.3
+        scrollView.frame = CGRect(x: .zero, y: .zero, width: Layout.width, height: Layout.height / scrollViewAspectRation)
         scrollView.contentSize = CGSize(width: Layout.width * CGFloat(Float(hobbyInfo.count)), height: scrollView.frame.size.height)
         scrollView.isPagingEnabled = true
         scrollView.delegate = self
@@ -55,7 +57,8 @@ final class HobbiesView: UIView {
     @objc
     private func pageControlDidChange(_ sender: UIPageControl) {
         let current = CGFloat(sender.currentPage)
-        scrollView.setContentOffset(CGPoint(x: current * (window?.frame.size.width ?? 100), y: 0), animated: true)
+        let newContentOffsetX = current * (window?.frame.size.width ?? 100)
+        scrollView.setContentOffset(CGPoint(x: newContentOffsetX, y: 0), animated: true)
     }
     
     // MARK: - Public
@@ -97,10 +100,9 @@ private extension HobbiesView {
 
 extension HobbiesView: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offsetY = -(scrollView.contentOffset.y + scrollView.contentInset.top)
+        let offsetY = -(scrollView.contentOffset.y + scrollView.contentInset.top)        
         if offsetY <= 0 && scrollView.contentOffset.x > 0 {
-            pageControl.currentPage = Int(floorf(Float(scrollView.contentOffset.x) / Float(scrollView.frame.size.width)))
+            pageControl.currentPage = Int(floorf(Float(scrollView.contentOffset.x) / Float(max(1, scrollView.frame.size.width))))
         }
     }
 }
-
