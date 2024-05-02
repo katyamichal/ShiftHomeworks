@@ -20,15 +20,9 @@ final class TabBarViewController: UITabBarController {
         setupTabBar()
     }
     
-    private lazy var techSkillsViewController: TechSckillsViewController = {
-        let controller = TechSckillsViewController()
-        return controller
-    }()
+    private lazy var techSkillsViewController = TechSckillsViewController()
     
-    private lazy var hobbyViewController: HobbyViewController = {
-        let controller = HobbyViewController()
-        return controller
-    }()
+    private lazy var hobbyViewController = HobbyViewController()
     
     
     private func setupTabBar() {

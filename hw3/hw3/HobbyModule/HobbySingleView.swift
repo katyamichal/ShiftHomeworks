@@ -11,7 +11,6 @@ import UIKit
 final class HobbySingleView: UIView {
     
     private let inset: CGFloat = 16
-    private let hobbyLabelFontName = "Avenir Next Regular"
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -37,7 +36,7 @@ final class HobbySingleView: UIView {
     private lazy var hobbyName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: hobbyLabelFontName, size: 23)
+        label.font = LabelFont.avenir23
         return label
     }()
     
@@ -52,7 +51,7 @@ final class HobbySingleView: UIView {
     private lazy var hobbyDescription: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: hobbyLabelFontName, size: 18)
+        label.font = LabelFont.avenit18
         label.textColor = .black
         label.numberOfLines = 0
         return label

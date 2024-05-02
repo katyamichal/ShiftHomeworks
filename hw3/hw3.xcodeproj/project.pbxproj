@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4E758B302BDF95FD00E10CD3 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E758B2F2BDF95FD00E10CD3 /* Layout.swift */; };
+		4EBE286E2BE3C38D0067437C /* LabelFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE286D2BE3C38D0067437C /* LabelFont.swift */; };
 		4EF57CBC2BDF631500FF18A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF57CBB2BDF631500FF18A9 /* AppDelegate.swift */; };
 		4EF57CBE2BDF631500FF18A9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF57CBD2BDF631500FF18A9 /* SceneDelegate.swift */; };
 		4EF57CC32BDF631500FF18A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EF57CC12BDF631500FF18A9 /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		4E758B2F2BDF95FD00E10CD3 /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
+		4EBE286D2BE3C38D0067437C /* LabelFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelFont.swift; sourceTree = "<group>"; };
 		4EF57CB82BDF631500FF18A9 /* hw3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hw3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EF57CBB2BDF631500FF18A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EF57CBD2BDF631500FF18A9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 			children = (
 				4EF57CDB2BDF64F400FF18A9 /* SelfPresentationStrings.swift */,
 				4E758B2F2BDF95FD00E10CD3 /* Layout.swift */,
+				4EBE286D2BE3C38D0067437C /* LabelFont.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 				4EF57CE72BDF65F800FF18A9 /* Bio.swift in Sources */,
 				4EF57CBC2BDF631500FF18A9 /* AppDelegate.swift in Sources */,
 				4EF57CBE2BDF631500FF18A9 /* SceneDelegate.swift in Sources */,
+				4EBE286E2BE3C38D0067437C /* LabelFont.swift in Sources */,
 				4EF57CDA2BDF64DF00FF18A9 /* TechSkill.swift in Sources */,
 				4EF57CE02BDF657A00FF18A9 /* HobbyView.swift in Sources */,
 				4EF57CDE2BDF655C00FF18A9 /* HobbyViewController.swift in Sources */,
