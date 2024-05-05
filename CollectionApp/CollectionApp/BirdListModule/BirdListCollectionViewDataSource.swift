@@ -15,7 +15,7 @@ final class BirdListCollectionViewDataSource {
     
     private var birds: [Bird] = Bird.createSampleData()
     
-    var dataSource: UICollectionViewDiffableDataSource<BirdListSection, Bird>! = nil
+    var dataSource: UICollectionViewDiffableDataSource<BirdListSection, Bird>?
      
     func setupDataSource(_ collectionView: UICollectionView) {
         dataSource = UICollectionViewDiffableDataSource<BirdListSection, Bird>(collectionView: collectionView) {
@@ -29,6 +29,7 @@ final class BirdListCollectionViewDataSource {
         var snapshot = NSDiffableDataSourceSnapshot<BirdListSection, Bird>()
         snapshot.appendSections([.birdList])
         snapshot.appendItems(birds, toSection: .birdList)
+        guard let dataSource else { return }
         dataSource.apply(snapshot, animatingDifferences: false)
     }
 }

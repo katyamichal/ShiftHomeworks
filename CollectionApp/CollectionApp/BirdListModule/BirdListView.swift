@@ -45,6 +45,16 @@ final class BirdListView: UIView {
 
 private extension BirdListView {
     
+    enum CollectionLayout {
+        static let landscapeOrientation: CGFloat = 500
+        static let itemCountLanscape = 3
+        static let itemCountPortrait = 2
+        static let groupFractionalHeightLandscape = 0.8
+        static let groupFractionalHeightPortrait = 0.45
+        static let inset: CGFloat = 10
+        static let groupSpacing: CGFloat = 20
+    }
+    
     func createLayout() -> UICollectionViewLayout {
         
         let layout = UICollectionViewCompositionalLayout { (_, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
@@ -52,17 +62,16 @@ private extension BirdListView {
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             
-            let isWide = layoutEnvironment.container.effectiveContentSize.width > 500
-            let itemCount = isWide ? 3 : 2
-            let groupFractionalHeight = isWide ? 0.8 : 0.33
+            let isWide = layoutEnvironment.container.effectiveContentSize.width > CollectionLayout.landscapeOrientation
+            let itemCount = isWide ? CollectionLayout.itemCountLanscape : CollectionLayout.itemCountPortrait
+            let groupFractionalHeight = isWide ? CollectionLayout.groupFractionalHeightLandscape : CollectionLayout.groupFractionalHeightPortrait
             let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(groupFractionalHeight))
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: itemCount)
-            let spacing = CGFloat(20)
-            group.interItemSpacing = .fixed(spacing)
+            group.interItemSpacing = .fixed(CollectionLayout.groupSpacing)
   
             let section = NSCollectionLayoutSection(group: group)
-            section.interGroupSpacing = spacing
-            section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
+            section.interGroupSpacing = CollectionLayout.groupSpacing
+            section.contentInsets = NSDirectionalEdgeInsets(top: CollectionLayout.inset, leading: CollectionLayout.inset, bottom: CollectionLayout.inset, trailing: CollectionLayout.inset)
             return section
         }
         return layout
