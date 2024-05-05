@@ -85,7 +85,7 @@ enum BirdSampleStrings {
         static let description = "During the mating season, male blue-footed boobies strut around with exaggerated movements that show off their fabulous blue feet. Females tend to pick the males with the bluest feet as their mates."
         static let physicalCharacteristics = "The blue color of Blue-footed Booby’s feet varies in its intensity. Boobies with bluer feet appear to have more success in finding a mate than birds with duller blue feet."
         static let behavior = "The Blue-footed Booby makes no nest, but lays its eggs on bare ground. The incubating birds defecate while on the nest, and the eggs become surrounded by a circular wall of excrement."
-        static let conservationStatusDescription = "Blue-Footed Booby is not in the risk. they are not qualified for a higher risk category and not likely to be threatened in the near future."
+        static let conservationStatusDescription = "Blue-Footed Booby is not qualified for a higher risk category and not likely to be threatened in the near future."
         static let conservationStatus = ConservationColourStatus.leastConcern
     }
     

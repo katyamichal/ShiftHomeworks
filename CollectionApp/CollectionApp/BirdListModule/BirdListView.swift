@@ -64,7 +64,7 @@ private extension BirdListView {
             
             let isWide = layoutEnvironment.container.effectiveContentSize.width > CollectionLayout.landscapeOrientation
             let itemCount = isWide ? CollectionLayout.itemCountLanscape : CollectionLayout.itemCountPortrait
-            let groupFractionalHeight = isWide ? CollectionLayout.groupFractionalHeightLandscape : CollectionLayout.groupFractionalHeightPortrait
+            let groupFractionalHeight = isWide ? 0.75 : 0.4
             let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(groupFractionalHeight))
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: itemCount)
             group.interItemSpacing = .fixed(CollectionLayout.groupSpacing)

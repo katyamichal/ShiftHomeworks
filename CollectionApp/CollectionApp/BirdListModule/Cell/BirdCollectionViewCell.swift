@@ -41,7 +41,7 @@ class BirdCollectionViewCell: UICollectionViewCell {
     private lazy var birdImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleToFill
         imageView.clipsToBounds = true
         return imageView
     }()
