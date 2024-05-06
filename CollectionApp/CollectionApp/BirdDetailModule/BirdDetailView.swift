@@ -54,22 +54,22 @@ final class BirdDetailView: UIView {
 
 private extension BirdDetailView {
     
-    enum CollectionLayout {
-        static let landscapeOrientation: CGFloat = 500
-        static let groupHeightAbsoluteLanscape: CGFloat = 250
-        static let groupHeightAbsolutePortrait: CGFloat = 350
-        static let groupFractionalHeightLandscape = 0.5
-        static let groupFractionalHeightPortrait = 1.0
+    enum DetailCollectionLayout {
+        static let wideScreen: CGFloat = 500
+        static let itemCountLanscape = 3
+        static let itemCountPortrait = 2
+        static let imageGroupHeightPortrait = 0.45
+        static let infoGroupHeightPortrait = 0.85
+        static let infoGroupHeightLandscape = 0.45
         static let inset: CGFloat = 10
-        static let groupSpacing: CGFloat = 20
+        static let spacing: CGFloat = 20
     }
-    
+        
     func createLayout() -> UICollectionViewLayout {
         let config = UICollectionViewCompositionalLayoutConfiguration()
-        config.interSectionSpacing = 20
-        
+        config.interSectionSpacing = DetailCollectionLayout.spacing
         let layout = UICollectionViewCompositionalLayout(sectionProvider: { (sectionIndex, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-            let isWideView = layoutEnvironment.container.effectiveContentSize.width > CollectionLayout.landscapeOrientation
+            let isWideView = layoutEnvironment.container.effectiveContentSize.width > DetailCollectionLayout.wideScreen
             
             let sectionLayoutKind = BirdDetailSection.allCases[sectionIndex]
             switch sectionLayoutKind {
@@ -81,36 +81,34 @@ private extension BirdDetailView {
         return layout
     }
     
-    
+
     func createBirdimageLayout(isWide: Bool) -> NSCollectionLayoutSection {
         
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupFractionalWidth = isWide ? CollectionLayout.groupFractionalHeightLandscape : CollectionLayout.groupFractionalHeightPortrait
-        let groupHeightAbsolute: CGFloat = isWide ? CollectionLayout.groupHeightAbsoluteLanscape : CollectionLayout.groupHeightAbsolutePortrait
-        
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(groupFractionalWidth), heightDimension: .absolute(groupHeightAbsolute))
+        let groupFractionalHeight: CGFloat = isWide ?  1.0 : DetailCollectionLayout.imageGroupHeightPortrait
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(groupFractionalHeight))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
         return section
     }
     
+
     func createBirdInfoLayout(isWide: Bool) -> NSCollectionLayoutSection {
         
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        
-        let groupFractionalWidth = isWide ? 0.45 : 0.85
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(groupFractionalWidth), heightDimension: .absolute(300))
+        let groupFractionalWidth = isWide ? DetailCollectionLayout.infoGroupHeightLandscape : DetailCollectionLayout.infoGroupHeightPortrait
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(groupFractionalWidth), heightDimension: .fractionalWidth(groupFractionalWidth))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 10, trailing: 20)
-        section.interGroupSpacing = 20
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: DetailCollectionLayout.inset, bottom: DetailCollectionLayout.inset, trailing: DetailCollectionLayout.spacing)
+        section.interGroupSpacing = DetailCollectionLayout.spacing
         return section
     }
 }

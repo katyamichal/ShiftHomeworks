@@ -49,6 +49,4 @@ final class BirdDetailViewController: UIViewController {
         let barButton = UIBarButtonItem(title: "Status", style: .plain, target: self, action: #selector(showBirdConservationStatus))
         navigationItem.rightBarButtonItem = barButton
     }
-
-
 }

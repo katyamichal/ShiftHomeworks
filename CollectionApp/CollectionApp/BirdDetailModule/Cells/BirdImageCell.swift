@@ -28,10 +28,17 @@ final class BirdImageCell: UICollectionViewCell {
     
     // MARK: - UI Elements
     
-    private let birdImageView: UIImageView = {
+    private lazy var conteinerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var birdImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .red
+        imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
         return imageView
     }()
     
@@ -48,19 +55,25 @@ final class BirdImageCell: UICollectionViewCell {
 private extension BirdImageCell {
     
     func setupCell() {
-        setupView()
+        setupViews()
         setupConstraints()
     }
     
-    func setupView() {
-        contentView.addSubview(birdImageView)
+    func setupViews() {
+        contentView.addSubview(conteinerView)
+        conteinerView.addSubview(birdImageView)
     }
     
     func setupConstraints() {
-        birdImageView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        birdImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-        birdImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-        birdImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        
+        conteinerView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        conteinerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        conteinerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        conteinerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        
+        birdImageView.centerXAnchor.constraint(equalTo: conteinerView.centerXAnchor).isActive = true
+        birdImageView.centerYAnchor.constraint(equalTo: conteinerView.centerYAnchor).isActive = true
+        birdImageView.heightAnchor.constraint(equalTo: conteinerView.heightAnchor, multiplier: 1.0).isActive = true
     }
 }
 

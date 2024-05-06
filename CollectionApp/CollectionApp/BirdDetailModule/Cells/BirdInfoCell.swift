@@ -52,7 +52,7 @@ class BirdInfoCell: UICollectionViewCell {
 private extension BirdInfoCell {
     
     func setupCell() {
-        contentView.backgroundColor = .yellow.withAlphaComponent(0.6)
+        contentView.backgroundColor = .systemBlue.withAlphaComponent(0.3)
         layer.cornerRadius = 15
         layer.masksToBounds = true
         setupView()

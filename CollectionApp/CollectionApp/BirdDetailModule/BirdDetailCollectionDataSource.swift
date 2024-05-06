@@ -28,20 +28,14 @@ final class BirdDetailCollectionDataSource: NSObject, UICollectionViewDataSource
     
     
     // MARK: - Collection Data Source
-    
-    enum Section: CaseIterable {
-        case birdImage
-        case birdInfo
-    }
-    
-    
+        
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        Section.allCases.count
+        BirdDetailSection.allCases.count
     }
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let section = Section.allCases[section]
+        let section = BirdDetailSection.allCases[section]
         
         switch section {
         case .birdImage:
@@ -53,7 +47,7 @@ final class BirdDetailCollectionDataSource: NSObject, UICollectionViewDataSource
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let section = Section.allCases[indexPath.section]
+        let section = BirdDetailSection.allCases[indexPath.section]
         
         switch section {
         case .birdImage:
