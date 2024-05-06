@@ -47,8 +47,8 @@ final class BirdImageCell: UICollectionViewCell {
     
     // MARK: - Public
     
-    func update(imageName: String) {
-        birdImageView.image = UIImage(named: imageName)
+    func updateImage(_ name: String) {
+        birdImageView.image = UIImage(named: name)
     }
 }
 

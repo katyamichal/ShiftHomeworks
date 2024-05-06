@@ -54,7 +54,7 @@ final class BirdDetailCollectionDataSource: NSObject, UICollectionViewDataSource
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BirdImageCell.reuseIdentifier, for: indexPath) as? BirdImageCell else {
                 return UICollectionViewCell()
             }
-            cell.update(imageName: bird.image)
+            cell.updateImage(bird.image)
             return cell
             
         case .birdInfo:
