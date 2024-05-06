@@ -112,7 +112,30 @@ struct Bird: Hashable {
                     conservationStatusDescription:BirdSampleStrings.EmperorPenguin.conservationStatusDescription,
                     conservationStatus: BirdSampleStrings.EmperorPenguin.conservationStatus.colour)
             ),
-            
+
+            Bird(
+                name: BirdSampleStrings.BaldEagle.name,
+                image: BirdSampleStrings.BaldEagle.image,
+                description: BirdSampleStrings.BaldEagle.description,
+                physicalCharacteristics: BirdSampleStrings.BaldEagle.physicalCharacteristics,
+                behavior: BirdSampleStrings.BaldEagle.behavior,
+                
+                birdConservation: BirdConservation(
+                    conservationStatusDescription:BirdSampleStrings.BaldEagle.conservationStatusDescription,
+                    conservationStatus: BirdSampleStrings.BaldEagle.conservationStatus.colour)
+            ),
+
+            Bird(
+                name: BirdSampleStrings.ScarletMacaw.name,
+                image: BirdSampleStrings.ScarletMacaw.image,
+                description: BirdSampleStrings.ScarletMacaw.description,
+                physicalCharacteristics: BirdSampleStrings.ScarletMacaw.physicalCharacteristics,
+                behavior: BirdSampleStrings.ScarletMacaw.behavior,
+                
+                birdConservation: BirdConservation(
+                    conservationStatusDescription:BirdSampleStrings.ScarletMacaw.conservationStatusDescription,
+                    conservationStatus: BirdSampleStrings.ScarletMacaw.conservationStatus.colour)
+            ),
         ]
     }
 }

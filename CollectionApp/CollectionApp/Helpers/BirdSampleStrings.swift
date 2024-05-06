@@ -29,6 +29,7 @@ enum BirdSampleStrings {
         
     }
     
+    
     enum SnowOwl {
         static let name = "Snowy Owl"
         static let image = "snowyOwl"
@@ -54,8 +55,8 @@ enum BirdSampleStrings {
         static let name = "American Goldfinch"
         static let image = "goldfish"
         static let description = "An American goldfinch soars through the warm spring air, it’s yellow feathers reflecting the sun. Suddenly the bird opens its mouth and chirps a call that sounds like “po-ta-to-chip.” This flier isn’t looking for a salty snack. It’s using this vocalization to communicate with its flock. The bird flies on, continuing its delicious call."
-        static let physicalCharacteristics = ""
-        static let behavior = ""
+        static let physicalCharacteristics = "The American goldfinch is a small bird with bright yellow plumage in the summer and olive-brown feathers in the winter. It has a black forehead, wings with white bars, and a short, conical bill."
+        static let behavior = "American goldfinches are social birds that often gather in flocks. They are known for their acrobatic flight patterns and cheerful, twittering songs. These birds feed primarily on seeds and are often seen at bird feeders."
         static let conservationStatusDescription = "The American goldfinch is protected under the Migratory Bird Act, but its populations are considered stable. The IUCN Red List classifies them as 'least concern'."
         static let conservationStatus = ConservationColourStatus.leastConcern
     }
@@ -69,6 +70,7 @@ enum BirdSampleStrings {
         static let conservationStatusDescription = "Conservation. Eastern Bluebird populations increased between 1966 and 2019, according to the North American Breeding Bird Survey. Partners in Flight estimates a global breeding population of 23 million. The species rates a 7 out of 20 on the Continental Concern Score, indicating a species of low conservation concern."
         static let conservationStatus = ConservationColourStatus.leastConcern
     }
+    
     enum SnowyPlover {
         static let name = "Snowy Plover"
         static let image = "plover"
@@ -97,6 +99,27 @@ enum BirdSampleStrings {
         static let behavior = "Emperor penguins can be active at any time of the night and day. They are highly social birds, gathering in groups to forage and nest. They form large nesting colonies; if the weather is good and usually defend only small areas around them. When it gets too cold, the birds huddle together."
         static let conservationStatusDescription = "In 2012 the emperor penguin was uplisted from a species of least concern to near threatened by the IUCN. Along with nine other species of penguin, it is currently under consideration for inclusion under the US Endangered Species Act."
         static let conservationStatus = ConservationColourStatus.vulnerable
+    }
+    
+    enum BaldEagle {
+        static let name = "Bald Eagle"
+        static let image = "eagle"
+        static let description = "The bald eagle, with its snowy-feathered (not bald) head and white tail, is the proud national bird symbol of the United States. These birds are not actually bald; their name derives from the older meaning of the word, 'white headed.'"
+        static let physicalCharacteristics = "Bald eagles are large birds of prey, with wingspans reaching up to 2.3 meters. They have dark brown bodies and wings, a white head, neck, and tail, and yellow feet and beaks."
+        static let behavior = "Bald eagles are powerful fliers and skilled hunters. They can reach speeds of up to 56-70 kilometers per hour when gliding and can dive at speeds of around 120-160 kilometers per hour when hunting for prey."
+        static let conservationStatusDescription = "The bald eagle has made a remarkable recovery since it was listed as endangered in the U.S. in 1967. Due to conservation efforts, its population has rebounded, and it was removed from the endangered species list in 2007."
+        static let conservationStatus = ConservationColourStatus.leastConcern
+    }
+    
+    
+    enum ScarletMacaw {
+        static let name = "Scarlet Macaw"
+        static let image = "macaw"
+        static let description = "The scarlet macaw is a large, colorful parrot native to humid evergreen forests in the American tropics. It is known for its bright plumage, which features a mix of red, yellow, and blue feathers."
+        static let physicalCharacteristics = "Scarlet macaws have vibrant red plumage on most of their body, with blue wings and yellow accents on their face. They have long tails, strong beaks for cracking nuts and seeds, and zygodactyl feet (two toes facing forward and two facing backward)."
+        static let behavior = "Scarlet macaws are social birds that often gather in flocks. They are intelligent and can mimic human speech. These birds form strong bonds with their mates and are known to be affectionate and playful."
+        static let conservationStatusDescription = "The scarlet macaw is listed as 'Least Concern' on the IUCN Red List. While they face threats such as habitat loss and illegal trapping for the pet trade, conservation efforts are in place to protect their populations."
+        static let conservationStatus = ConservationColourStatus.leastConcern
     }
 }
 
