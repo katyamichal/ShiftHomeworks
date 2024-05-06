@@ -10,6 +10,7 @@ import UIKit
 final class ConservationStatusView: UIView {
     
     private let inset: CGFloat = 30
+    private let buttonAspectRation: CGFloat = 70
     
     
     // MARK: - Inits
@@ -34,6 +35,20 @@ final class ConservationStatusView: UIView {
         return label
     }()
     
+    lazy var dismissButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        var config = UIButton.Configuration.filled()
+        config.cornerStyle = .capsule
+        config.baseBackgroundColor = .black
+        config.title = "Got It"
+        button.configuration = config
+       
+      //  button.setTitle("Got it", for: .normal)
+        
+        return button
+    }()
+    
     
     // MARK: - Public
     
@@ -55,13 +70,18 @@ private extension ConservationStatusView {
     
     func setupViews() {
         addSubview(conservationStatusLabel)
-        setupConstraints()
+        addSubview(dismissButton)
     }
     
     func setupConstraints() {
         conservationStatusLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: inset).isActive = true
         conservationStatusLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -inset).isActive = true
         conservationStatusLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: inset).isActive = true
-        conservationStatusLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -inset).isActive = true
+        
+        dismissButton.topAnchor.constraint(equalTo: conservationStatusLabel.bottomAnchor,constant: inset).isActive = true
+        dismissButton.centerXAnchor.constraint(equalTo: conservationStatusLabel.centerXAnchor).isActive = true
+        dismissButton.heightAnchor.constraint(equalToConstant: buttonAspectRation).isActive = true
+        dismissButton.widthAnchor.constraint(equalToConstant: buttonAspectRation).isActive = true
+
     }
 }

@@ -35,11 +35,20 @@ final class ConservationStatusViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupConservationStatusView()
+        setupActionForDissmissButton()
     }
     
     // MARK: - Setup method
     
     private func setupConservationStatusView() {
         conservationStatusView.update(colour: birdConservation.conservationStatus, conservationStatusDescription: birdConservation.conservationStatusDescription)
+    }
+    
+    private func setupActionForDissmissButton() {
+        conservationStatusView.dismissButton.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
+    }
+    
+    @objc func dismissView() {
+        dismiss(animated: true)
     }
 }
