@@ -46,6 +46,7 @@ final class BirdDetailCollectionDataSource: NSObject, UICollectionViewDataSource
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let section = BirdDetailSection.allCases[indexPath.section]
         
         switch section {

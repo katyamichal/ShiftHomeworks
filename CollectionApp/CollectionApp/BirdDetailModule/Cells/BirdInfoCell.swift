@@ -10,6 +10,7 @@ import UIKit
 class BirdInfoCell: UICollectionViewCell {
     
     private let inset: CGFloat = 10
+    private let colourTransparensy: CGFloat = 0.3
     
     static var reuseIdentifier: String {
         return String(describing: BirdInfoCell.self)
@@ -52,7 +53,7 @@ class BirdInfoCell: UICollectionViewCell {
 private extension BirdInfoCell {
     
     func setupCell() {
-        contentView.backgroundColor = .systemBlue.withAlphaComponent(0.3)
+        contentView.backgroundColor = .systemBlue.withAlphaComponent(colourTransparensy)
         layer.cornerRadius = 15
         layer.masksToBounds = true
         setupView()

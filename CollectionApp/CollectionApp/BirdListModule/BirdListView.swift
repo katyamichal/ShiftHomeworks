@@ -11,7 +11,6 @@ final class BirdListView: UIView {
     
     // MARK: - Inits
 
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -23,9 +22,9 @@ final class BirdListView: UIView {
         
     }
     
+    
     // MARK: - UI Elements
 
-    
     lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -34,12 +33,14 @@ final class BirdListView: UIView {
         return collectionView
     }()
     
+    
     // MARK: - Setup method
 
     private func setupView() {
         addSubview(collectionView)
     }
 }
+
 
 // MARK: - Collection Layout Setup
 

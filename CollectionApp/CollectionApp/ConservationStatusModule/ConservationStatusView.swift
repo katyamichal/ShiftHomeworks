@@ -19,6 +19,7 @@ final class ConservationStatusView: UIView {
         super.init(frame: frame)
         setupView()
     }
+    
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -41,11 +42,8 @@ final class ConservationStatusView: UIView {
         var config = UIButton.Configuration.filled()
         config.cornerStyle = .capsule
         config.baseBackgroundColor = .black
-        config.title = "Got It"
+        config.title = "Got it"
         button.configuration = config
-       
-      //  button.setTitle("Got it", for: .normal)
-        
         return button
     }()
     
@@ -82,6 +80,6 @@ private extension ConservationStatusView {
         dismissButton.centerXAnchor.constraint(equalTo: conservationStatusLabel.centerXAnchor).isActive = true
         dismissButton.heightAnchor.constraint(equalToConstant: buttonAspectRation).isActive = true
         dismissButton.widthAnchor.constraint(equalToConstant: buttonAspectRation).isActive = true
-
+        
     }
 }

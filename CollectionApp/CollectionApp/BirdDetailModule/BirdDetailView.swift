@@ -7,11 +7,6 @@
 
 import UIKit
 
-enum BirdDetailSection: CaseIterable {
-    case birdImage
-    case birdInfo
-}
-
 final class BirdDetailView: UIView {
     
     // MARK: - Inits

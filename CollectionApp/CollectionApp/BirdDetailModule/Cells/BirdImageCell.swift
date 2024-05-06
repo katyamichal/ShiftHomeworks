@@ -65,7 +65,6 @@ private extension BirdImageCell {
     }
     
     func setupConstraints() {
-        
         conteinerView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         conteinerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
         conteinerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
@@ -73,7 +72,7 @@ private extension BirdImageCell {
         
         birdImageView.centerXAnchor.constraint(equalTo: conteinerView.centerXAnchor).isActive = true
         birdImageView.centerYAnchor.constraint(equalTo: conteinerView.centerYAnchor).isActive = true
-        birdImageView.heightAnchor.constraint(equalTo: conteinerView.heightAnchor, multiplier: 1.0).isActive = true
+        birdImageView.heightAnchor.constraint(equalTo: conteinerView.heightAnchor).isActive = true
     }
 }
 

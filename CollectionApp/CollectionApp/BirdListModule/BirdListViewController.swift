@@ -12,6 +12,9 @@ final class BirdListViewController: UIViewController {
     private var birdListView: BirdListView { return self.view as! BirdListView }
     private var birdsDataSource = BirdListCollectionViewDataSource()
     
+    
+    // MARK: - Inits
+
     override func loadView() {
         self.view = BirdListView()
     }
@@ -23,6 +26,9 @@ final class BirdListViewController: UIViewController {
     }
 }
 
+// MARK: - Setup method
+
+
 private extension BirdListViewController {
     
     func setupCollectionView() {
@@ -30,6 +36,9 @@ private extension BirdListViewController {
         birdsDataSource.setupDataSource( birdListView.collectionView)
     }
 }
+
+// MARK: - Collection Delegate
+
 
 extension BirdListViewController: UICollectionViewDelegate {
     

@@ -9,6 +9,9 @@ import UIKit
 
 class BirdCollectionViewCell: UICollectionViewCell {
     
+    private let topInset: CGFloat = 10
+    private let inset: CGFloat = 20
+    
     static var reuseIdentifier: String {
         return String(describing: BirdCollectionViewCell.self)
     }
@@ -74,10 +77,10 @@ private extension BirdCollectionViewCell {
     }
     
     func setupConstrains() {
-        birdName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
-        birdName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
-        birdName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
-        birdName.bottomAnchor.constraint(equalTo: birdImageView.topAnchor, constant: -20).isActive = true
+        birdName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: topInset).isActive = true
+        birdName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset).isActive = true
+        birdName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset).isActive = true
+        birdName.bottomAnchor.constraint(equalTo: birdImageView.topAnchor, constant: -inset).isActive = true
         
         birdImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
         birdImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
