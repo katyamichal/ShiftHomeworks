@@ -21,9 +21,12 @@ final class BirdListCollectionViewDataSource {
     var dataSource: UICollectionViewDiffableDataSource<BirdListSection, Bird>?
     
     func setupDataSource(_ collectionView: UICollectionView) {
+        
         dataSource = UICollectionViewDiffableDataSource<BirdListSection, Bird>(collectionView: collectionView) {
-            (collectionView: UICollectionView, indexPath: IndexPath, identifier: Bird) -> BirdCollectionViewCell? in
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BirdCollectionViewCell.reuseIdentifier, for: indexPath) as! BirdCollectionViewCell
+            (collectionView: UICollectionView, indexPath: IndexPath, identifier: Bird) -> UICollectionViewCell? in
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BirdCollectionViewCell.reuseIdentifier, for: indexPath) as? BirdCollectionViewCell else {
+                return UICollectionViewCell()
+            }
             let bird = self.birds[indexPath.item]
             cell.updateBirdImageView(bird.image)
             cell.updateBirdNameLabel(bird.name)
