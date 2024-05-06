@@ -9,16 +9,14 @@ import UIKit
 
 final class ConservationStatusViewController: UIViewController {
     
-    private var colour: UIColor
-    private var conservationStatusDescription: String
+    private var birdConservation: BirdConservation
     private var conservationStatusView: ConservationStatusView { return self.view as! ConservationStatusView }
     
     
     // MARK: - Inits
     
-    init(colour: UIColor, conservationStatusDescription: String) {
-        self.colour = colour
-        self.conservationStatusDescription = conservationStatusDescription
+    init(birdConservation: BirdConservation) {
+        self.birdConservation = birdConservation
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -42,6 +40,6 @@ final class ConservationStatusViewController: UIViewController {
     // MARK: - Setup method
     
     private func setupConservationStatusView() {
-        conservationStatusView.update(colour: colour, conservationStatusDescription: conservationStatusDescription)
+        conservationStatusView.update(colour: birdConservation.conservationStatus, conservationStatusDescription: birdConservation.conservationStatusDescription)
     }
 }

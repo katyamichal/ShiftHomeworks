@@ -40,7 +40,7 @@ final class BirdDetailViewController: UIViewController {
     // MARK: - Methods
 
     @objc func showBirdConservationStatus() {
-        let controller = ConservationStatusViewController(colour: birdDetailDataSource.conservationStatus, conservationStatusDescription: birdDetailDataSource.conservationStatusDescription)
+        let controller = ConservationStatusViewController(birdConservation: birdDetailDataSource.birdConservation)
         self.present(controller, animated: true)
     }
     

@@ -11,9 +11,8 @@ final class BirdDetailCollectionDataSource: NSObject, UICollectionViewDataSource
     
     private let bird: Bird
     
-    lazy var conservationStatus = bird.conservationStatus
-    lazy var conservationStatusDescription = bird.conservationStatusDescription
     lazy var birdName = bird.name
+    lazy var birdConservation = bird.birdConservation
     
     private var birdInfo: [String] {
         [bird.description, bird.behavior, bird.physicalCharacteristics]
