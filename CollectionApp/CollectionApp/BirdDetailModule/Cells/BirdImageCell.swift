@@ -9,6 +9,8 @@ import UIKit
 
 final class BirdImageCell: UICollectionViewCell {
     
+    private let inset: CGFloat = 10
+    
     static var reuseIdentifier: String {
         return String(describing: BirdImageCell.self)
     }
@@ -65,7 +67,7 @@ private extension BirdImageCell {
     }
     
     func setupConstraints() {
-        conteinerView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        conteinerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset).isActive = true
         conteinerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
         conteinerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
         conteinerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true

@@ -21,7 +21,7 @@ final class BirdListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Bird List"
+        setupNavigationBar()
         setupCollectionView()
     }
 }
@@ -34,6 +34,12 @@ private extension BirdListViewController {
     func setupCollectionView() {
         birdListView.collectionView.delegate = self
         birdsDataSource.setupDataSource( birdListView.collectionView)
+    }
+    
+    func setupNavigationBar() {
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationItem.largeTitleDisplayMode = .always
+        navigationItem.title = "Bird List"
     }
 }
 
