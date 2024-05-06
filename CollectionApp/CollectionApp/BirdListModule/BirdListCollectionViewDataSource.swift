@@ -25,7 +25,8 @@ final class BirdListCollectionViewDataSource {
             (collectionView: UICollectionView, indexPath: IndexPath, identifier: Bird) -> BirdCollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BirdCollectionViewCell.reuseIdentifier, for: indexPath) as! BirdCollectionViewCell
             let bird = self.birds[indexPath.item]
-            cell.update(name: bird.name, imageName: bird.image)
+            cell.updateBirdImageView(bird.image)
+            cell.updateBirdNameLabel(bird.name)
             return cell
         }
         

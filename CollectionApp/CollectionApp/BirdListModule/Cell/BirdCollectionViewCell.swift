@@ -52,9 +52,12 @@ class BirdCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Public
     
-    func update(name: String, imageName: String) {
+    func updateBirdImageView(_ name: String) {
+        birdImageView.image = UIImage(named: name)
+    }
+    
+    func updateBirdNameLabel(_ name: String) {
         birdName.text = name
-        birdImageView.image = UIImage(named: imageName)
     }
 }
 
