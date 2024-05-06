@@ -135,7 +135,7 @@ struct Bird: Hashable {
                 birdConservation: BirdConservation(
                     conservationStatusDescription:BirdSampleStrings.ScarletMacaw.conservationStatusDescription,
                     conservationStatus: BirdSampleStrings.ScarletMacaw.conservationStatus.colour)
-            ),
+            )
         ]
     }
 }
