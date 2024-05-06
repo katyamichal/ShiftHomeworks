@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BirdInfoCell: UICollectionViewCell {
+final class BirdInfoCell: UICollectionViewCell {
     
     private let inset: CGFloat = 10
     private let colourTransparensy: CGFloat = 0.3
