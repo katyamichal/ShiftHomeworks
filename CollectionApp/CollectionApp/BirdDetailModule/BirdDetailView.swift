@@ -23,7 +23,7 @@ final class BirdDetailView: UIView {
     
     // MARK: - UI Elements
     
-    lazy var collectionView: UICollectionView = {
+   private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.backgroundColor = .systemBackground
@@ -31,7 +31,6 @@ final class BirdDetailView: UIView {
         collectionView.register(BirdInfoCell.self, forCellWithReuseIdentifier: BirdInfoCell.reuseIdentifier)
         return collectionView
     }()
-    
     
     func setupDataSource(_ dataSource: BirdDetailCollectionDataSource) {
         collectionView.dataSource = dataSource
@@ -43,7 +42,6 @@ final class BirdDetailView: UIView {
         addSubview(collectionView)
     }
 }
-
 
 // MARK: - Collection View Layout
 
@@ -68,7 +66,7 @@ private extension BirdDetailView {
             
             let sectionLayoutKind = BirdDetailSection.allCases[sectionIndex]
             switch sectionLayoutKind {
-            case .birdImage: return self.createBirdimageLayout(isWide: isWideView)
+            case .birdImage: return self.createBirdImageLayout(isWide: isWideView)
             case .birdInfo: return self.createBirdInfoLayout(isWide: isWideView)
             }
             
@@ -76,8 +74,7 @@ private extension BirdDetailView {
         return layout
     }
     
-
-    func createBirdimageLayout(isWide: Bool) -> NSCollectionLayoutSection {
+    func createBirdImageLayout(isWide: Bool) -> NSCollectionLayoutSection {
         
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -90,7 +87,6 @@ private extension BirdDetailView {
         return section
     }
     
-
     func createBirdInfoLayout(isWide: Bool) -> NSCollectionLayoutSection {
         
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
