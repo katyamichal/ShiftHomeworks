@@ -10,19 +10,16 @@ import UIKit
 final class BirdListViewController: UIViewController {
     
     private var birdListView: BirdListView { return self.view as! BirdListView }
-    private var birdsDataSource = BirdListCollectionViewDataSource()
-    
-    
+
     // MARK: - Inits
 
     override func loadView() {
-        self.view = BirdListView()
+        self.view = BirdListView(collectionDelegate: self)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
-        setupCollectionView()
     }
 }
 
@@ -30,12 +27,7 @@ final class BirdListViewController: UIViewController {
 
 
 private extension BirdListViewController {
-    
-    func setupCollectionView() {
-        birdListView.collectionView.delegate = self
-        birdsDataSource.setupDataSource( birdListView.collectionView)
-    }
-    
+
     func setupNavigationBar() {
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.largeTitleDisplayMode = .always
@@ -43,14 +35,13 @@ private extension BirdListViewController {
     }
 }
 
-// MARK: - Collection Delegate
 
+// MARK: - Collection Delegate
 
 extension BirdListViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let dataSource = birdsDataSource.dataSource,  let bird = dataSource.itemIdentifier(for: indexPath) else { return }
-        
+        let bird = BirdDataSource.birds[indexPath.item]
         let detailViewController = BirdDetailViewController(birdDetailDataSource: BirdDetailCollectionDataSource(bird: bird))
         navigationController?.pushViewController(detailViewController, animated: true)
     }

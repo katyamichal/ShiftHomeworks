@@ -16,6 +16,7 @@ final class BirdDetailViewController: UIViewController {
 
     init(birdDetailDataSource: BirdDetailCollectionDataSource) {
         self.birdDetailDataSource = birdDetailDataSource
+       // self.navigationTitle = navigationTitle
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -45,7 +46,7 @@ final class BirdDetailViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        navigationItem.title = "\(birdDetailDataSource.birdName)"
+       // navigationItem.title = navigationTitle
         let barButton = UIBarButtonItem(title: "Status", style: .plain, target: self, action: #selector(showBirdConservationStatus))
         navigationItem.rightBarButtonItem = barButton
     }
