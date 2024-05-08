@@ -42,7 +42,7 @@ extension BirdListViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let bird = BirdDataSource.birds[indexPath.item]
-        let detailViewController = BirdDetailViewController(birdDetailDataSource: BirdDetailCollectionDataSource(bird: bird))
+        let detailViewController = BirdDetailViewController(birdDetailDataSource: BirdDetailCollectionDataSource(bird: bird), navigationTitle: bird.name, birdConservation: bird.birdConservation)
         navigationController?.pushViewController(detailViewController, animated: true)
     }
 }

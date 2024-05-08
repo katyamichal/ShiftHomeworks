@@ -11,13 +11,9 @@ final class BirdDetailCollectionDataSource: NSObject, UICollectionViewDataSource
     
     private let bird: Bird
     
-    lazy var birdName = bird.name
-    lazy var birdConservation = bird.birdConservation
-    
     private var birdInfo: [String] {
         [bird.description, bird.behavior, bird.physicalCharacteristics]
     }
-    
     
     // MARK: - Init
     
@@ -25,13 +21,11 @@ final class BirdDetailCollectionDataSource: NSObject, UICollectionViewDataSource
         self.bird = bird
     }
     
-    
     // MARK: - Collection Data Source
         
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         BirdDetailSection.allCases.count
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let section = BirdDetailSection.allCases[section]
