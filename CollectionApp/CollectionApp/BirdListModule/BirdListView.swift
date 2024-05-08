@@ -27,7 +27,7 @@ final class BirdListView: UIView {
     
     // MARK: - UI Elements
     
-   private lazy var collectionView: UICollectionView = {
+    private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.backgroundColor = .systemBackground
@@ -44,11 +44,11 @@ final class BirdListView: UIView {
         setupCollectionDelegate(delegate)
     }
     
-    func setupCollectionDataSource() {
+    private func setupCollectionDataSource() {
         collectionView.dataSource = collectionDataSource
     }
     
-    func setupCollectionDelegate(_ delegete: UICollectionViewDelegate) {
+    private func setupCollectionDelegate(_ delegete: UICollectionViewDelegate) {
         collectionView.delegate = delegete
     }
 }

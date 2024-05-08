@@ -26,7 +26,6 @@ final class BirdListCollectionDataSource: UICollectionViewDiffableDataSource<Bir
     
     // MARK: - Setup cell method
     
-    
     private static func setupCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BirdCollectionViewCell.reuseIdentifier, for: indexPath) as? BirdCollectionViewCell else {
             return UICollectionViewCell()
