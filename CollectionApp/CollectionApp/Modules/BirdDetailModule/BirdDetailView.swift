@@ -32,7 +32,7 @@ final class BirdDetailView: UIView {
         return collectionView
     }()
     
-    func setupDataSource(_ dataSource: BirdDetailCollectionDataSource) {
+    func setupCollectionDataSource(_ dataSource: UICollectionViewDataSource) {
         collectionView.dataSource = dataSource
     }
     

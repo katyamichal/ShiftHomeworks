@@ -9,14 +9,11 @@ import UIKit
 
 final class BirdListView: UIView {
     
-    private lazy var collectionDataSource = BirdListCollectionDataSource(collectionView: collectionView)
-    
-    
     // MARK: - Inits
-    
-    init(collectionDelegate: UICollectionViewDelegate) {
+
+    init(collectionDelegate: UICollectionViewDelegate, dataSource: UICollectionViewDataSource) {
         super.init(frame: .zero)
-        setupView(delegate: collectionDelegate)
+        setupView(collectionDelegate, dataSource)
     }
     
     @available(*, unavailable)
@@ -34,21 +31,23 @@ final class BirdListView: UIView {
         collectionView.register(BirdCollectionViewCell.self, forCellWithReuseIdentifier: BirdCollectionViewCell.reuseIdentifier)
         return collectionView
     }()
+}
+
+// MARK: - Setup methods
+
+private extension  BirdListView {
     
-    
-    // MARK: - Setup methods
-    
-    private func setupView(delegate: UICollectionViewDelegate) {
+    func setupView(_ delegate: UICollectionViewDelegate, _ dataSource: UICollectionViewDataSource) {
         addSubview(collectionView)
-        setupCollectionDataSource()
+        setupCollectionDataSource(dataSource)
         setupCollectionDelegate(delegate)
     }
     
-    private func setupCollectionDataSource() {
-        collectionView.dataSource = collectionDataSource
+    func setupCollectionDataSource(_ dataSource: UICollectionViewDataSource) {
+        collectionView.dataSource = dataSource
     }
     
-    private func setupCollectionDelegate(_ delegete: UICollectionViewDelegate) {
+    func setupCollectionDelegate(_ delegete: UICollectionViewDelegate) {
         collectionView.delegate = delegete
     }
 }
