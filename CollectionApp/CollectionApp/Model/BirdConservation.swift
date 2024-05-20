@@ -10,4 +10,5 @@ import UIKit
 struct BirdConservation: Hashable {
     let conservationStatusDescription: String
     let conservationStatus: UIColor
+    var dueDate: Date?
 }

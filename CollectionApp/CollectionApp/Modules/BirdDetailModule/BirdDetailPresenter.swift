@@ -22,30 +22,25 @@ protocol IBirdDetailPresenter: AnyObject {
 
 final class BirdDetailPresenter {
     private weak var birdDetailView: IBirdDetailView?
-    private let birdDetailModel: BirdDetailModel
+    private let birdDetailViewData: BirdDetailViewData
     private let router: BirdDetailRouter
     private var bird: Bird?
 
     // MARK: - Init
 
-    init(router: BirdDetailRouter, birdDetailModel: BirdDetailModel) {
+    init(router: BirdDetailRouter, birdDetailViewData: BirdDetailViewData) {
         self.router = router
-        self.birdDetailModel = birdDetailModel
+        self.birdDetailViewData = birdDetailViewData
     }
 }
 
 extension BirdDetailPresenter: IBirdDetailPresenter {
-    
     func didLoad(view: IBirdDetailView) {
         birdDetailView = view
-        bird = birdDetailModel.bird
+        bird = birdDetailViewData.bird
         birdDetailView?.setup(navigationTitle: bird?.name)
     }
     
-    func showBirdConservationStatus() {
-        //router.showConservationStatusModule(with: birdDetailModel.birdConservation, view: birdDetailView)
-    }
-
     func getSectionCount() -> Int {
         BirdDetailSection.allCases.count
     }
@@ -56,7 +51,7 @@ extension BirdDetailPresenter: IBirdDetailPresenter {
         case .birdImage:
             return 1
         case .birdInfo:
-            return birdDetailModel.birdInfo.count
+            return birdDetailViewData.birdInfo.count
         }
     }
     
@@ -76,14 +71,18 @@ extension BirdDetailPresenter: IBirdDetailPresenter {
         case .birdImage:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BirdImageCell.reuseIdentifier, for: indexPath) as? BirdImageCell else {
                 return UICollectionViewCell() }
-            cell.updateImage(birdDetailModel.birdImage)
+            cell.updateImage(birdDetailViewData.birdImage)
             return cell
         case .birdInfo:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BirdInfoCell.reuseIdentifier, for: indexPath) as? BirdInfoCell else {
                 return UICollectionViewCell() }
-            let info = birdDetailModel.birdInfo[indexPath.item]
+            let info = birdDetailViewData.birdInfo[indexPath.item]
             cell.update(info: info)
             return cell
         }
+    }
+    
+    func showBirdConservationStatus() {
+        //router.showConservationStatusModule(with: birdDetailModel.birdConservation, view: birdDetailView)
     }
 }

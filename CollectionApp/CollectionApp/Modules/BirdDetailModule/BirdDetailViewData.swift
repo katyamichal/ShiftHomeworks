@@ -1,5 +1,5 @@
 //
-//  BirdDetailModel.swift
+//  BirdDetailViewData.swift
 //  CollectionApp
 //
 //  Created by Catarina Polakowsky on 20.05.2024.
@@ -7,14 +7,10 @@
 
 import Foundation
 
-final class BirdDetailModel {
+
+struct BirdDetailViewData {
     
     let bird: Bird
-    
-    init(bird: Bird) {
-        self.bird = bird
-    }
-    
     var birdImage: String {
         bird.image
     }
@@ -29,5 +25,11 @@ final class BirdDetailModel {
     
     var birdName: String {
         bird.name
+    }
+}
+
+extension BirdDetailViewData {
+    init(with bird: Bird) {
+        self.bird = bird
     }
 }

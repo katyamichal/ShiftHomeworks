@@ -42,10 +42,7 @@ final class BirdListViewController: UIViewController {
 
 // MARK: - Setup method
 
-
-
 private extension BirdListViewController {
-    
     func setupNavigationBar() {
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.largeTitleDisplayMode = .always
@@ -60,7 +57,6 @@ private extension BirdListViewController {
 // MARK: - Collection Data Source
 
 extension BirdListViewController: UICollectionViewDataSource {
-
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         birds.count
     }

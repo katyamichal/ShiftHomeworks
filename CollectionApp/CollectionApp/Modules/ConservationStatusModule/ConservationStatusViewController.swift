@@ -9,14 +9,14 @@ import UIKit
 
 final class ConservationStatusViewController: UIViewController {
     
-    private var birdConservation: BirdConservation
     private var conservationStatusView: ConservationStatusView { return self.view as! ConservationStatusView }
+    private var viewModel: ConservationStatusViewModel
     
     
     // MARK: - Inits
     
-    init(birdConservation: BirdConservation) {
-        self.birdConservation = birdConservation
+    init(viewModel: ConservationStatusViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -34,6 +34,7 @@ final class ConservationStatusViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.getData()
         setupConservationStatusView()
         setupActionForDissmissButton()
     }

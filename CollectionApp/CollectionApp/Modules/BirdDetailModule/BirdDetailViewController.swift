@@ -76,7 +76,6 @@ extension BirdDetailViewController: UICollectionViewDataSource {
 
 
 extension BirdDetailViewController: IBirdDetailView {
-    
     func setup(navigationTitle: String?) {
         navigationItem.title = navigationTitle
     }

@@ -35,9 +35,9 @@ final class BirdDetailView: UIView {
     func setupCollectionDataSource(_ dataSource: UICollectionViewDataSource) {
         collectionView.dataSource = dataSource
     }
-    
-    // MARK: - Setup method
-    
+}
+
+private extension BirdDetailView {    
     private func setupView() {
         addSubview(collectionView)
     }
@@ -46,7 +46,6 @@ final class BirdDetailView: UIView {
 // MARK: - Collection View Layout
 
 private extension BirdDetailView {
-    
     enum DetailCollectionLayout {
         static let wideScreen: CGFloat = 500
         static let itemCountLanscape = 3
@@ -75,7 +74,6 @@ private extension BirdDetailView {
     }
     
     func createBirdImageLayout(isWide: Bool) -> NSCollectionLayoutSection {
-        
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
@@ -88,7 +86,6 @@ private extension BirdDetailView {
     }
     
     func createBirdInfoLayout(isWide: Bool) -> NSCollectionLayoutSection {
-        
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
