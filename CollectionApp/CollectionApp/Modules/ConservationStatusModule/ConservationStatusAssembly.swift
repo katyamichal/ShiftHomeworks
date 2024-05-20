@@ -9,13 +9,18 @@ import UIKit
 
 enum ConservationStatusAssembly {
     
+    struct Dependencies {
+        let navigationController: UINavigationController
+    }
+
     struct Parameters {
         let consevation: BirdConservation
     }
     
-    static func makeConservationStatusModule(parameters: Parameters) -> UIViewController {
+    static func makeConservationStatusModule(dependencies: Dependencies,parameters: Parameters) -> UIViewController {
         let model = ConservationViewData(with: parameters.consevation)
-        let viewModel = ConservationStatusViewModel(birdConservation: model)
+        let router = ConservationStatusRouter(navigationController: dependencies.navigationController)
+        let viewModel = ConservationStatusViewModel(router: router, birdConservationData: model)
         let viewController = ConservationStatusViewController(viewModel: viewModel)
         return viewController
     }

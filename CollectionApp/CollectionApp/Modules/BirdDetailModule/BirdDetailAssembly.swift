@@ -19,10 +19,9 @@ enum BirdDetailAssembly {
     }
     
     static func makeBirdDetailModule(dependencies: Dependencies, parameters: Parameters) -> UIViewController {
-       // let router = BirdDetailRouter(navigationController: dependencies.navigationController)
-        let router = BirdDetailRouter()
-        let birdDetailViewData = BirdDetailViewData(with: parameters.bird)
-        let presenter = BirdDetailPresenter(router: router, birdDetailViewData: birdDetailViewData)
+        let router = BirdDetailRouter(navigationController: dependencies.navigationController)
+        let viewData = BirdDetailViewData(with: parameters.bird)
+        let presenter = BirdDetailPresenter(router: router, birdDetailViewData: viewData)
         let viewController = BirdDetailViewController(presenter: presenter)
         return viewController
     }

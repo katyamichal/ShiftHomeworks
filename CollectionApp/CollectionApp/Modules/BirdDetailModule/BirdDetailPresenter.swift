@@ -82,7 +82,7 @@ extension BirdDetailPresenter: IBirdDetailPresenter {
         }
     }
     
-    func showBirdConservationStatus() {
-        //router.showConservationStatusModule(with: birdDetailModel.birdConservation, view: birdDetailView)
+     func showBirdConservationStatus() {
+        router.showConservationStatusModule(with: birdDetailViewData.birdConservation)
     }
 }

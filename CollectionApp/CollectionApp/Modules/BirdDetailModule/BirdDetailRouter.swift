@@ -14,10 +14,9 @@ final class BirdDetailRouter {
         self.navigationController = navigationController
     }
 
-
-    func showConservationStatusModule(with conservationStatus: BirdConservation, view: UIViewController) {
+    func showConservationStatusModule(with conservationStatus: BirdConservation) {
         let parameters = ConservationStatusAssembly.Parameters(consevation: conservationStatus)
-        let viewController = ConservationStatusAssembly.makeConservationStatusModule(parameters: parameters)
-        view.present(viewController, animated: true)
+        let viewController = ConservationStatusAssembly.makeConservationStatusModule(dependencies: .init(navigationController: navigationController), parameters: parameters)
+        navigationController.pushViewController(viewController, animated: true)
     }
 }

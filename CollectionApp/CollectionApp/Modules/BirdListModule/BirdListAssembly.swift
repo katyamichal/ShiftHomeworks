@@ -16,8 +16,8 @@ enum BirdListAssembly {
     
     static func makeBirdListModule(with dependencies: Dependencies) -> UIViewController {
         let router = BirdListRouter(navigationController: dependencies.navigationController)
-        let birdDataSource = BirdDataSourceImp()
-        let viewController = BirdListViewController(router: router, dataSource: birdDataSource)
+        let dataSource = BirdDataSourceImp()
+        let viewController = BirdListViewController(router: router, dataSource: dataSource)
         return viewController
     }
 }
