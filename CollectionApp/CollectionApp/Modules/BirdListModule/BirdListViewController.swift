@@ -7,12 +7,17 @@
 
 import UIKit
 
+private enum BirdListSection {
+    case birdList
+}
+
 final class BirdListViewController: UIViewController {
 
     private var birdListView: BirdListView { return self.view as! BirdListView }
     private let router: BirdListRouter
     private let dataSource: DataSourceProtocol
-    private var birds: [Bird] = []
+    private var collectionDiffableDataSource: UICollectionViewDiffableDataSource<BirdListSection, Bird>?
+    private var snapshot = NSDiffableDataSourceSnapshot<BirdListSection, Bird>()
 
     // MARK: - Inits
     
@@ -30,13 +35,14 @@ final class BirdListViewController: UIViewController {
     // MARK: - Cycle
     
     override func loadView() {
-        self.view = BirdListView(collectionDelegate: self, dataSource: self)
+        self.view = BirdListView(collectionDelegate: self)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getBirdListData()
+        configureCollectionView()
         setupNavigationBar()
+        getBirdListData()
     }
 }
 
@@ -50,25 +56,27 @@ private extension BirdListViewController {
     }
     
     func getBirdListData() {
-       birds = dataSource.createSampleData()
+        let birds = dataSource.createSampleData()
+        applySnapshot(with: BirdListViewData(with: birds))
     }
-}
+  
+    // MARK: Collection Data Source
 
-// MARK: - Collection Data Source
-
-extension BirdListViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        birds.count
+    func configureCollectionView() {
+        collectionDiffableDataSource = UICollectionViewDiffableDataSource<BirdListSection, Bird>(collectionView: birdListView.collectionView) { (collectionView, indexPath, bird) -> UICollectionViewCell? in
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BirdCollectionViewCell.reuseIdentifier, for: indexPath) as? BirdCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            cell.updateBirdImageView(bird.image)
+            cell.updateBirdNameLabel(bird.name)
+            return cell
+        }
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BirdCollectionViewCell.reuseIdentifier, for: indexPath) as? BirdCollectionViewCell else {
-            return UICollectionViewCell()
-        }
-        let bird = birds[indexPath.item]
-        cell.updateBirdImageView(bird.image)
-        cell.updateBirdNameLabel(bird.name)
-        return cell
+    func applySnapshot(with model: BirdListViewData) {
+        snapshot.appendSections([.birdList])
+        snapshot.appendItems(model.birds, toSection: .birdList)
+        collectionDiffableDataSource?.apply(snapshot, animatingDifferences: true)
     }
 }
 
@@ -76,7 +84,7 @@ extension BirdListViewController: UICollectionViewDataSource {
 
 extension BirdListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let bird = birds[indexPath.item]
+        guard let bird = collectionDiffableDataSource?.itemIdentifier(for: indexPath) else { return }
         router.showBirdDetailScreen(with: bird)
     }
 }

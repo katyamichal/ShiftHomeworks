@@ -7,18 +7,36 @@
 
 import UIKit
 
+final class Observable<T> {
+    
+    init(data: T) {
+        self.data = data
+    }
+    
+    var data: T {
+        didSet {
+            self.notify?(self.data)
+        }
+    }
+    
+    private var notify: ((T) -> Void)?
+    
+    func setNotify(notify: ((T) -> Void)?) {
+        self.notify = notify
+    }
+}
+
 final class ConservationStatusViewModel {
     
-    private let birdConservationData: ConservationViewData
+    private var birdConservationData: ConservationViewData
     private weak var controller: ConservationStatusViewController?
     private var router: ConservationStatusRouter
-    private var timer: Timer?
-    
+
     private var conservation: BirdConservation? {
         didSet {
             guard let controller, let conservation else { return }
             controller.setupConservationStatusView(with: conservation.conservationStatus, description: conservation.conservationStatusDescription)
-            startTimer()
+            updateView()
         }
     }
     
@@ -29,9 +47,8 @@ final class ConservationStatusViewModel {
         return dateFormatter
     }()
     
-    private var lastStatusUpdate: String {
-        dateFormatter.string(from: Date())
-    }
+   
+    lazy var lastStatusUpdate: Observable<String> = Observable<String>(data: dateFormatter.string(from: conservation?.dueDate ?? Date()))
     
     // MARK: - Inits
     
@@ -39,11 +56,7 @@ final class ConservationStatusViewModel {
         self.router = router
         self.birdConservationData = birdConservationData
     }
-    
-    deinit {
-        stopTimer()
-    }
-    
+
     // MARK: - Public methods
     public func getData() {
         conservation = birdConservationData.getData()
@@ -57,20 +70,16 @@ final class ConservationStatusViewModel {
         self.router.goBack()
     }
 }
-// MARK: - Timer methods
+// MARK: - Update view method
 
 private extension ConservationStatusViewModel {
-    func startTimer() {
-        Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(updateView), userInfo: nil, repeats: true)
-    }
-    
-    func stopTimer() {
-        timer?.invalidate()
-        timer = nil
-    }
-    
-    @objc
     func updateView() {
-        controller?.setupStatusUpdate(with: lastStatusUpdate)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+            self?.birdConservationData.setData(dueDate: Date())
+            DispatchQueue.main.async { [weak self] in
+                guard let newDate = self?.birdConservationData.getData().dueDate,   let dateString = self?.dateFormatter.string(from: newDate) else { return }
+                self?.lastStatusUpdate.data = dateString
+            }
+        }
     }
 }

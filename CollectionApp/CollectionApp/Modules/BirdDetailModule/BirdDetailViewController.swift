@@ -16,8 +16,7 @@ final class BirdDetailViewController: UIViewController {
     private var birdDetailView: BirdDetailView { return self.view as! BirdDetailView }
     private let presenter: IBirdDetailPresenter
     private var navigationTitle: String?
-    
-    
+        
     // MARK: - Inits
     
     init(presenter: IBirdDetailPresenter) {

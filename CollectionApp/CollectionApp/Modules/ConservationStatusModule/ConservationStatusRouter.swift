@@ -15,6 +15,6 @@ final class ConservationStatusRouter {
     }
     
     func goBack() {
-        navigationController.popViewController(animated: true)
+        navigationController.dismiss(animated: true)
     }
 }

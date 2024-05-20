@@ -9,12 +9,12 @@ import Foundation
 
 
 struct BirdDetailViewData {
-    
     let bird: Bird
+    
     var birdImage: String {
         bird.image
     }
-    
+
     var birdInfo: [String] {
         [bird.description, bird.behavior, bird.physicalCharacteristics]
     }

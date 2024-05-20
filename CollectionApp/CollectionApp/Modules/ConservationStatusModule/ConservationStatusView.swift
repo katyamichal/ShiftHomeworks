@@ -11,8 +11,8 @@ final class ConservationStatusView: UIView {
     
     private let inset: CGFloat = 30
     private let buttonAspectRation: CGFloat = 70
-    
-    
+    private let labelHeight: CGFloat = 100
+        
     // MARK: - Inits
     
     override init(frame: CGRect) {
@@ -77,7 +77,6 @@ extension ConservationStatusView {
 // MARK: - View Setups
 
 private extension ConservationStatusView {
-    
     func setupView() {
         setupViews()
         setupConstraints()
@@ -101,6 +100,6 @@ private extension ConservationStatusView {
         
         lastUpdateLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor,constant: -inset).isActive = true
         lastUpdateLabel.centerXAnchor.constraint(equalTo: conservationStatusLabel.centerXAnchor).isActive = true
-        lastUpdateLabel.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        lastUpdateLabel.heightAnchor.constraint(equalToConstant: labelHeight).isActive = true
     }
 }

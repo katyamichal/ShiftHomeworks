@@ -12,7 +12,6 @@ final class ConservationStatusViewController: UIViewController {
     private var conservationStatusView: ConservationStatusView { return self.view as! ConservationStatusView }
     private var viewModel: ConservationStatusViewModel
     
-    
     // MARK: - Inits
     
     init(viewModel: ConservationStatusViewModel) {
@@ -27,7 +26,6 @@ final class ConservationStatusViewController: UIViewController {
     
     // MARK: - Life Cycle
     
-    
     override func loadView() {
         self.view = ConservationStatusView()
     }
@@ -36,12 +34,13 @@ final class ConservationStatusViewController: UIViewController {
         super.viewDidLoad()
         viewModel.setupController(self)
         viewModel.getData()
+        viewModel.lastStatusUpdate.setNotify { [weak self] date in
+            self?.setupStatusUpdate(with: date)
+        }
         setupActionForDissmissButton()
     }
     
-    // MARK: - Setup method
-    
-    // MARK: - Setup method
+    // MARK: - View Setup Methods
     
     func setupConservationStatusView(with colourStatus: UIColor, description: String) {
         conservationStatusView.update(colour: colourStatus, conservationStatusDescription: description)
@@ -50,8 +49,12 @@ final class ConservationStatusViewController: UIViewController {
     func setupStatusUpdate(with date: String) {
         conservationStatusView.updateLastUpdateLabel(date: date)
     }
-    
-    private func setupActionForDissmissButton() {
+}
+
+// MARK: - Setup dismiss button
+
+private extension ConservationStatusViewController {
+    func setupActionForDissmissButton() {
         conservationStatusView.setupActionForDissmisButton(target: self, action: #selector(dismissView))
     }
     

@@ -60,8 +60,8 @@
             filePath = "CollectionApp/CollectionApp/Modules/ConservationStatusModule/ConservationStatusViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "dismissView()"
             landmarkType = "7">
          </BreakpointContent>
