@@ -35,7 +35,7 @@ extension CarListPresenter: ICarListPresenter {
         carListUIView = view
         getCars()
         carListUIView?.update(with: cars)
-        carListUIView?.updateNavigationTitle(with: "Choose Car")
+        carListUIView?.setupNavigationBar(with: "Choose Car")
     }
 }
 

@@ -13,7 +13,7 @@ private enum Section {
 
 protocol ICarListView: AnyObject {
     func update(with cars: [CarListViewData])
-    func updateNavigationTitle(with title: String)
+    func setupNavigationBar(with title: String)
 }
 
 final class CarListViewController: UIViewController {
@@ -54,7 +54,9 @@ extension CarListViewController: ICarListView {
         applySnapshot(with: cars)
     }
     
-    func updateNavigationTitle(with title: String) {
+    func setupNavigationBar(with title: String) {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .always
         navigationItem.title = title
     }
 }
