@@ -46,8 +46,6 @@ final class CarListViewController: UIViewController {
         carListView.tableView.delegate = self
         presenter.didLoad(view: self)
     }
-    
-   
 }
 
 extension CarListViewController: ICarListView {
@@ -60,16 +58,20 @@ extension CarListViewController: ICarListView {
         navigationItem.title = title
     }
 }
+// MARK: - TableView Delegate
 
 extension CarListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
         presenter.showCarDetail(at: indexPath.row)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 60
     }
 }
+
+// MARK: - TableView Data Source
 
 private extension CarListViewController {
     func configureTableViewDataSource() {

@@ -53,18 +53,26 @@ final class CarDetailView: UIView {
         return button
     }()
     
+    // MARK: -  Setup method for calculate button
+    
     func setupActionForCalculateButton(target: Any?, action: Selector, for event: UIControl.Event = .touchUpInside) {
         calculateButton.addTarget(target, action: action, for: event)
     }
 }
 
+// MARK: - Setup Methods
+
 private extension CarDetailView {
-     func setupView() {
+    func setupView() {
         backgroundColor = .systemBackground
+        addSubviews()
+        setupConstraints()
+    }
+    
+    func addSubviews() {
         addSubview(activityIndicator)
         addSubview(tableView)
-         addSubview(calculateButton)
-        setupConstraints()
+        addSubview(calculateButton)
     }
     
     func setupConstraints() {

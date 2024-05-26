@@ -8,7 +8,6 @@
 import UIKit
 
 final class CarListView: UIView {
-    
     // MARK: - Inits
     
     override init(frame: CGRect) {
@@ -34,7 +33,6 @@ final class CarListView: UIView {
 // MARK: - Setup methods
 
 private extension CarListView {
-    
     func setupView() {
         backgroundColor = .systemBackground
         addSubview(tableView)
