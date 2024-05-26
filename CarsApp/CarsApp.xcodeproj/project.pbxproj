@@ -31,6 +31,7 @@
 		4EF2BC022C031B4A001540F7 /* ImageTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2BC012C031B4A001540F7 /* ImageTableCell.swift */; };
 		4EF2BC042C031B57001540F7 /* PriceTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2BC032C031B57001540F7 /* PriceTableCell.swift */; };
 		4EF2BC062C031B64001540F7 /* BodyTypeTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2BC052C031B64001540F7 /* BodyTypeTableCell.swift */; };
+		4EF2BC082C032030001540F7 /* CarDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2BC072C032030001540F7 /* CarDetailCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		4EF2BC012C031B4A001540F7 /* ImageTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTableCell.swift; sourceTree = "<group>"; };
 		4EF2BC032C031B57001540F7 /* PriceTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceTableCell.swift; sourceTree = "<group>"; };
 		4EF2BC052C031B64001540F7 /* BodyTypeTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyTypeTableCell.swift; sourceTree = "<group>"; };
+		4EF2BC072C032030001540F7 /* CarDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarDetailCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 			children = (
 				4EF2BBE12C030EE2001540F7 /* Coordinator.swift */,
 				4EF2BBE32C030EFC001540F7 /* AppCoordinator.swift */,
+				4EF2BC072C032030001540F7 /* CarDetailCoordinator.swift */,
 				4EF2BBE72C030F3F001540F7 /* CarFactory.swift */,
 			);
 			path = Navigation;
@@ -156,12 +159,12 @@
 		4EF2BBF42C0317D9001540F7 /* CarDetailModule */ = {
 			isa = PBXGroup;
 			children = (
-				4EF2BC002C031B3C001540F7 /* Cellls */,
 				4EF2BBF62C03180A001540F7 /* CarListDetailViewController.swift */,
 				4EF2BBF82C03188E001540F7 /* CarDetailView.swift */,
 				4EF2BBFA2C0318B2001540F7 /* CarDetailPresenter.swift */,
 				4EF2BBFC2C0318C9001540F7 /* CarDetailViewData.swift */,
 				4EF2BBFE2C0319D4001540F7 /* CarDetailSection.swift */,
+				4EF2BC002C031B3C001540F7 /* Cellls */,
 			);
 			path = CarDetailModule;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			files = (
 				4EF2BBFD2C0318C9001540F7 /* CarDetailViewData.swift in Sources */,
 				4EF2BBE42C030EFC001540F7 /* AppCoordinator.swift in Sources */,
+				4EF2BC082C032030001540F7 /* CarDetailCoordinator.swift in Sources */,
 				4EF2BBD22C02FD6D001540F7 /* CarListPresenter.swift in Sources */,
 				4EF2BBF92C03188E001540F7 /* CarDetailView.swift in Sources */,
 				4EF2BBF72C03180A001540F7 /* CarListDetailViewController.swift in Sources */,

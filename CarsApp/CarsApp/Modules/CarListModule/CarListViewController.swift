@@ -65,6 +65,10 @@ extension CarListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter.showCarDetail(at: indexPath.row)
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
+    }
 }
 
 private extension CarListViewController {

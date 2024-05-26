@@ -38,6 +38,7 @@ final class CarDetailViewController: UIViewController {
         super.viewDidLoad()
         presenter.didLoad(view: self)
         presenter.viewIsReady()
+        
         carDetailView.tableView.dataSource = self
         carDetailView.tableView.delegate = self
     }
@@ -48,15 +49,15 @@ final class CarDetailViewController: UIViewController {
 extension CarDetailViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        presenter.getSectionCount()
+       return presenter.getSectionCount()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        presenter.getRowCountInSection(at: section)
+        return presenter.getRowCountInSection(at: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        presenter.itemForCell(tableView: tableView, at: indexPath)
+        presenter.cellForRow(tableView: tableView, at: indexPath)
     }
 }
 
@@ -90,7 +91,7 @@ extension CarDetailViewController: ICarDetailView {
 }
 
 extension CarDetailViewController: UITableViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // presenter.CellDidSelected(at index:)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
 }

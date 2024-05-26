@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 final class CarDetailView: UIView {
     
     // MARK: - Inits
@@ -32,6 +33,7 @@ final class CarDetailView: UIView {
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.separatorStyle = .none
         tableView.register(ImageTableCell.self, forCellReuseIdentifier: ImageTableCell.reuseIdentifier)
         tableView.register(PriceTableCell.self, forCellReuseIdentifier: PriceTableCell.reuseIdentifier)
         tableView.register(BodyTypeTableCell.self, forCellReuseIdentifier: BodyTypeTableCell.reuseIdentifier)
@@ -40,12 +42,20 @@ final class CarDetailView: UIView {
 }
 
 private extension CarDetailView {
-    private func setupView() {
+     func setupView() {
         backgroundColor = .systemBackground
         addSubview(activityIndicator)
         addSubview(tableView)
-        
+        setupConstraints()
+    }
+    
+    func setupConstraints() {
         activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        
+        tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor).isActive = true
     }
 }

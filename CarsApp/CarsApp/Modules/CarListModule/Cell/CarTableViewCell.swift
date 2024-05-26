@@ -29,6 +29,16 @@ final class CarTableViewCell: UITableViewCell {
     
     // MARK: - UI Elements
     
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+//        stackView.distribution =
+        stackView.alignment = .leading
+        stackView.spacing = 8
+        return stackView
+    }()
+    
     private lazy var accessoryLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -54,19 +64,14 @@ final class CarTableViewCell: UITableViewCell {
 
 private extension CarTableViewCell {
     func setupCell() {
-        contentView.addSubview(accessoryLabel)
-        contentView.addSubview(manufacturerLabel)
+        contentView.addSubview(stackView)
+        stackView.addArrangedSubview(accessoryLabel)
+        stackView.addArrangedSubview(manufacturerLabel)
         setupConstraints()
     }
     
     func setupConstraints() {
-        accessoryLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset).isActive = true
-        accessoryLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        accessoryLabel.heightAnchor.constraint(equalToConstant: uiElementHeight).isActive = true
-        
-        manufacturerLabel.leadingAnchor.constraint(equalTo: accessoryLabel.trailingAnchor, constant: inset).isActive = true
-        manufacturerLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        manufacturerLabel.heightAnchor.constraint(equalToConstant: uiElementHeight).isActive = true
-        
+        stackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset).isActive = true
     }
 }

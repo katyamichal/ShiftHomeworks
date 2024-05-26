@@ -7,7 +7,7 @@
 
 import Foundation
 enum CarDetailSection: CaseIterable {
-    case image
+    case carImage
     case price
     case bodyType
 }

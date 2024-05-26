@@ -27,13 +27,20 @@ final class PriceTableCell: UITableViewCell {
     }
         
     // MARK: - UI Elements
+    
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.distribution = .equalSpacing
+        stackView.spacing = 16
+        return stackView
+    }()
 
     private lazy var priceHeaderLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
         label.adjustsFontSizeToFitWidth = true
-        label.textAlignment = .natural
         label.text = "Price"
         return label
     }()
@@ -41,10 +48,8 @@ final class PriceTableCell: UITableViewCell {
     private lazy var priceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .natural
-        label.backgroundColor = .red
         return label
     }()
  
@@ -59,25 +64,24 @@ final class PriceTableCell: UITableViewCell {
 
 private extension PriceTableCell {
     func setupCell() {
+        selectionStyle = .none
+        backgroundColor = .blue
         setupViews()
         setupConstraints()
     }
     
     func setupViews() {
-        contentView.addSubview(priceHeaderLabel)
-        contentView.addSubview(priceLabel)
+        contentView.addSubview(stackView)
+        stackView.addArrangedSubview(priceHeaderLabel)
+        stackView.addArrangedSubview(priceLabel)
     }
     
     func setupConstraints() {
-        
-      
-        priceHeaderLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8).isActive = true
-       priceHeaderLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-       priceHeaderLabel.heightAnchor.constraint(equalToConstant: 100).isActive = true
-
-       priceLabel.topAnchor.constraint(equalTo: priceHeaderLabel.bottomAnchor, constant: 8).isActive = true
-       priceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-       priceLabel.heightAnchor.constraint(equalToConstant: 100).isActive = true
-  
+        stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 32).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+//        stackView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+       
     }
 }

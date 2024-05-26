@@ -28,4 +28,10 @@ final class CarFactory {
         let viewController = CarListViewController(presenter: presenter)
         return viewController
     }
+    func makeCarDetailScene(dependencies: Dependencies, parameters: Parameters) -> UIViewController {
+        let presenter = CarDetailPresenter(service: dependencies.service, with: parameters.id)
+        presenter.coordinator = dependencies.coordinator
+        let viewController = CarDetailViewController(presenter: presenter)
+        return viewController
+    }
 }

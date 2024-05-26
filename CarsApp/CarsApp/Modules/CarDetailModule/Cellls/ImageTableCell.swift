@@ -27,12 +27,12 @@ final class ImageTableCell: UITableViewCell {
         
     // MARK: - UI Elements
     
-//    private lazy var conteinerView: UIView = {
-//        let view = UIView()
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        view.clipsToBounds = true
-//        return view
-//    }()
+    private lazy var conteinerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
+        return view
+    }()
     
     private lazy var carImageView: UIImageView = {
         let imageView = UIImageView()
@@ -46,7 +46,7 @@ final class ImageTableCell: UITableViewCell {
     // MARK: - Public
     
     func updateImage(_ name: String) {
-        carImageView.image = UIImage(named: name)
+        //carImageView.image = UIImage(named: name)
     }
 }
 
@@ -54,20 +54,25 @@ final class ImageTableCell: UITableViewCell {
 
 private extension ImageTableCell {
     func setupCell() {
+        selectionStyle = .none
         setupViews()
         setupConstraints()
     }
     
     func setupViews() {
-       // contentView.addSubview(conteinerView)
-        contentView.addSubview(carImageView)
+        conteinerView.addSubview(carImageView)
+        contentView.addSubview(conteinerView)
+        
     }
     
     func setupConstraints() {
-        carImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset).isActive = true
-        carImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-        carImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
-        carImageView.heightAnchor.constraint(equalTo: carImageView.widthAnchor, multiplier: 1).isActive = true
+        conteinerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset).isActive = true
+        conteinerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        conteinerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        conteinerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        
+        conteinerView.heightAnchor.constraint(equalToConstant: 400).isActive = true
+        conteinerView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width).isActive = true
   
     }
 }

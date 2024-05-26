@@ -100,5 +100,324 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CC4DB153-0058-4E38-B285-C618BA3AA294"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CarsApp/CarsApp/Modules/CarDetailModule/CarDetailPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "updateView()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "78F2983F-6A65-4F51-96F6-4DDA077197B1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CarsApp/CarsApp/Modules/CarDetailModule/CarDetailPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "cell(for:at:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "78F2983F-6A65-4F51-96F6-4DDA077197B1 - a62ce1d2ec9b2834"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CarsApp.CarDetailPresenter.cell(for: __C.UITableView, at: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "CarsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/catarinapolakowsky/ShiftHomeworks/CarsApp/CarsApp/Modules/CarDetailModule/CarDetailPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "73"
+                  endingLineNumber = "73"
+                  offsetFromSymbolStart = "218">
+               </Location>
+               <Location
+                  uuid = "78F2983F-6A65-4F51-96F6-4DDA077197B1 - a62ce1d2ec9b2815"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CarsApp.CarDetailPresenter.cell(for: __C.UITableView, at: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "CarsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/catarinapolakowsky/ShiftHomeworks/CarsApp/CarsApp/Modules/CarDetailModule/CarDetailPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "218">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "09904349-CEA2-4D75-8C9A-782A163B0DD0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CarsApp/CarsApp/Modules/CarDetailModule/CarDetailPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "cellForRow(tableView:at:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "09904349-CEA2-4D75-8C9A-782A163B0DD0 - 38ca38130fe661c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CarsApp.CarDetailPresenter.itemForCell(tableView: __C.UITableView, at: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "CarsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/catarinapolakowsky/ShiftHomeworks/CarsApp/CarsApp/Modules/CarDetailModule/CarDetailPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "61"
+                  endingLineNumber = "61"
+                  offsetFromSymbolStart = "123">
+               </Location>
+               <Location
+                  uuid = "09904349-CEA2-4D75-8C9A-782A163B0DD0 - 874d77444fdaf670"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CarsApp.CarDetailPresenter.cellForRow(tableView: __C.UITableView, at: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "CarsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/catarinapolakowsky/ShiftHomeworks/CarsApp/CarsApp/Modules/CarDetailModule/CarDetailPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "62"
+                  endingLineNumber = "62"
+                  offsetFromSymbolStart = "123">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F7D19BE1-B040-4C69-816A-E4FCB22BE3F9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CarsApp/CarsApp/Modules/CarDetailModule/CarListDetailViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "numberOfSections(in:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F7D19BE1-B040-4C69-816A-E4FCB22BE3F9 - fdfd90d4e7c169a2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CarsApp.CarDetailViewController.numberOfSections(in: __C.UITableView) -&gt; Swift.Int"
+                  moduleName = "CarsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/catarinapolakowsky/ShiftHomeworks/CarsApp/CarsApp/Modules/CarDetailModule/CarListDetailViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "37">
+               </Location>
+               <Location
+                  uuid = "F7D19BE1-B040-4C69-816A-E4FCB22BE3F9 - fdfd90d4e7c16943"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CarsApp.CarDetailViewController.numberOfSections(in: __C.UITableView) -&gt; Swift.Int"
+                  moduleName = "CarsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/catarinapolakowsky/ShiftHomeworks/CarsApp/CarsApp/Modules/CarDetailModule/CarListDetailViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "78">
+               </Location>
+               <Location
+                  uuid = "F7D19BE1-B040-4C69-816A-E4FCB22BE3F9 - fdfd90d4e7c16943"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CarsApp.CarDetailViewController.numberOfSections(in: __C.UITableView) -&gt; Swift.Int"
+                  moduleName = "CarsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/catarinapolakowsky/ShiftHomeworks/CarsApp/CarsApp/Modules/CarDetailModule/CarListDetailViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "37">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FBD0C8FD-5B5C-446C-8B6D-2014A09D513A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CarsApp/CarsApp/Modules/CarDetailModule/CarDetailPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "getRowCountInSection(at:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E04D2080-4A2F-466F-B909-8169C196909D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CarsApp/CarsApp/Modules/CarDetailModule/CarDetailPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "cell(for:at:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E04D2080-4A2F-466F-B909-8169C196909D - a62ce1d2ec9b3799"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CarsApp.CarDetailPresenter.cell(for: __C.UITableView, at: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "CarsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/catarinapolakowsky/ShiftHomeworks/CarsApp/CarsApp/Modules/CarDetailModule/CarDetailPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "78"
+                  endingLineNumber = "78"
+                  offsetFromSymbolStart = "997">
+               </Location>
+               <Location
+                  uuid = "E04D2080-4A2F-466F-B909-8169C196909D - a62ce1d2ec9b3799"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CarsApp.CarDetailPresenter.cell(for: __C.UITableView, at: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "CarsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/catarinapolakowsky/ShiftHomeworks/CarsApp/CarsApp/Modules/CarDetailModule/CarDetailPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "78"
+                  endingLineNumber = "78"
+                  offsetFromSymbolStart = "968">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F372AF1D-2CF2-46B2-A5CA-2DC05D2E3856"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CarsApp/CarsApp/Modules/CarDetailModule/CarDetailPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "loadCarData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8E0B6AE7-3D41-442A-AE03-AD423AD02797"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CarsApp/CarsApp/Modules/CarDetailModule/CarListDetailViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B5D4C891-3B06-43E5-A395-6B16A488AB85"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CarsApp/CarsApp/Modules/CarDetailModule/CarListDetailViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "tableView(_:numberOfRowsInSection:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B5D4C891-3B06-43E5-A395-6B16A488AB85 - a53a1e9695c13d18"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CarsApp.CarDetailViewController.tableView(_: __C.UITableView, numberOfRowsInSection: Swift.Int) -&gt; Swift.Int"
+                  moduleName = "CarsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/catarinapolakowsky/ShiftHomeworks/CarsApp/CarsApp/Modules/CarDetailModule/CarListDetailViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "100">
+               </Location>
+               <Location
+                  uuid = "B5D4C891-3B06-43E5-A395-6B16A488AB85 - a53a1e9695c13d47"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CarsApp.CarDetailViewController.tableView(_: __C.UITableView, numberOfRowsInSection: Swift.Int) -&gt; Swift.Int"
+                  moduleName = "CarsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/catarinapolakowsky/ShiftHomeworks/CarsApp/CarsApp/Modules/CarDetailModule/CarListDetailViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "53">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

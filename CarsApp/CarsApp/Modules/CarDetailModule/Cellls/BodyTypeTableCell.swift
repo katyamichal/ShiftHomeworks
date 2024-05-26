@@ -60,15 +60,16 @@ final class BodyTypeTableCell: UITableViewCell {
 
 private extension BodyTypeTableCell {
     func setupCell() {
+        selectionStyle = .none
         contentView.addSubview(bodyTypeName)
         contentView.addSubview(selectionImageView)
         setupConstraints()
     }
     
     func setupConstraints() {
-        bodyTypeName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset).isActive = true
-        bodyTypeName.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        bodyTypeName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset).isActive = true
         bodyTypeName.heightAnchor.constraint(equalToConstant: uiElementHeight).isActive = true
+        bodyTypeName.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
         
         selectionImageView.leadingAnchor.constraint(equalTo: bodyTypeName.trailingAnchor, constant: inset).isActive = true
         selectionImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true

@@ -9,9 +9,10 @@ import UIKit
 protocol ICarDetailPresenter: AnyObject {
     func didLoad(view: ICarDetailView)
     func viewIsReady()
+    
     func getSectionCount() -> Int
     func getRowCountInSection(at section: Int) -> Int
-    func itemForCell(tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell
+    func cellForRow(tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell
 }
 
 final class CarDetailPresenter {
@@ -21,6 +22,7 @@ final class CarDetailPresenter {
     private var viewData: CarDetailViewData?
     private var service: CarServiceProtocol
     private let id: Int
+    private var currentBody: Body?
 
     // MARK: - Init
 
@@ -47,7 +49,7 @@ extension CarDetailPresenter: ICarDetailPresenter {
         let section = CarDetailSection.allCases[section]
         guard let viewData else { return 0 }
         switch section {
-        case .image:
+        case .carImage:
             return 1
         case .price:
             return 1
@@ -56,10 +58,10 @@ extension CarDetailPresenter: ICarDetailPresenter {
         }
     }
     
-    func itemForCell(tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
+    func cellForRow(tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
         let section = CarDetailSection.allCases[indexPath.section]
         switch section {
-        case .image:
+        case .carImage:
             return cell(for: tableView, at: indexPath)
         case .price:
             return cell(for: tableView, at: indexPath)
@@ -70,21 +72,23 @@ extension CarDetailPresenter: ICarDetailPresenter {
     
     private func cell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
         let section = CarDetailSection.allCases[indexPath.section]
-        guard let viewData,   let currentBody = viewData.currentBody else { return UITableViewCell() }
+        guard let viewData,  let currentBody else { return UITableViewCell() }
         
         switch section {
-        case .image:
+        case .carImage:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ImageTableCell.reuseIdentifier, for: indexPath) as? ImageTableCell else {
                 return UITableViewCell()
             }
             cell.updateImage(currentBody.image)
             return cell
+            
         case .price:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PriceTableCell.reuseIdentifier, for: indexPath) as? PriceTableCell else {
                 return UITableViewCell()
             }
             cell.updatePriceLabel(with: "\(currentBody.price)")
             return cell
+            
         case .bodyType:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: BodyTypeTableCell.reuseIdentifier, for: indexPath) as? BodyTypeTableCell else {
                 return UITableViewCell()
@@ -114,6 +118,7 @@ private extension CarDetailPresenter {
     }
     
     private func updateView() {
+        currentBody = viewData?.body.first
         carDetailView?.updateView()
     }
 }

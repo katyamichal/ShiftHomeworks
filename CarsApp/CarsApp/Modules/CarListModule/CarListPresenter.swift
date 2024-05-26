@@ -27,7 +27,8 @@ final class CarListPresenter {
 
 extension CarListPresenter: ICarListPresenter {
     func showCarDetail(at index: Int) {
-     //coordinator?.showDetailView
+        let carId = cars[index].id
+        (coordinator as? AppCoordinator)?.showCarDetailScene(with: carId)
     }
     
     func didLoad(view: ICarListView) {

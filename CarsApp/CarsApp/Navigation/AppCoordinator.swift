@@ -27,6 +27,13 @@ final class AppCoordinator: Coordinator {
     func start() {
         showCarListScene()
     }
+    
+    func showCarDetailScene(with id: Int) {
+        let detailCoordinator = CarDetailCoordinator(factory: factory, id: id, navigationController: navigationController, service: service)
+        detailCoordinator.parentCoordinator = self
+        self.childCoordinator.append(detailCoordinator)
+        detailCoordinator.start()
+    }
 }
 
 private extension AppCoordinator {
