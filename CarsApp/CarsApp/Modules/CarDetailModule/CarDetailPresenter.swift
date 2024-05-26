@@ -13,6 +13,8 @@ protocol ICarDetailPresenter: AnyObject {
     func getSectionCount() -> Int
     func getRowCountInSection(at section: Int) -> Int
     func cellForRow(tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell
+    
+    func updateBodyType(at index: IndexPath)
 }
 
 final class CarDetailPresenter {
@@ -33,6 +35,11 @@ final class CarDetailPresenter {
 }
 
 extension CarDetailPresenter: ICarDetailPresenter {
+    func updateBodyType(at index: IndexPath) {
+        currentBody = viewData?.body[index.row]
+        carDetailView?.updateCell(at: index)
+    }
+    
     func viewIsReady() {
         loadCarData()
     }
@@ -69,8 +76,29 @@ extension CarDetailPresenter: ICarDetailPresenter {
             return cell(for: tableView, at: indexPath)
         }
     }
+}
+
+private extension CarDetailPresenter {
+    func loadCarData() {
+        carDetailView?.setLoading(enabled: true)
+        service.loadCarFromJSON(with: id) { [weak self] car in
+            guard let car else {
+                return
+            }
+            DispatchQueue.main.async {
+                self?.viewData = CarDetailViewData(id: car.id, body: car.body)
+                self?.carDetailView?.setLoading(enabled: false)
+                self?.updateView()
+            }
+        }
+    }
     
-    private func cell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
+    func updateView() {
+        currentBody = viewData?.body.first
+        carDetailView?.updateView()
+    }
+    
+    func cell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
         let section = CarDetailSection.allCases[indexPath.section]
         guard let viewData,  let currentBody else { return UITableViewCell() }
         
@@ -97,28 +125,5 @@ extension CarDetailPresenter: ICarDetailPresenter {
             cell.updateImage(with: viewData.body[indexPath.row].type == currentBody.type)
             return cell
         }
-    }
-    
-  
-}
-
-private extension CarDetailPresenter {
-    func loadCarData() {
-        carDetailView?.setLoading(enabled: true)
-        service.loadCarFromJSON(with: id) { [weak self] car in
-            guard let car else {
-                return
-            }
-            DispatchQueue.main.async {
-                self?.viewData = CarDetailViewData(id: car.id, body: car.body)
-                self?.carDetailView?.setLoading(enabled: false)
-                self?.updateView()
-            }
-        }
-    }
-    
-    private func updateView() {
-        currentBody = viewData?.body.first
-        carDetailView?.updateView()
     }
 }

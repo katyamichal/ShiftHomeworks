@@ -9,6 +9,7 @@ import UIKit
 protocol ICarDetailView: AnyObject {
     func setLoading(enabled: Bool)
     func updateView()
+    func updateCell(at indexPath: IndexPath)
 }
 
 final class CarDetailViewController: UIViewController {
@@ -72,6 +73,11 @@ private extension CarDetailViewController {
 }
 
 extension CarDetailViewController: ICarDetailView {
+    func updateCell(at indexPath: IndexPath) {
+        let sectionsToReload = IndexSet([CarDetailSection.carImage.rawValue, CarDetailSection.bodyType.rawValue])
+        carDetailView.tableView.reloadSections(sectionsToReload, with: .automatic)
+    }
+    
     func updateView() {
         carDetailView.tableView.reloadData()
     }
@@ -92,6 +98,12 @@ extension CarDetailViewController: ICarDetailView {
 
 extension CarDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let section = CarDetailSection.allCases[indexPath.section]
+        switch section {
+        case .bodyType:
+            presenter.updateBodyType(at: indexPath)
+        case .carImage, .price:
+            break
+        }
     }
 }

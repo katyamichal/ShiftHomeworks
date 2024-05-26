@@ -6,8 +6,8 @@
 //
 
 import Foundation
-enum CarDetailSection: CaseIterable {
-    case carImage
+enum CarDetailSection: Int, CaseIterable {
+    case carImage = 0
     case price
     case bodyType
 }

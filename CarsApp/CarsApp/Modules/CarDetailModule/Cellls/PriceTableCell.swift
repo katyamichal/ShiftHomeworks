@@ -9,7 +9,7 @@ import UIKit
 
 final class PriceTableCell: UITableViewCell {
     
-    private let inset: CGFloat = 10
+    private let inset: CGFloat = 16
     
     static var reuseIdentifier: String {
         return String(describing: PriceTableCell.self)
@@ -41,6 +41,7 @@ final class PriceTableCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.adjustsFontSizeToFitWidth = true
+        label.font = UIFont.boldSystemFont(ofSize: 21)
         label.text = "Price"
         return label
     }()
@@ -65,7 +66,6 @@ final class PriceTableCell: UITableViewCell {
 private extension PriceTableCell {
     func setupCell() {
         selectionStyle = .none
-        backgroundColor = .blue
         setupViews()
         setupConstraints()
     }
@@ -77,9 +77,8 @@ private extension PriceTableCell {
     }
     
     func setupConstraints() {
-        stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 32).isActive = true
-        stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-//        stackView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset).isActive = true
         stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
         stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
        

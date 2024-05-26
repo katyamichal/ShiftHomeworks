@@ -8,7 +8,7 @@
 import UIKit
 final class ImageTableCell: UITableViewCell {
     
-    private let inset: CGFloat = 10
+    private let imageHeight: CGFloat = UIScreen.main.bounds.size.height / 2
     
     static var reuseIdentifier: String {
         return String(describing: ImageTableCell.self)
@@ -27,26 +27,18 @@ final class ImageTableCell: UITableViewCell {
         
     // MARK: - UI Elements
     
-    private lazy var conteinerView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.clipsToBounds = true
-        return view
-    }()
-    
     private lazy var carImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "sedan_image")
         return imageView
     }()
  
     // MARK: - Public
     
     func updateImage(_ name: String) {
-        //carImageView.image = UIImage(named: name)
+        carImageView.image = UIImage(named: name)
     }
 }
 
@@ -60,19 +52,15 @@ private extension ImageTableCell {
     }
     
     func setupViews() {
-        conteinerView.addSubview(carImageView)
-        contentView.addSubview(conteinerView)
+        contentView.addSubview(carImageView)
         
     }
     
     func setupConstraints() {
-        conteinerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset).isActive = true
-        conteinerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-        conteinerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
-        conteinerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-        
-        conteinerView.heightAnchor.constraint(equalToConstant: 400).isActive = true
-        conteinerView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width).isActive = true
-  
+        carImageView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        carImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        carImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        carImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        carImageView.heightAnchor.constraint(equalToConstant: imageHeight).isActive = true
     }
 }
