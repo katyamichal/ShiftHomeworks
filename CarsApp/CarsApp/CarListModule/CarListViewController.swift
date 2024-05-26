@@ -13,7 +13,7 @@ private enum Section {
 
 protocol ICarListView: AnyObject {
     func update(with cars: [CarListViewData])
-    func update(with navigationTitle: String)
+    func updateNavigationTitle(with title: String)
 }
 
 final class CarListViewController: UIViewController {
@@ -46,6 +46,8 @@ final class CarListViewController: UIViewController {
         carListView.tableView.delegate = self
         presenter.didLoad(view: self)
     }
+    
+   
 }
 
 extension CarListViewController: ICarListView {
@@ -54,8 +56,8 @@ extension CarListViewController: ICarListView {
         applySnapshot(with: cars)
     }
     
-    func update(with navigationTitle: String) {
-        navigationItem.title = navigationTitle
+    func updateNavigationTitle(with title: String) {
+        navigationItem.title = title
     }
 }
 

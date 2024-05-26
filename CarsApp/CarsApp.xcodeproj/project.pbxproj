@@ -19,6 +19,10 @@
 		4EF2BBD62C02FF3A001540F7 /* CarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2BBD52C02FF3A001540F7 /* CarTableViewCell.swift */; };
 		4EF2BBDD2C0304E8001540F7 /* CarDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2BBDC2C0304E8001540F7 /* CarDTO.swift */; };
 		4EF2BBDF2C030C43001540F7 /* CarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2BBDE2C030C43001540F7 /* CarService.swift */; };
+		4EF2BBE22C030EE2001540F7 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2BBE12C030EE2001540F7 /* Coordinator.swift */; };
+		4EF2BBE42C030EFC001540F7 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2BBE32C030EFC001540F7 /* AppCoordinator.swift */; };
+		4EF2BBE82C030F3F001540F7 /* CarFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2BBE72C030F3F001540F7 /* CarFactory.swift */; };
+		4EF2BBF02C03122A001540F7 /* Cars.json in Resources */ = {isa = PBXBuildFile; fileRef = 4EF2BBEF2C03122A001540F7 /* Cars.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,9 +38,12 @@
 		4EF2BBD12C02FD6D001540F7 /* CarListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarListPresenter.swift; sourceTree = "<group>"; };
 		4EF2BBD32C02FDC8001540F7 /* CarListViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarListViewData.swift; sourceTree = "<group>"; };
 		4EF2BBD52C02FF3A001540F7 /* CarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarTableViewCell.swift; sourceTree = "<group>"; };
-		4EF2BBDB2C03046C001540F7 /* Cars.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Cars.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
 		4EF2BBDC2C0304E8001540F7 /* CarDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarDTO.swift; sourceTree = "<group>"; };
 		4EF2BBDE2C030C43001540F7 /* CarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarService.swift; sourceTree = "<group>"; };
+		4EF2BBE12C030EE2001540F7 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		4EF2BBE32C030EFC001540F7 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		4EF2BBE72C030F3F001540F7 /* CarFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarFactory.swift; sourceTree = "<group>"; };
+		4EF2BBEF2C03122A001540F7 /* Cars.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cars.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,13 +77,14 @@
 			isa = PBXGroup;
 			children = (
 				4EF2BBCD2C02FCEE001540F7 /* App */,
+				4EF2BBE02C030EA4001540F7 /* Navigation */,
 				4EF2BBCE2C02FCF5001540F7 /* CarListModule */,
 				4EF2BBD82C030104001540F7 /* Service */,
 				4EF2BBBF2C02F9E8001540F7 /* Main.storyboard */,
 				4EF2BBC22C02F9EA001540F7 /* Assets.xcassets */,
 				4EF2BBC42C02F9EA001540F7 /* LaunchScreen.storyboard */,
 				4EF2BBC72C02F9EA001540F7 /* Info.plist */,
-				4EF2BBDB2C03046C001540F7 /* Cars.json */,
+				4EF2BBEF2C03122A001540F7 /* Cars.json */,
 			);
 			path = CarsApp;
 			sourceTree = "<group>";
@@ -117,6 +125,16 @@
 				4EF2BBDE2C030C43001540F7 /* CarService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		4EF2BBE02C030EA4001540F7 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				4EF2BBE12C030EE2001540F7 /* Coordinator.swift */,
+				4EF2BBE32C030EFC001540F7 /* AppCoordinator.swift */,
+				4EF2BBE72C030F3F001540F7 /* CarFactory.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,6 +197,7 @@
 			files = (
 				4EF2BBC62C02F9EA001540F7 /* LaunchScreen.storyboard in Resources */,
 				4EF2BBC32C02F9EA001540F7 /* Assets.xcassets in Resources */,
+				4EF2BBF02C03122A001540F7 /* Cars.json in Resources */,
 				4EF2BBC12C02F9E8001540F7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -190,12 +209,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EF2BBE42C030EFC001540F7 /* AppCoordinator.swift in Sources */,
 				4EF2BBD22C02FD6D001540F7 /* CarListPresenter.swift in Sources */,
 				4EF2BBD62C02FF3A001540F7 /* CarTableViewCell.swift in Sources */,
+				4EF2BBE22C030EE2001540F7 /* Coordinator.swift in Sources */,
 				4EF2BBBE2C02F9E8001540F7 /* CarListViewController.swift in Sources */,
 				4EF2BBD02C02FD0C001540F7 /* CarListView.swift in Sources */,
 				4EF2BBDD2C0304E8001540F7 /* CarDTO.swift in Sources */,
 				4EF2BBD42C02FDC8001540F7 /* CarListViewData.swift in Sources */,
+				4EF2BBE82C030F3F001540F7 /* CarFactory.swift in Sources */,
 				4EF2BBDF2C030C43001540F7 /* CarService.swift in Sources */,
 				4EF2BBBA2C02F9E7001540F7 /* AppDelegate.swift in Sources */,
 				4EF2BBBC2C02F9E8001540F7 /* SceneDelegate.swift in Sources */,
