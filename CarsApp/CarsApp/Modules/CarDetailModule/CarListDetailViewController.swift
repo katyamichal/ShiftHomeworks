@@ -9,7 +9,8 @@ import UIKit
 protocol ICarDetailView: AnyObject {
     func setLoading(enabled: Bool)
     func updateView()
-    func updateCell(at indexPath: IndexPath)
+    func updateSections()
+    func updatePriceSection()
 }
 
 final class CarDetailViewController: UIViewController {
@@ -42,6 +43,7 @@ final class CarDetailViewController: UIViewController {
         
         carDetailView.tableView.dataSource = self
         carDetailView.tableView.delegate = self
+        setupActionForDissmissButton()
     }
 }
 
@@ -63,18 +65,30 @@ extension CarDetailViewController: UITableViewDataSource {
 }
 
 private extension CarDetailViewController {
+    
     func hideUI() {
         carDetailView.tableView.isHidden = true
+        carDetailView.calculateButton.isHidden = true
     }
     
     func showUI() {
         carDetailView.tableView.isHidden = false
+        carDetailView.calculateButton.isHidden = false
+    }
+    
+    
+    func setupActionForDissmissButton() {
+        carDetailView.setupActionForCalculateButton(target: self, action: #selector(calculatePrice))
+    }
+    
+    @objc func calculatePrice() {
+        presenter.calculatePrice()
     }
 }
 
 extension CarDetailViewController: ICarDetailView {
-    func updateCell(at indexPath: IndexPath) {
-        let sectionsToReload = IndexSet([CarDetailSection.carImage.rawValue, CarDetailSection.bodyType.rawValue])
+    func updatePriceSection() {
+        let sectionsToReload = IndexSet([CarDetailSection.price.rawValue])
         carDetailView.tableView.reloadSections(sectionsToReload, with: .automatic)
     }
     
@@ -94,6 +108,10 @@ extension CarDetailViewController: ICarDetailView {
             }
         }
     }
+    func updateSections() {
+        let sectionsToReload = IndexSet([CarDetailSection.carImage.rawValue, CarDetailSection.bodyType.rawValue])
+        carDetailView.tableView.reloadSections(sectionsToReload, with: .automatic)
+    }
 }
 
 extension CarDetailViewController: UITableViewDelegate {
@@ -101,7 +119,7 @@ extension CarDetailViewController: UITableViewDelegate {
         let section = CarDetailSection.allCases[indexPath.section]
         switch section {
         case .bodyType:
-            presenter.updateBodyType(at: indexPath)
+            presenter.updateCurrentBodyType(at: indexPath.row)
         case .carImage, .price:
             break
         }

@@ -14,15 +14,16 @@ protocol ICarDetailPresenter: AnyObject {
     func getRowCountInSection(at section: Int) -> Int
     func cellForRow(tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell
     
-    func updateBodyType(at index: IndexPath)
+    func updateCurrentBodyType(at index: Int)
+    func calculatePrice()
 }
 
 final class CarDetailPresenter {
    
     weak var coordinator: Coordinator?
+    private var service: CarServiceProtocol
     private weak var carDetailView: ICarDetailView?
     private var viewData: CarDetailViewData?
-    private var service: CarServiceProtocol
     private let id: Int
     private var currentBody: Body?
 
@@ -35,9 +36,13 @@ final class CarDetailPresenter {
 }
 
 extension CarDetailPresenter: ICarDetailPresenter {
-    func updateBodyType(at index: IndexPath) {
-        currentBody = viewData?.body[index.row]
-        carDetailView?.updateCell(at: index)
+    func calculatePrice() {
+        carDetailView?.updatePriceSection()
+    }
+    
+    func updateCurrentBodyType(at index: Int) {
+        currentBody = viewData?.body[index]
+        carDetailView?.updateSections()
     }
     
     func viewIsReady() {
