@@ -15,6 +15,13 @@ final class CarListPresenter {
     
     private weak var carListUIView: ICarListView?
     private var cars: [CarListViewData] = []
+    private let carService: CarServiceProtocol
+    
+    // MARK: - Init
+
+    init(carService: CarServiceProtocol) {
+        self.carService = carService
+    }
 }
 
 extension CarListPresenter: ICarListPresenter {
@@ -31,6 +38,9 @@ extension CarListPresenter: ICarListPresenter {
 
 private extension CarListPresenter {
     func getCars() {
-    
+        guard let jsonCars = carService.loadCarsFromJSON() else { return }
+        jsonCars.forEach { car in
+            cars.append(CarListViewData(with: car.id, with: car.manufacturer))
+        }
     }
 }
