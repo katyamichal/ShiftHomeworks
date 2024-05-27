@@ -37,7 +37,7 @@ extension CarServiceImp {
     }
     
     func loadCarFromJSON(with id: Int, comletion: @escaping (Car?) -> Void) {
-        DispatchQueue.global().asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
             comletion(
                 self.loadCarsFromJSON()?.first(where: {$0.id == id})
             )

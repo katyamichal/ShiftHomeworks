@@ -151,22 +151,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "FBD0C8FD-5B5C-446C-8B6D-2014A09D513A"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CarsApp/CarsApp/Modules/CarDetailModule/CarDetailPresenter.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "getRowCountInSection(at:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "F372AF1D-2CF2-46B2-A5CA-2DC05D2E3856"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -177,22 +161,6 @@
             startingLineNumber = "98"
             endingLineNumber = "98"
             landmarkName = "loadCarData()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F67AFBC2-95E7-46E8-BDA3-B01CD3B21545"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CarsApp/CarsApp/Modules/CarDetailModule/CarListDetailViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
-            landmarkName = "setupActionForDissmissButton()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

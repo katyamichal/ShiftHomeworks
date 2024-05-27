@@ -85,7 +85,7 @@ private extension CarDetailView {
         tableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor).isActive = true
         
-        calculateButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
+        calculateButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -inset).isActive = true
         calculateButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: inset).isActive = true
         calculateButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -inset).isActive = true
         calculateButton.heightAnchor.constraint(equalToConstant: buttonHeight).isActive = true

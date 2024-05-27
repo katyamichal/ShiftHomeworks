@@ -113,7 +113,6 @@ private extension CarDetailPresenter {
     func cell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
         let section = CarDetailSection.allCases[indexPath.section]
         guard let viewData,  let currentBody else { return UITableViewCell() }
-        
         switch section {
         case .carImage:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ImageTableCell.reuseIdentifier, for: indexPath) as? ImageTableCell else {

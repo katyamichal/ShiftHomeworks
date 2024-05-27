@@ -15,6 +15,7 @@ final class ImageTableCell: UITableViewCell {
     }
     
     // MARK: - Inits
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupCell()
@@ -53,7 +54,6 @@ private extension ImageTableCell {
     
     func setupViews() {
         contentView.addSubview(carImageView)
-        
     }
     
     func setupConstraints() {

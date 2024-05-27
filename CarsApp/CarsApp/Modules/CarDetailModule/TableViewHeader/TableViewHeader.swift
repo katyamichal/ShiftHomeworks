@@ -9,11 +9,11 @@ import UIKit
 
 final class TableViewHeader: UITableViewHeaderFooterView {
     
+    private let inset: CGFloat = 16
+    
     static var reuseIdentifier: String {
         return String(describing: TableViewHeader.self)
     }
-    
-    private let inset: CGFloat = 16
     
     // MARK: - UI Element
     
@@ -49,8 +49,8 @@ private extension TableViewHeader {
     }
     
     func setupConstraints() {
-        titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: inset).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -inset).isActive = true
         titleLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
         titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }

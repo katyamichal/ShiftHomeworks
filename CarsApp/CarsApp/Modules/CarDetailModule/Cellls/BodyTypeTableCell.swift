@@ -10,7 +10,8 @@ import UIKit
 final class BodyTypeTableCell: UITableViewCell {
     
     private let inset: CGFloat = 16
-    private let uiElementHeight: CGFloat = 40
+    private let imageHeight: CGFloat = 20
+    private let labelHeight: CGFloat = 40
     
     static var reuseIdentifier: String {
         return String(describing: BodyTypeTableCell.self)
@@ -71,13 +72,13 @@ private extension BodyTypeTableCell {
     
     func setupConstraints() {
         bodyTypeName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset).isActive = true
-        bodyTypeName.heightAnchor.constraint(equalToConstant: uiElementHeight).isActive = true
+        bodyTypeName.heightAnchor.constraint(equalToConstant: labelHeight).isActive = true
         bodyTypeName.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
         bodyTypeName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset).isActive = true
         
         selectionImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset).isActive = true
         selectionImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        selectionImageView.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        selectionImageView.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        selectionImageView.heightAnchor.constraint(equalToConstant: imageHeight).isActive = true
+        selectionImageView.widthAnchor.constraint(equalToConstant: imageHeight).isActive = true
     }
 }
