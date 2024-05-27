@@ -6,18 +6,6 @@
 //
 
 import UIKit
-protocol ICarDetailPresenter: AnyObject {
-    func didLoad(view: ICarDetailView)
-    func viewIsReady()
-    
-    func getSectionCount() -> Int
-    func getRowCountInSection(at section: Int) -> Int
-    func cellForRow(tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell
-    func viewForSectionHeader(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
-    
-    func updateCurrentBodyType(at index: IndexPath)
-    func calculatePrice(at index: IndexPath)
-}
 
 final class CarDetailPresenter {
    

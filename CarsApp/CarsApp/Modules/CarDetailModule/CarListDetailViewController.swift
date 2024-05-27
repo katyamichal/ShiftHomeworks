@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 protocol ICarDetailView: AnyObject {
     func setLoading(enabled: Bool)
     func updateView()

@@ -32,6 +32,7 @@
 		4EF2BC082C032030001540F7 /* CarDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2BC072C032030001540F7 /* CarDetailCoordinator.swift */; };
 		4EF2BC0B2C039B84001540F7 /* Cars.json in Resources */ = {isa = PBXBuildFile; fileRef = 4EF2BC0A2C039B84001540F7 /* Cars.json */; };
 		4EF2BC0D2C0457F3001540F7 /* TableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2BC0C2C0457F3001540F7 /* TableViewHeader.swift */; };
+		4EF2BC102C046352001540F7 /* ICarDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2BC0F2C046352001540F7 /* ICarDetailPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		4EF2BC072C032030001540F7 /* CarDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarDetailCoordinator.swift; sourceTree = "<group>"; };
 		4EF2BC0A2C039B84001540F7 /* Cars.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cars.json; sourceTree = "<group>"; };
 		4EF2BC0C2C0457F3001540F7 /* TableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHeader.swift; sourceTree = "<group>"; };
+		4EF2BC0F2C046352001540F7 /* ICarDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICarDetailPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 			children = (
 				4EF2BBF62C03180A001540F7 /* CarListDetailViewController.swift */,
 				4EF2BBF82C03188E001540F7 /* CarDetailView.swift */,
+				4EF2BC0F2C046352001540F7 /* ICarDetailPresenter.swift */,
 				4EF2BBFA2C0318B2001540F7 /* CarDetailPresenter.swift */,
 				4EF2BBFC2C0318C9001540F7 /* CarDetailViewData.swift */,
 				4EF2BBFE2C0319D4001540F7 /* CarDetailSection.swift */,
@@ -276,6 +279,7 @@
 				4EF2BBD62C02FF3A001540F7 /* CarTableViewCell.swift in Sources */,
 				4EF2BC042C031B57001540F7 /* PriceTableCell.swift in Sources */,
 				4EF2BBE22C030EE2001540F7 /* Coordinator.swift in Sources */,
+				4EF2BC102C046352001540F7 /* ICarDetailPresenter.swift in Sources */,
 				4EF2BBBE2C02F9E8001540F7 /* CarListViewController.swift in Sources */,
 				4EF2BBD02C02FD0C001540F7 /* CarListView.swift in Sources */,
 				4EF2BBDD2C0304E8001540F7 /* CarDTO.swift in Sources */,
