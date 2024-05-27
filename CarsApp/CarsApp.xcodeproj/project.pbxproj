@@ -31,6 +31,7 @@
 		4EF2BC062C031B64001540F7 /* BodyTypeTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2BC052C031B64001540F7 /* BodyTypeTableCell.swift */; };
 		4EF2BC082C032030001540F7 /* CarDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2BC072C032030001540F7 /* CarDetailCoordinator.swift */; };
 		4EF2BC0B2C039B84001540F7 /* Cars.json in Resources */ = {isa = PBXBuildFile; fileRef = 4EF2BC0A2C039B84001540F7 /* Cars.json */; };
+		4EF2BC0D2C0457F3001540F7 /* TableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2BC0C2C0457F3001540F7 /* TableViewHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		4EF2BC052C031B64001540F7 /* BodyTypeTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyTypeTableCell.swift; sourceTree = "<group>"; };
 		4EF2BC072C032030001540F7 /* CarDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarDetailCoordinator.swift; sourceTree = "<group>"; };
 		4EF2BC0A2C039B84001540F7 /* Cars.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cars.json; sourceTree = "<group>"; };
+		4EF2BC0C2C0457F3001540F7 /* TableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHeader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 				4EF2BBFC2C0318C9001540F7 /* CarDetailViewData.swift */,
 				4EF2BBFE2C0319D4001540F7 /* CarDetailSection.swift */,
 				4EF2BC002C031B3C001540F7 /* Cellls */,
+				4EF2BC0E2C045EB2001540F7 /* TableViewHeader */,
 			);
 			path = CarDetailModule;
 			sourceTree = "<group>";
@@ -183,6 +186,14 @@
 				4EF2BC052C031B64001540F7 /* BodyTypeTableCell.swift */,
 			);
 			path = Cellls;
+			sourceTree = "<group>";
+		};
+		4EF2BC0E2C045EB2001540F7 /* TableViewHeader */ = {
+			isa = PBXGroup;
+			children = (
+				4EF2BC0C2C0457F3001540F7 /* TableViewHeader.swift */,
+			);
+			path = TableViewHeader;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,6 +283,7 @@
 				4EF2BBFB2C0318B2001540F7 /* CarDetailPresenter.swift in Sources */,
 				4EF2BBE82C030F3F001540F7 /* CarFactory.swift in Sources */,
 				4EF2BC062C031B64001540F7 /* BodyTypeTableCell.swift in Sources */,
+				4EF2BC0D2C0457F3001540F7 /* TableViewHeader.swift in Sources */,
 				4EF2BBFF2C0319D4001540F7 /* CarDetailSection.swift in Sources */,
 				4EF2BC022C031B4A001540F7 /* ImageTableCell.swift in Sources */,
 				4EF2BBDF2C030C43001540F7 /* CarService.swift in Sources */,

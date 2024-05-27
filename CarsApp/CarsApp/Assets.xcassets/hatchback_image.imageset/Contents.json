@@ -1,8 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "bam-mccarthy-pWUDTqHUQFk-unsplash.jpg",
-      "idiom" : "universal"
+      "filename" : "F5B8E9F5-70C0-4CE7-957C-945FE2211C40.jpeg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {

@@ -26,25 +26,7 @@ final class PriceTableCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
         
-    // MARK: - UI Elements
-    
-    private lazy var stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.distribution = .equalSpacing
-        stackView.spacing = 16
-        return stackView
-    }()
-
-    private lazy var priceHeaderLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.adjustsFontSizeToFitWidth = true
-        label.font = UIFont.boldSystemFont(ofSize: 21)
-        label.text = "Price"
-        return label
-    }()
+    // MARK: - UI Element
     
     private lazy var priceLabel: UILabel = {
         let label = UILabel()
@@ -66,21 +48,19 @@ final class PriceTableCell: UITableViewCell {
 private extension PriceTableCell {
     func setupCell() {
         selectionStyle = .none
-        setupViews()
+        setupView()
         setupConstraints()
     }
     
-    func setupViews() {
-        contentView.addSubview(stackView)
-        stackView.addArrangedSubview(priceHeaderLabel)
-        stackView.addArrangedSubview(priceLabel)
+    func setupView() {
+        contentView.addSubview(priceLabel)
     }
     
     func setupConstraints() {
-        stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset).isActive = true
-        stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        priceLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset).isActive = true
+        priceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset).isActive = true
+        priceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        priceLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
        
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 final class CarTableViewCell: UITableViewCell {
     
     private let inset: CGFloat = 16
-    private let uiElementHeight: CGFloat = 100
+    private let topInset: CGFloat = 24
     
     static var reuseIdentifier: String {
         return String(describing: CarTableViewCell.self)
@@ -33,7 +33,6 @@ final class CarTableViewCell: UITableViewCell {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
-//        stackView.distribution =
         stackView.alignment = .leading
         stackView.spacing = 8
         return stackView
@@ -71,7 +70,8 @@ private extension CarTableViewCell {
     }
     
     func setupConstraints() {
-        stackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: topInset).isActive = true
         stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -topInset).isActive = true
     }
 }

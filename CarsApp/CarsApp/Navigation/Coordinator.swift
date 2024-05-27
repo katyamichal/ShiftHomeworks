@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 protocol Coordinator: AnyObject {
     var parentCoordinator: Coordinator? { get set }
     var childCoordinator: [Coordinator] { get set }

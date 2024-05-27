@@ -9,8 +9,7 @@ import UIKit
 protocol ICarDetailView: AnyObject {
     func setLoading(enabled: Bool)
     func updateView()
-    func updateSections()
-    func updatePriceSection()
+    func updateSection(at indexPath: IndexPath)
 }
 
 final class CarDetailViewController: UIViewController {
@@ -43,6 +42,11 @@ final class CarDetailViewController: UIViewController {
         setupTableViewDelegates()
         setupActionForDissmissButton()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        setupNavigationBar()
+    }
 }
 // MARK: - Collection Data Source
 
@@ -63,11 +67,15 @@ extension CarDetailViewController: UITableViewDataSource {
 // MARK: - TableView Delegate
 
 extension CarDetailViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        presenter.viewForSectionHeader(tableView, viewForHeaderInSection: section)
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let section = CarDetailSection.allCases[indexPath.section]
         switch section {
         case .bodyType:
-            presenter.updateCurrentBodyType(at: indexPath.row)
+            presenter.updateCurrentBodyType(at: indexPath)
         case .carImage, .price:
             break
         }
@@ -93,15 +101,16 @@ extension CarDetailViewController: ICarDetailView {
     func updateView() {
         carDetailView.tableView.reloadData()
     }
-    
-    func updatePriceSection() {
-        let sectionsToReload = IndexSet([CarDetailSection.price.rawValue])
-        carDetailView.tableView.reloadSections(sectionsToReload, with: .automatic)
-    }
-    #warning("the function name is not precise")
-    func updateSections() {
-        let sectionsToReload = IndexSet([CarDetailSection.carImage.rawValue, CarDetailSection.bodyType.rawValue])
-        carDetailView.tableView.reloadSections(sectionsToReload, with: .automatic)
+        
+    func updateSection(at indexPath: IndexPath) {
+        let section = CarDetailSection.allCases[indexPath.section]
+        switch section {
+        case .bodyType:
+            updateImageSectionWithBodyType()
+        case .price:
+            updatePriceSection()
+        case .carImage: break
+        }
     }
 }
 
@@ -109,6 +118,11 @@ private extension CarDetailViewController {
     func setupTableViewDelegates() {
         carDetailView.tableView.dataSource = self
         carDetailView.tableView.delegate = self
+    }
+    
+    func setupNavigationBar() {
+        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.largeTitleDisplayMode = .never
     }
     
     func hideUI() {
@@ -121,12 +135,36 @@ private extension CarDetailViewController {
         carDetailView.calculateButton.isHidden = false
     }
     
-    
     func setupActionForDissmissButton() {
         carDetailView.setupActionForCalculateButton(target: self, action: #selector(calculatePrice))
     }
     
     @objc func calculatePrice() {
-        presenter.calculatePrice()
+        let indexPath = IndexPath(row: 0, section: 1)
+        presenter.calculatePrice(at: indexPath)
+    }
+    
+    func indexPathsForRows(inSection section: Int, tableView: UITableView) -> [IndexPath] {
+        let rowCount = tableView.numberOfRows(inSection: section)
+        return (0..<rowCount).map { IndexPath(row: $0, section: section) }
+    }
+    
+    func reloadRows(inSections sections: [Int], tableView: UITableView) {
+        var rowsToReload: [IndexPath] = []
+        sections.forEach { section in
+            rowsToReload.append(contentsOf: indexPathsForRows(inSection: section, tableView: tableView))
+        }
+        tableView.reloadRows(at: rowsToReload, with: .fade)
+    }
+    
+    func updatePriceSection() {
+        let priceSectionIndex = CarDetailSection.price.rawValue
+        reloadRows(inSections: [priceSectionIndex], tableView: carDetailView.tableView)
+    }
+    
+    func updateImageSectionWithBodyType() {
+        let carImageSectionIndex = CarDetailSection.carImage.rawValue
+        let bodyTypeSectionIndex = CarDetailSection.bodyType.rawValue
+        reloadRows(inSections: [carImageSectionIndex, bodyTypeSectionIndex], tableView: carDetailView.tableView)
     }
 }

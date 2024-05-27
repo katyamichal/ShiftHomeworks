@@ -11,3 +11,9 @@ enum CarDetailSection: Int, CaseIterable {
     case price
     case bodyType
 }
+
+enum CarDetailSectionTitle: String {
+    case image = "Car"
+    case price = "Price"
+    case bodyType = "Choose car body type"
+}

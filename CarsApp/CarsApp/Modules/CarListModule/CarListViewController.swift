@@ -67,10 +67,6 @@ extension CarListViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: false)
         presenter.showCarDetail(at: indexPath.row)
     }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
-    }
 }
 
 // MARK: - TableView Data Source

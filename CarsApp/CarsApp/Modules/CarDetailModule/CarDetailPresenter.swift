@@ -13,9 +13,10 @@ protocol ICarDetailPresenter: AnyObject {
     func getSectionCount() -> Int
     func getRowCountInSection(at section: Int) -> Int
     func cellForRow(tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell
+    func viewForSectionHeader(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
     
-    func updateCurrentBodyType(at index: Int)
-    func calculatePrice()
+    func updateCurrentBodyType(at index: IndexPath)
+    func calculatePrice(at index: IndexPath)
 }
 
 final class CarDetailPresenter {
@@ -36,15 +37,6 @@ final class CarDetailPresenter {
 }
 
 extension CarDetailPresenter: ICarDetailPresenter {
-    func calculatePrice() {
-        carDetailView?.updatePriceSection()
-    }
-    
-    func updateCurrentBodyType(at index: Int) {
-        currentBody = viewData?.body[index]
-        carDetailView?.updateSections()
-    }
-    
     func viewIsReady() {
         loadCarData()
     }
@@ -80,6 +72,33 @@ extension CarDetailPresenter: ICarDetailPresenter {
         case .bodyType:
             return cell(for: tableView, at: indexPath)
         }
+    }
+    
+    func viewForSectionHeader(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: TableViewHeader.reuseIdentifier) as? TableViewHeader else {
+            return nil
+        }
+        let section = CarDetailSection.allCases[section]
+        var title: String
+        switch section {
+        case .carImage:
+            title = CarDetailSectionTitle.image.rawValue
+        case .price:
+            title = CarDetailSectionTitle.price.rawValue
+        case .bodyType:
+            title = CarDetailSectionTitle.bodyType.rawValue
+        }
+        view.updateTitle(with: title)
+        return view
+    }
+    
+    func calculatePrice(at index: IndexPath) {
+        carDetailView?.updateSection(at: index)
+    }
+    
+    func updateCurrentBodyType(at index: IndexPath) {
+        currentBody = viewData?.body[index.row]
+        carDetailView?.updateSection(at: index)
     }
 }
 

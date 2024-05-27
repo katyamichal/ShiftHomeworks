@@ -17,6 +17,8 @@ final class CarDetailCoordinator: Coordinator {
     private let id: Int
     private let service: CarServiceProtocol
     
+    // MARK: - Init
+
     init(factory: CarFactory, id: Int, navigationController: UINavigationController?, service: CarServiceProtocol) {
         self.factory = factory
         self.id = id

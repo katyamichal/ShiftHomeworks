@@ -40,6 +40,7 @@ final class CarDetailView: UIView {
         tableView.register(ImageTableCell.self, forCellReuseIdentifier: ImageTableCell.reuseIdentifier)
         tableView.register(PriceTableCell.self, forCellReuseIdentifier: PriceTableCell.reuseIdentifier)
         tableView.register(BodyTypeTableCell.self, forCellReuseIdentifier: BodyTypeTableCell.reuseIdentifier)
+        tableView.register(TableViewHeader.self, forHeaderFooterViewReuseIdentifier: TableViewHeader.reuseIdentifier)
         return tableView
     }()
     
