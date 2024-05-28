@@ -11,8 +11,8 @@ final class ConservationStatusView: UIView {
     
     private let inset: CGFloat = 30
     private let buttonAspectRation: CGFloat = 70
-    
-    
+    private let labelHeight: CGFloat = 100
+        
     // MARK: - Inits
     
     override init(frame: CGRect) {
@@ -47,20 +47,36 @@ final class ConservationStatusView: UIView {
         return button
     }()
     
-    
-    // MARK: - Public
-    
-    func update(colour: UIColor, conservationStatusDescription: String) {
-        backgroundColor = colour.withAlphaComponent(0.9)
-        conservationStatusLabel.text = conservationStatusDescription
-    }
+   private lazy var lastUpdateLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.font = UIFont.systemFont(ofSize: 17)
+        return label
+    }()
 }
 
+// MARK: - Public methods
+
+extension ConservationStatusView {
+    func update(colour: UIColor, conservationStatusDescription: String) {
+        backgroundColor = colour
+        conservationStatusLabel.text = conservationStatusDescription
+    }
+    
+    func updateLastUpdateLabel(date: String) {
+        lastUpdateLabel.text = "Last update: \(date)"
+    }
+
+    func setupActionForDissmisButton(target: Any?, action: Selector, for event: UIControl.Event = .touchUpInside) {
+        dismissButton.addTarget(target, action: action, for: event)
+    }
+}
 
 // MARK: - View Setups
 
 private extension ConservationStatusView {
-    
     func setupView() {
         setupViews()
         setupConstraints()
@@ -69,6 +85,7 @@ private extension ConservationStatusView {
     func setupViews() {
         addSubview(conservationStatusLabel)
         addSubview(dismissButton)
+        addSubview(lastUpdateLabel)
     }
     
     func setupConstraints() {
@@ -81,5 +98,8 @@ private extension ConservationStatusView {
         dismissButton.heightAnchor.constraint(equalToConstant: buttonAspectRation).isActive = true
         dismissButton.widthAnchor.constraint(equalToConstant: buttonAspectRation).isActive = true
         
+        lastUpdateLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor,constant: -inset).isActive = true
+        lastUpdateLabel.centerXAnchor.constraint(equalTo: conservationStatusLabel.centerXAnchor).isActive = true
+        lastUpdateLabel.heightAnchor.constraint(equalToConstant: labelHeight).isActive = true
     }
 }

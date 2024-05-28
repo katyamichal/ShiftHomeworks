@@ -9,14 +9,11 @@ import UIKit
 
 final class BirdListView: UIView {
     
-    private lazy var collectionDataSource = BirdListCollectionDataSource(collectionView: collectionView)
-    
-    
     // MARK: - Inits
     
     init(collectionDelegate: UICollectionViewDelegate) {
         super.init(frame: .zero)
-        setupView(delegate: collectionDelegate)
+        setupView(collectionDelegate)
     }
     
     @available(*, unavailable)
@@ -24,31 +21,26 @@ final class BirdListView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     // MARK: - UI Elements
     
-    private lazy var collectionView: UICollectionView = {
+    lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.backgroundColor = .systemBackground
         collectionView.register(BirdCollectionViewCell.self, forCellWithReuseIdentifier: BirdCollectionViewCell.reuseIdentifier)
         return collectionView
     }()
-    
-    
-    // MARK: - Setup methods
-    
-    private func setupView(delegate: UICollectionViewDelegate) {
+}
+
+// MARK: - Setup methods
+
+private extension  BirdListView {
+    func setupView(_ delegate: UICollectionViewDelegate) {
         addSubview(collectionView)
-        setupCollectionDataSource()
         setupCollectionDelegate(delegate)
     }
     
-    private func setupCollectionDataSource() {
-        collectionView.dataSource = collectionDataSource
-    }
-    
-    private func setupCollectionDelegate(_ delegete: UICollectionViewDelegate) {
+    func setupCollectionDelegate(_ delegete: UICollectionViewDelegate) {
         collectionView.delegate = delegete
     }
 }

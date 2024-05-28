@@ -7,14 +7,14 @@
 
 import Foundation
 
-final class BirdDataSource {
+protocol DataSourceProtocol: AnyObject {
+    func createSampleData() -> [Bird]
+}
+
+final class BirdDataSourceImp: DataSourceProtocol {
     
-    static let birds: [Bird] = createSampleData()
-    
-    private init() {}
-    
-    static func createSampleData() -> [Bird] {
-        return [
+    func createSampleData() -> [Bird] {
+        [
             Bird(
                 name: BirdSampleStrings.Kakapo.name,
                 image: BirdSampleStrings.Kakapo.image,
