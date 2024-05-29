@@ -42,6 +42,11 @@ final class PriceTableCell: UITableViewCell {
     func updatePriceLabel(with price: String) {
         priceLabel.text = price + "$"
     }
+    
+    override func prepareForReuse() {
+        priceLabel.text = nil
+        super.prepareForReuse()
+    }
 }
 
 // MARK: - Setup methods

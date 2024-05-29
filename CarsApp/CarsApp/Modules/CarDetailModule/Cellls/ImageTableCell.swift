@@ -41,6 +41,11 @@ final class ImageTableCell: UITableViewCell {
     func updateImage(_ name: String) {
         carImageView.image = UIImage(named: name)
     }
+    
+    override func prepareForReuse() {
+        carImageView.image = nil
+        super.prepareForReuse()
+    }
 }
 
 // MARK: - Setup methods

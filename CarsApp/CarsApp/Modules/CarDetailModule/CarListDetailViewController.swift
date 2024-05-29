@@ -10,7 +10,9 @@ import UIKit
 protocol ICarDetailView: AnyObject {
     func setLoading(enabled: Bool)
     func updateView()
-    func updateSection(at indexPath: IndexPath)
+  //  func updateSection(at indexPath: IndexPath)
+    func  updateImageSectionWithBodyType(with rows: [IndexPath])
+    func  updatePriceRowInSection(at indexPath: IndexPath)
 }
 
 final class CarDetailViewController: UIViewController {
@@ -76,7 +78,7 @@ extension CarDetailViewController: UITableViewDelegate {
         let section = CarDetailSection.allCases[indexPath.section]
         switch section {
         case .bodyType:
-            presenter.updateCurrentBodyType(at: indexPath)
+            presenter.updateCurrentBodyType(with: tableView, at: indexPath.row)
         case .carImage, .price:
             break
         }
@@ -102,16 +104,13 @@ extension CarDetailViewController: ICarDetailView {
     func updateView() {
         carDetailView.tableView.reloadData()
     }
-        
-    func updateSection(at indexPath: IndexPath) {
-        let section = CarDetailSection.allCases[indexPath.section]
-        switch section {
-        case .bodyType:
-            updateImageSectionWithBodyType()
-        case .price:
-            updatePriceSection()
-        case .carImage: break
-        }
+    
+    func updateImageSectionWithBodyType(with rows: [IndexPath]) {
+        carDetailView.tableView.reloadRows(at: rows, with: .fade)
+    }
+    
+    func  updatePriceRowInSection(at indexPath: IndexPath) {
+        carDetailView.tableView.reloadRows(at: [indexPath], with: .fade)
     }
 }
 
@@ -143,29 +142,5 @@ private extension CarDetailViewController {
     @objc func calculatePrice() {
         let indexPath = IndexPath(row: 0, section: 1)
         presenter.calculatePrice(at: indexPath)
-    }
-    
-    func indexPathsForRows(inSection section: Int, tableView: UITableView) -> [IndexPath] {
-        let rowCount = tableView.numberOfRows(inSection: section)
-        return (0..<rowCount).map { IndexPath(row: $0, section: section) }
-    }
-    
-    func reloadRows(inSections sections: [Int], tableView: UITableView) {
-        var rowsToReload: [IndexPath] = []
-        sections.forEach { section in
-            rowsToReload.append(contentsOf: indexPathsForRows(inSection: section, tableView: tableView))
-        }
-        tableView.reloadRows(at: rowsToReload, with: .fade)
-    }
-    
-    func updatePriceSection() {
-        let priceSectionIndex = CarDetailSection.price.rawValue
-        reloadRows(inSections: [priceSectionIndex], tableView: carDetailView.tableView)
-    }
-    
-    func updateImageSectionWithBodyType() {
-        let carImageSectionIndex = CarDetailSection.carImage.rawValue
-        let bodyTypeSectionIndex = CarDetailSection.bodyType.rawValue
-        reloadRows(inSections: [carImageSectionIndex, bodyTypeSectionIndex], tableView: carDetailView.tableView)
     }
 }

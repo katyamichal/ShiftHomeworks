@@ -57,6 +57,11 @@ final class CarTableViewCell: UITableViewCell {
     func updateLabel(with manufacturer: String) {
         manufacturerLabel.text = manufacturer
     }
+    
+    override func prepareForReuse() {
+        manufacturerLabel.text = nil
+        super.prepareForReuse()
+    }
 }
 
 // MARK: - Setup methods

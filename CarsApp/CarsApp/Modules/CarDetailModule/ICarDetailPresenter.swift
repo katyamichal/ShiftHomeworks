@@ -22,6 +22,6 @@ protocol ICarDetailTableViewDataSource: AnyObject {
 }
 
 protocol ICarDetailBusinessLogic: AnyObject {
-    func updateCurrentBodyType(at index: IndexPath)
+    func updateCurrentBodyType(with tableView: UITableView, at index: Int)
     func calculatePrice(at index: IndexPath)
 }

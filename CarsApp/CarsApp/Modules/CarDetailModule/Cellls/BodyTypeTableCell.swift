@@ -58,6 +58,12 @@ final class BodyTypeTableCell: UITableViewCell {
         let imageName = status ? ImageViewStatus.selected : ImageViewStatus.nonSelected
         selectionImageView.image = UIImage(systemName: imageName.rawValue)
     }
+    
+    override func prepareForReuse() {
+        bodyTypeName.text = nil
+        selectionImageView.image = nil
+        super.prepareForReuse()
+    }
 }
 
 // MARK: - Setup methods

@@ -41,9 +41,7 @@ extension CarDetailPresenter: ICarDetailPresenter {
         let section = CarDetailSection.allCases[section]
         guard let viewData else { return 0 }
         switch section {
-        case .carImage:
-            return 1
-        case .price:
+        case .carImage, .price:
             return 1
         case .bodyType:
             return viewData.body.count
@@ -51,15 +49,7 @@ extension CarDetailPresenter: ICarDetailPresenter {
     }
     
     func cellForRow(tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
-        let section = CarDetailSection.allCases[indexPath.section]
-        switch section {
-        case .carImage:
-            return cell(for: tableView, at: indexPath)
-        case .price:
-            return cell(for: tableView, at: indexPath)
-        case .bodyType:
-            return cell(for: tableView, at: indexPath)
-        }
+        cell(for: tableView, at: indexPath)
     }
     
     func viewForSectionHeader(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -81,12 +71,16 @@ extension CarDetailPresenter: ICarDetailPresenter {
     }
     
     func calculatePrice(at index: IndexPath) {
-        carDetailView?.updateSection(at: index)
+        carDetailView?.updatePriceRowInSection(at: index)
     }
     
-    func updateCurrentBodyType(at index: IndexPath) {
-        currentBody = viewData?.body[index.row]
-        carDetailView?.updateSection(at: index)
+    func updateCurrentBodyType(with tableView: UITableView, at index: Int) {
+        currentBody = viewData?.body[index]
+        let carImageSectionIndex = CarDetailSection.carImage.rawValue
+        let bodyTypeSectionIndex = CarDetailSection.bodyType.rawValue
+        let carImageRows = indexPathsForRows(inSection: carImageSectionIndex, tableView: tableView)
+        let bodyTypeRows = indexPathsForRows(inSection: bodyTypeSectionIndex, tableView: tableView)
+        carDetailView?.updateImageSectionWithBodyType(with: carImageRows + bodyTypeRows)
     }
 }
 
@@ -136,5 +130,10 @@ private extension CarDetailPresenter {
             cell.updateImage(with: viewData.body[indexPath.row].type == currentBody.type)
             return cell
         }
+    }
+    
+    func indexPathsForRows(inSection section: Int, tableView: UITableView) -> [IndexPath] {
+        let rowCount = tableView.numberOfRows(inSection: section)
+        return (0..<rowCount).map { IndexPath(row: $0, section: section) }
     }
 }

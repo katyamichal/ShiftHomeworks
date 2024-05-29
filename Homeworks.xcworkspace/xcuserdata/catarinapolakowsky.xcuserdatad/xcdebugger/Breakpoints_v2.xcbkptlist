@@ -110,8 +110,8 @@
             filePath = "CarsApp/CarsApp/Modules/CarDetailModule/CarDetailPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "cellForRow(tableView:at:)"
             landmarkType = "7">
             <Locations>
@@ -158,8 +158,8 @@
             filePath = "CarsApp/CarsApp/Modules/CarDetailModule/CarDetailPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "loadCarData()"
             landmarkType = "7">
          </BreakpointContent>
