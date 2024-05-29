@@ -15,6 +15,11 @@ final class CarDetailPresenter {
     private var viewData: CarDetailViewData?
     private let id: Int
     private var currentBody: Body?
+    
+    enum ImageViewStatus: String {
+       case selected = "circle.fill"
+       case nonSelected = "circle"
+   }
 
     // MARK: - Init
 
@@ -128,8 +133,12 @@ private extension CarDetailPresenter {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: BodyTypeTableCell.reuseIdentifier, for: indexPath) as? BodyTypeTableCell else {
                 return UITableViewCell()
             }
+            let imageStatus = viewData.body[indexPath.row].type == currentBody.type
+            let imageName = imageStatus ? ImageViewStatus.selected : ImageViewStatus.nonSelected
+            if  let image = UIImage(systemName: imageName.rawValue) {
+                cell.updateImage(with: image)
+            }
             cell.updateLabel(bodyType: viewData.body[indexPath.row].type.rawValue)
-            cell.updateImage(with: viewData.body[indexPath.row].type == currentBody.type)
             return cell
         }
     }

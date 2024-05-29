@@ -17,11 +17,6 @@ final class BodyTypeTableCell: UITableViewCell {
         return String(describing: BodyTypeTableCell.self)
     }
     
-    private enum ImageViewStatus: String {
-        case selected = "circle.fill"
-        case nonSelected = "circle"
-    }
-    
     // MARK: - Inits
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -54,9 +49,8 @@ final class BodyTypeTableCell: UITableViewCell {
         bodyTypeName.text = bodyType.capitalized
     }
     
-    func updateImage(with status: Bool) {
-        let imageName = status ? ImageViewStatus.selected : ImageViewStatus.nonSelected
-        selectionImageView.image = UIImage(systemName: imageName.rawValue)
+    func updateImage(with image: UIImage) {
+        selectionImageView.image = image
     }
     
     override func prepareForReuse() {
