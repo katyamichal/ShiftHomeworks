@@ -16,7 +16,7 @@ final class CarDetailPresenter {
     private let id: Int
     private var currentBody: Body?
     
-    enum ImageViewStatus: String {
+   private enum ImageViewStatus: String {
        case selected = "circle.fill"
        case nonSelected = "circle"
    }

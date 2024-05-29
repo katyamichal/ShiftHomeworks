@@ -10,9 +10,8 @@ import UIKit
 protocol ICarDetailView: AnyObject {
     func setLoading(enabled: Bool)
     func updateView()
-  //  func updateSection(at indexPath: IndexPath)
-    func  updateImageSectionWithBodyType(with rows: [IndexPath])
-    func  updatePriceRowInSection(at indexPath: IndexPath)
+    func updateImageSectionWithBodyType(with rows: [IndexPath])
+    func updatePriceRowInSection(at indexPath: IndexPath)
 }
 
 final class CarDetailViewController: UIViewController {
