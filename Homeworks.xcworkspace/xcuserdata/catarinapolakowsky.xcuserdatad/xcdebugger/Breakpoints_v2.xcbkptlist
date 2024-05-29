@@ -158,8 +158,8 @@
             filePath = "CarsApp/CarsApp/Modules/CarDetailModule/CarDetailPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "loadCarData()"
             landmarkType = "7">
          </BreakpointContent>

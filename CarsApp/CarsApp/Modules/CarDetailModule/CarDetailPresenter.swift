@@ -78,9 +78,11 @@ extension CarDetailPresenter: ICarDetailPresenter {
         currentBody = viewData?.body[index]
         let carImageSectionIndex = CarDetailSection.carImage.rawValue
         let bodyTypeSectionIndex = CarDetailSection.bodyType.rawValue
-        let carImageRows = indexPathsForRows(inSection: carImageSectionIndex, tableView: tableView)
-        let bodyTypeRows = indexPathsForRows(inSection: bodyTypeSectionIndex, tableView: tableView)
-        carDetailView?.updateImageSectionWithBodyType(with: carImageRows + bodyTypeRows)
+        let sections: [Int] = [carImageSectionIndex, bodyTypeSectionIndex]
+        let indexPaths = sections.flatMap { section -> [IndexPath] in
+            indexPathsForRows(inSection: section, tableView: tableView)
+        }
+        carDetailView?.updateImageSectionWithBodyType(with: indexPaths)
     }
 }
 
