@@ -43,7 +43,7 @@ final class CarDetailViewController: UIViewController {
         presenter.didLoad(view: self)
         presenter.viewIsReady()
         setupTableViewDelegates()
-        setupActionForDissmissButton()
+        setupActionForCalculateButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -135,7 +135,7 @@ private extension CarDetailViewController {
         carDetailView.calculateButton.isHidden = false
     }
     
-    func setupActionForDissmissButton() {
+    func setupActionForCalculateButton() {
         carDetailView.setupActionForCalculateButton(target: self, action: #selector(calculatePrice))
     }
     
