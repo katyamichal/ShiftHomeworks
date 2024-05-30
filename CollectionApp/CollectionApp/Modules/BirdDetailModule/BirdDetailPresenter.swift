@@ -17,7 +17,7 @@ protocol IBirdDetailPresenter: AnyObject {
     func getSectionCount() -> Int
     func getItemsCountInSection(at section: Int) -> Int
     func itemForCell(collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionViewCell
-    func showBirdConservationStatus()
+    func showBirdConservationStatus(with viewController: UIViewController)
 }
 
 final class BirdDetailPresenter {
@@ -82,7 +82,7 @@ extension BirdDetailPresenter: IBirdDetailPresenter {
         }
     }
     
-     func showBirdConservationStatus() {
-        router.showConservationStatusModule(with: birdDetailViewData.birdConservation)
+    func showBirdConservationStatus(with viewController: UIViewController) {
+        router.showConservationStatusModule(with: birdDetailViewData.birdConservation, viewController: viewController)
     }
 }

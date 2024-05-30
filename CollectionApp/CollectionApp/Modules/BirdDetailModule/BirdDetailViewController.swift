@@ -52,7 +52,8 @@ private extension BirdDetailViewController {
     }
     
     @objc func showBirdConservationStatus() {
-        self.presenter.showBirdConservationStatus()
+        guard let viewController = navigationController?.topViewController else { return }
+        self.presenter.showBirdConservationStatus(with: viewController)
     }
 }
 

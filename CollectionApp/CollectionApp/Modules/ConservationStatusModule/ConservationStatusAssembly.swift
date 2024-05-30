@@ -10,7 +10,7 @@ import UIKit
 enum ConservationStatusAssembly {
     
     struct Dependencies {
-        let navigationController: UINavigationController
+        let viewController: UIViewController
     }
 
     struct Parameters {
@@ -19,7 +19,7 @@ enum ConservationStatusAssembly {
     
     static func makeConservationStatusModule(dependencies: Dependencies,parameters: Parameters) -> UIViewController {
         let model = ConservationViewData(with: parameters.consevation)
-        let router = ConservationStatusRouter(navigationController: dependencies.navigationController)
+        let router = ConservationStatusRouter(viewController: dependencies.viewController)
         let viewModel = ConservationStatusViewModel(router: router, birdConservationData: model)
         let viewController = ConservationStatusViewController(viewModel: viewModel)
         return viewController

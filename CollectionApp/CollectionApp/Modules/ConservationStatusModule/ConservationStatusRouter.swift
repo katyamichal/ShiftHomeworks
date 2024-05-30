@@ -8,13 +8,13 @@
 import UIKit
 
 final class ConservationStatusRouter {
-    private let navigationController: UINavigationController
+    private let viewController: UIViewController
     
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+    init(viewController: UIViewController) {
+        self.viewController = viewController
     }
     
     func goBack() {
-        navigationController.dismiss(animated: true)
+        viewController.dismiss(animated: true)
     }
 }
