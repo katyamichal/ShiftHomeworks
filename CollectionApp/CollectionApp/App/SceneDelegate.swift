@@ -13,9 +13,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
+        let navigationController = UINavigationController()
+        let dataSource = BirdDataSourceImp()
+        let dependencies = BirdListAssembly.Dependencies(navigationController: navigationController, dataSource: dataSource)
+        let birdListViewController = BirdListAssembly.makeBirdListModule(with: dependencies)
+        navigationController.viewControllers = [birdListViewController]
         window = UIWindow(windowScene: windowScene)
-        let rootVC = BirdListViewController()
-        window?.rootViewController = UINavigationController(rootViewController: rootVC)
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
 }
