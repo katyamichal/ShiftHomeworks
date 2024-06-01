@@ -46,6 +46,11 @@ final class CarListViewController: UIViewController {
         carListView.tableView.delegate = self
         presenter.didLoad(view: self)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        setupNavigationBar()
+    }
 }
 
 extension CarListViewController: ICarListView {
@@ -53,10 +58,8 @@ extension CarListViewController: ICarListView {
         configureTableViewDataSource()
         applySnapshot(with: cars)
     }
-    
+        
     func setupNavigationBar(with title: String) {
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .always
         navigationItem.title = title
     }
 }
@@ -86,5 +89,10 @@ private extension CarListViewController {
         snapshot.appendSections([.cars])
         snapshot.appendItems(cars, toSection: .cars)
         tableViewDiffableDataSource?.apply(snapshot, animatingDifferences: true)
+    }
+    
+    func setupNavigationBar() {
+        navigationItem.largeTitleDisplayMode = .always
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
 }

@@ -14,7 +14,7 @@ protocol ICarListPresenter: AnyObject {
 final class CarListPresenter {
     
     weak var coordinator: Coordinator?
-    private weak var carListUIView: ICarListView?
+    private weak var view: ICarListView?
     private var cars: [CarListViewData] = []
     private let carService: CarServiceProtocol
     
@@ -32,10 +32,10 @@ extension CarListPresenter: ICarListPresenter {
     }
     
     func didLoad(view: ICarListView) {
-        carListUIView = view
+        self.view = view
         getCars()
-        carListUIView?.update(with: cars)
-        carListUIView?.setupNavigationBar(with: "Choose Car")
+        self.view?.update(with: cars)
+        self.view?.setupNavigationBar(with: "Choose Car")
     }
 }
 

@@ -11,7 +11,7 @@ final class CarDetailPresenter {
    
     weak var coordinator: Coordinator?
     private var service: CarServiceProtocol
-    private weak var carDetailView: ICarDetailView?
+    private weak var view: ICarDetailView?
     private var viewData: CarDetailViewData?
     private let id: Int
     private var currentBody: Body?
@@ -35,7 +35,7 @@ extension CarDetailPresenter: ICarDetailPresenter {
     }
     
     func didLoad(view: ICarDetailView) {
-        carDetailView = view
+        self.view = view
     }
     
     func getSectionCount() -> Int {
@@ -76,7 +76,7 @@ extension CarDetailPresenter: ICarDetailPresenter {
     }
     
     func calculatePrice(at index: IndexPath) {
-        carDetailView?.updatePriceRowInSection(at: index)
+        view?.updatePriceRowInSection(at: index)
     }
     
     func updateCurrentBodyType(with tableView: UITableView, at index: Int) {
@@ -87,20 +87,20 @@ extension CarDetailPresenter: ICarDetailPresenter {
         let indexPaths = sections.flatMap { section -> [IndexPath] in
             indexPathsForRows(inSection: section, tableView: tableView)
         }
-        carDetailView?.updateImageSectionWithBodyType(with: indexPaths)
+        view?.updateImageSectionWithBodyType(with: indexPaths)
     }
 }
 
 private extension CarDetailPresenter {
     func loadCarData() {
-        carDetailView?.setLoading(enabled: true)
+        view?.setLoading(enabled: true)
         service.loadCarFromJSON(with: id) { [weak self] car in
             guard let car else {
                 return
             }
             DispatchQueue.main.async {
                 self?.viewData = CarDetailViewData(id: car.id, body: car.body)
-                self?.carDetailView?.setLoading(enabled: false)
+                self?.view?.setLoading(enabled: false)
                 self?.updateView()
             }
         }
@@ -108,7 +108,7 @@ private extension CarDetailPresenter {
     
     func updateView() {
         currentBody = viewData?.body.first
-        carDetailView?.updateView()
+        view?.updateView()
     }
     
     func cell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {

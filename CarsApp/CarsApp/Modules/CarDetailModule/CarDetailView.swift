@@ -51,6 +51,7 @@ final class CarDetailView: UIView {
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .medium)
         button.setTitle("Calculate price", for: .normal)
         button.backgroundColor = .systemGreen
+        button.layer.cornerRadius = buttonHeight / 2
         return button
     }()
     

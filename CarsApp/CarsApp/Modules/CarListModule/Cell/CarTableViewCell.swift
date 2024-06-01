@@ -10,7 +10,6 @@ import UIKit
 final class CarTableViewCell: UITableViewCell {
     
     private let inset: CGFloat = 16
-    private let topInset: CGFloat = 24
     
     static var reuseIdentifier: String {
         return String(describing: CarTableViewCell.self)
@@ -39,11 +38,13 @@ final class CarTableViewCell: UITableViewCell {
         return stackView
     }()
     
-    private lazy var accessoryLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "🟢"
-        return label
+    private lazy var accessoryImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.tintColor = .systemGreen
+        imageView.image = UIImage(systemName: "circle.fill")
+        imageView.tintColor = .systemGreen
+        return imageView
     }()
     
     private lazy var manufacturerLabel: UILabel = {
@@ -70,14 +71,14 @@ final class CarTableViewCell: UITableViewCell {
 private extension CarTableViewCell {
     func setupCell() {
         contentView.addSubview(stackView)
-        stackView.addArrangedSubview(accessoryLabel)
+        stackView.addArrangedSubview(accessoryImageView)
         stackView.addArrangedSubview(manufacturerLabel)
         setupConstraints()
     }
     
     func setupConstraints() {
-        stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: topInset).isActive = true
+        stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset).isActive = true
         stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -topInset).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -inset).isActive = true
     }
 }

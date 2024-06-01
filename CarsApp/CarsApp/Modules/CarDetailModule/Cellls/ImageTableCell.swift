@@ -8,7 +8,7 @@
 import UIKit
 final class ImageTableCell: UITableViewCell {
     
-    private let imageHeight: CGFloat = UIScreen.main.bounds.size.height / 2
+    private let imageHeight: CGFloat = UIScreen.main.bounds.size.height / 3
     
     static var reuseIdentifier: String {
         return String(describing: ImageTableCell.self)

@@ -122,6 +122,7 @@ private extension CarDetailViewController {
     func setupNavigationBar() {
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.largeTitleDisplayMode = .never
+        navigationController?.navigationBar.tintColor = .green
     }
     
     func hideUI() {
