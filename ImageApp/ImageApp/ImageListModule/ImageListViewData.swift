@@ -8,9 +8,10 @@
 import UIKit
 enum LoadingStatus: Equatable, Hashable {
     case nonActive
-    case loading(progress: Float)
+    case waitToLoad(message: String)
+    case loading(progress: Float, image: UIImage?)
     case completed(image: UIImage)
-    case paused(progress: Float)
+    case paused(image: UIImage?)
     case failed(message: String)
 }
 

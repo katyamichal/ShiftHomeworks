@@ -97,11 +97,11 @@
 			isa = PBXGroup;
 			children = (
 				4EC41A152C0C19E900100ABA /* ImageListViewController.swift */,
-				4EC41A272C0C1C0600100ABA /* ImageListPresenter.swift */,
 				4EC41A2D2C0C1CC400100ABA /* ImageListView.swift */,
-				4EC41A2F2C0C1F6600100ABA /* ImageTableCell.swift */,
-				4EC41A3A2C0C2ACC00100ABA /* ImageListAssembly.swift */,
+				4EC41A272C0C1C0600100ABA /* ImageListPresenter.swift */,
 				4EC41A402C0C35E900100ABA /* ImageListViewData.swift */,
+				4EC41A3A2C0C2ACC00100ABA /* ImageListAssembly.swift */,
+				4EC41A432C0C62F300100ABA /* Cell */,
 			);
 			path = ImageListModule;
 			sourceTree = "<group>";
@@ -132,6 +132,14 @@
 				4EC41A3C2C0C2B6C00100ABA /* ImageManager.swift */,
 			);
 			path = ImageLayer;
+			sourceTree = "<group>";
+		};
+		4EC41A432C0C62F300100ABA /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				4EC41A2F2C0C1F6600100ABA /* ImageTableCell.swift */,
+			);
+			name = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

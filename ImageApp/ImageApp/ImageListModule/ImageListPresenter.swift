@@ -12,7 +12,7 @@ protocol IImageListPresenter: AnyObject {
     func getRowCountInSection() -> Int
     func rowForCell(tableView: UITableView, at index: IndexPath) -> UITableViewCell
     func loadData(with keyword: String)
-   // func loadImage(with url: URL, imageId: UUID)
+    func updateRow(at index: Int)
     
 }
 
@@ -22,19 +22,46 @@ final class ImageListPresenter {
     private let service: INetworkManager
     private let imageService: IImageService
     
+    private var isLoading: [UUID: Bool] = [:]
+    
     init(service: INetworkManager, imageService: IImageService) {
         self.service = service
         self.imageService = imageService
         setupComplitionHandlers()
     }
+    
+    enum PauseLoadingImages {
+        static let paused = UIImage(systemName: "pause")
+        static let active = UIImage(systemName: "xmark.circle")
+    }
 }
 
 extension ImageListPresenter: IImageListPresenter {
+    func updateRow(at index: Int) {
+        if let index = viewData.firstIndex(where: { $0.image == viewData[index].image }) {
+            let id = viewData[index].image
+            if  isLoading[id] == true  {
+                imageService.pauseDownloading(with: id)
+                viewData[index].loadingStatus = .paused(image: PauseLoadingImages.paused)
+            } else {
+                imageService.resumeDownloading(with: id)
+            }
+            isLoading[id]?.toggle()
+            view?.update()
+        }
+    }
+    
+    
  
     func loadData(with keyword: String) {
         let requestId = UUID()
-        viewData.append(ImageListViewData(image: requestId, loadingStatus: .loading(progress: 0.0)))
+        viewData.append(ImageListViewData(image: requestId, loadingStatus: .loading(progress: 0.0, image: PauseLoadingImages.active)))
         service.performRequest(with: keyword, id: requestId)
+        isLoading[requestId] = true
+        if let index = viewData.firstIndex(where: { $0.image == requestId }) {
+            viewData[index].loadingStatus = .waitToLoad(message: "Wait for loading image")
+            view?.update()
+        }
     }
     
     func viewDidLoaded(view: IImageView) {
@@ -78,35 +105,14 @@ private extension ImageListPresenter {
             } else {
                 DispatchQueue.main.async {
                     if let index = self?.viewData.firstIndex(where: { $0.image == imageId }) {
-                        self?.viewData[index].loadingStatus = .failed(message: "failed to fetch data from unsplash")
+                        self?.viewData[index].loadingStatus = .failed(message: "Failed to fetch data from unsplash")
                     }
                     self?.view?.update()
                 }
             }
         }
     }
-    
-//    func configureImageComplitionHadler() {
-//        imageService.imageBackgroundCompletion = { [weak self] imageId, image, error in
-//            guard let image else {
-//                DispatchQueue.main.async {
-//                    if let index = self?.viewData.firstIndex(where: { $0.images == imageId }) {
-//                        self?.viewData[index].loadingStatus = .failed(message: "failed to fetch image")
-//                        self?.view?.update()
-//                    }
-//                }
-//                return
-//            }
-//            DispatchQueue.main.async {
-//                if let index = self?.viewData.firstIndex(where: { $0.images == imageId }) {
-//                    self?.viewData[index].loadingStatus = .completed(image: image)
-//                    self?.view?.update()
-//                    print("TableViewUpdated")
-//                }
-//            }
-//        }
-//    }
-    
+        
     func configureImageCompletionHandler() {
         imageService.imageBackgroundCompletion = { [weak self] imageId, image, error in
             guard let self = self else { return }
@@ -115,7 +121,6 @@ private extension ImageListPresenter {
                 
                 if let image = image {
                     self.viewData[index].loadingStatus = .completed(image: image)
-                    print("TableViewUpdated")
                 } else {
                     self.viewData[index].loadingStatus = .failed(message: "Failed to fetch image")
                 }
@@ -130,7 +135,7 @@ private extension ImageListPresenter {
         imageService.progressHandler = { [weak self] (imageId, progressValue) in
             DispatchQueue.main.async {
                 if let index = self?.viewData.firstIndex(where: { $0.image == imageId }) {
-                    self?.viewData[index].loadingStatus = .loading(progress: Float(progressValue))
+                    self?.viewData[index].loadingStatus = .loading(progress: Float(progressValue), image: PauseLoadingImages.active)
                 }
                 self?.view?.update()
             }

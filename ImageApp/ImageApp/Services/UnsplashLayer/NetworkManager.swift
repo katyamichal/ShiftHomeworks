@@ -8,7 +8,7 @@
 import Foundation
 enum URLSessionsIndentifiers {
     static let unsplashSession = "UnsplashSearchSession"
-  
+    
 }
 
 
@@ -72,7 +72,7 @@ extension NetworkManager: URLSessionDownloadDelegate {
 }
 
 private extension NetworkManager {
-    private func createURL(with keyword: String, id: UUID) -> URL? {
+    func createURL(with keyword: String, id: UUID) -> URL? {
         let token = "hpBPCZ8mTx5CmLuQ2uxkPEi5RVJkQHC1t_ke31oL_lE"
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"

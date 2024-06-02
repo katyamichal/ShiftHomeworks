@@ -43,7 +43,11 @@ final class ImageListViewController: UIViewController {
     }
 }
 
-extension ImageListViewController: UITableViewDelegate {}
+extension ImageListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter.updateRow(at: indexPath.row)
+    }
+}
 
 extension ImageListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -75,6 +79,7 @@ private extension ImageListViewController {
     }
     
     func setupTextFieldDelegate() {
+        imageView.searchTextField.becomeFirstResponder()
         imageView.searchTextField.delegate = self
     }
 }
