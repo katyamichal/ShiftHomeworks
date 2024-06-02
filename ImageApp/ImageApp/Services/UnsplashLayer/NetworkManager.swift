@@ -58,7 +58,7 @@ extension NetworkManager: URLSessionDownloadDelegate {
         do {
             let data = try Data(contentsOf: location)
             let searchResults = try decoder.decode(UnsplashSearchResults.self, from: data)
-            if let firstImageURL = searchResults.results.first?.urls.raw, let imageURL = URL(string: firstImageURL) {
+            if let firstImageURL = searchResults.results.first?.urls.regular, let imageURL = URL(string: firstImageURL) {
                 print(imageURL)
                 backgroundCompletionHandler?(imageURL, imageId)
             } else {

@@ -6,10 +6,13 @@
 //
 
 import UIKit
+
 protocol IImageView: AnyObject {
+  //  func update(at indexPaths: [IndexPath])
+    func update()
 }
 
-final class ImageListViewController: UIViewController, IImageView {
+final class ImageListViewController: UIViewController {
 
     private var imageView: ImageListView { return self.view as! ImageListView }
     private let presenter: IImageListPresenter
@@ -44,15 +47,26 @@ extension ImageListViewController: UITableViewDelegate {}
 
 extension ImageListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+        presenter.getRowCountInSection()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        presenter.rowForCell(tableView: tableView, at: indexPath)
     }
 }
 
-extension ImageListViewController: UISearchTextFieldDelegate {}
+extension ImageListViewController: UISearchTextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        imageView.searchTextField.resignFirstResponder()
+          print("Search text: \(textField.text ?? "")")
+          return true
+      }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard let str = textField.text else { return }
+        presenter.loadData(with: str)
+    }
+}
 
 private extension ImageListViewController {
     func setupTableViewDelegates() {
@@ -65,3 +79,11 @@ private extension ImageListViewController {
     }
 }
 
+extension ImageListViewController: IImageView {
+//    func update(at indexPath: [IndexPath]) {
+//        imageView.tableView.reloadRows(at: indexPath, with: .fade)
+//    }
+    func update() {
+        imageView.tableView.reloadData()
+    }
+}

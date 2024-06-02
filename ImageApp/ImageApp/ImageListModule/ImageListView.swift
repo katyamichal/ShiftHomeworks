@@ -37,7 +37,7 @@ final class ImageListView: UIView {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .systemGroupedBackground
-        tableView.register(ImageViewCell.self, forCellReuseIdentifier: ImageViewCell.reuseIdentifier)
+        tableView.register(ImageTableCell.self, forCellReuseIdentifier: ImageTableCell.reuseIdentifier)
         return tableView
     }()
 }

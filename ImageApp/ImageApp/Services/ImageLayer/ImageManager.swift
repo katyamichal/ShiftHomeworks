@@ -14,7 +14,7 @@ import UIKit
 
 protocol IImageService: AnyObject {
     func fetchImage(with url: URL, id: UUID)
-    var imageBackgroundCompletion: ((UIImage?, APIError?) -> Void)? { get set }
+    var imageBackgroundCompletion: ((UUID, UIImage?, APIError?) -> Void)? { get set }
     var progressHandler: ((UUID, Double) -> Void)? { get set}
     
 }
@@ -23,7 +23,7 @@ final class ImageService: NSObject, IImageService {
 
     private var cache = NSCache<NSURL, UIImage>()
     
-    var imageBackgroundCompletion: ((UIImage?, APIError?) -> Void)?
+    var imageBackgroundCompletion: ((UUID, UIImage?, APIError?) -> Void)?
     var progressHandler: ((UUID, Double) -> Void)?
     
     private var tasks = [UUID: URLSessionDownloadTask]()
@@ -51,13 +51,13 @@ extension ImageService: URLSessionDownloadDelegate {
         do {
             let data = try Data(contentsOf: location)
             guard let image = UIImage(data: data) else {
-                imageBackgroundCompletion?(nil, .invalidResponse())
+                imageBackgroundCompletion?(imageId, nil, .invalidResponse())
                 return
             }
             //cache.setObject(image, forKey: location as NSURL)
-            imageBackgroundCompletion?(image, nil)
+            imageBackgroundCompletion?(imageId, image, nil)
         } catch {
-            imageBackgroundCompletion?(nil, .urlSessionError("Error with request"))
+            imageBackgroundCompletion?(imageId, nil, .urlSessionError("Error with request"))
         }
     }
     

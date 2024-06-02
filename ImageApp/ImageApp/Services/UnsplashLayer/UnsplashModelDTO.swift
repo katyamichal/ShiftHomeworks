@@ -17,5 +17,5 @@ struct UnsplashImage: Decodable {
 }
 
 struct Urls: Decodable {
-    let raw: String
+    let regular: String
 }

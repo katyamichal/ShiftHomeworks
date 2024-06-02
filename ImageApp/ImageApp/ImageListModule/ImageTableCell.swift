@@ -7,14 +7,20 @@
 
 import UIKit
 
-final class ImageViewCell: UITableViewCell {
+final class ImageTableCell: UITableViewCell {
     
     private let inset: CGFloat = 32
     private let imageViewHeight: CGFloat = 300
-    private let progressViewHeight: CGFloat = 8
+    private let progressViewHeight: CGFloat = 1
     
     static var reuseIdentifier: String {
-        return String(describing: ImageViewCell.self)
+        return String(describing: ImageTableCell.self)
+    }
+    
+    var currentState: LoadingStatus = .nonActive {
+        didSet {
+            updateState()
+        }
     }
     
     // MARK: - Inits
@@ -35,8 +41,8 @@ final class ImageViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(systemName: "circle")
         imageView.isHidden = true
+        
         return imageView
     }()
     
@@ -69,7 +75,7 @@ final class ImageViewCell: UITableViewCell {
 
 // MARK: - Setup methods
 
-private extension ImageViewCell {
+private extension ImageTableCell {
     func setupCell() {
         setupViews()
         setupConstraints()
@@ -95,5 +101,38 @@ private extension ImageViewCell {
         
         errorLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         errorLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+    }
+    
+    private func updateState() {
+        switch currentState {
+            
+        case .loading(let progress):
+            loadingProgressView.isHidden = false
+            loadingProgressView.progress = progress
+            loadedImage.isHidden = true
+            errorLabel.isHidden = true
+            
+        case .completed(let image):
+            loadingProgressView.isHidden = true
+            loadedImage.isHidden = false
+            loadedImage.image = image
+            errorLabel.isHidden = true
+            
+        case .failed(let message):
+            loadingProgressView.isHidden = true
+            loadedImage.isHidden = true
+            errorLabel.text = message
+            
+        case .nonActive:
+            loadingProgressView.isHidden = true
+            loadedImage.isHidden = true
+            errorLabel.isHidden = true
+            
+        case .paused(let progress):
+            loadingProgressView.isHidden = false
+            loadingProgressView.progress = progress
+            loadedImage.isHidden = true
+            errorLabel.isHidden = true
+        }
     }
 }
