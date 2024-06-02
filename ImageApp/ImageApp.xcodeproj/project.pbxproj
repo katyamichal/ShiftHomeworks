@@ -15,6 +15,12 @@
 		4EC41A282C0C1C0600100ABA /* ImageListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC41A272C0C1C0600100ABA /* ImageListPresenter.swift */; };
 		4EC41A2E2C0C1CC400100ABA /* ImageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC41A2D2C0C1CC400100ABA /* ImageListView.swift */; };
 		4EC41A302C0C1F6600100ABA /* ImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC41A2F2C0C1F6600100ABA /* ImageViewCell.swift */; };
+		4EC41A332C0C23CB00100ABA /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC41A322C0C23CB00100ABA /* NetworkManager.swift */; };
+		4EC41A352C0C25C900100ABA /* UnsplashModelDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC41A342C0C25C900100ABA /* UnsplashModelDTO.swift */; };
+		4EC41A372C0C25FE00100ABA /* EndpointUnsplash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC41A362C0C25FE00100ABA /* EndpointUnsplash.swift */; };
+		4EC41A3B2C0C2ACC00100ABA /* ImageListAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC41A3A2C0C2ACC00100ABA /* ImageListAssembly.swift */; };
+		4EC41A3D2C0C2B6C00100ABA /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC41A3C2C0C2B6C00100ABA /* ImageManager.swift */; };
+		4EC41A3F2C0C2C0B00100ABA /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC41A3E2C0C2C0B00100ABA /* APIError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +34,12 @@
 		4EC41A272C0C1C0600100ABA /* ImageListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageListPresenter.swift; sourceTree = "<group>"; };
 		4EC41A2D2C0C1CC400100ABA /* ImageListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageListView.swift; sourceTree = "<group>"; };
 		4EC41A2F2C0C1F6600100ABA /* ImageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewCell.swift; sourceTree = "<group>"; };
+		4EC41A322C0C23CB00100ABA /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		4EC41A342C0C25C900100ABA /* UnsplashModelDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashModelDTO.swift; sourceTree = "<group>"; };
+		4EC41A362C0C25FE00100ABA /* EndpointUnsplash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointUnsplash.swift; sourceTree = "<group>"; };
+		4EC41A3A2C0C2ACC00100ABA /* ImageListAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageListAssembly.swift; sourceTree = "<group>"; };
+		4EC41A3C2C0C2B6C00100ABA /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
+		4EC41A3E2C0C2C0B00100ABA /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +74,7 @@
 			children = (
 				4EC41A252C0C1BE100100ABA /* App */,
 				4EC41A262C0C1BF000100ABA /* ImageListModule */,
+				4EC41A312C0C23AC00100ABA /* Services */,
 				4EC41A1A2C0C19EC00100ABA /* Assets.xcassets */,
 				4EC41A1C2C0C19EC00100ABA /* LaunchScreen.storyboard */,
 				4EC41A1F2C0C19EC00100ABA /* Info.plist */,
@@ -85,8 +98,29 @@
 				4EC41A272C0C1C0600100ABA /* ImageListPresenter.swift */,
 				4EC41A2D2C0C1CC400100ABA /* ImageListView.swift */,
 				4EC41A2F2C0C1F6600100ABA /* ImageViewCell.swift */,
+				4EC41A3A2C0C2ACC00100ABA /* ImageListAssembly.swift */,
 			);
 			path = ImageListModule;
+			sourceTree = "<group>";
+		};
+		4EC41A312C0C23AC00100ABA /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4EC41A382C0C28DD00100ABA /* UnsplashLayer */,
+				4EC41A3C2C0C2B6C00100ABA /* ImageManager.swift */,
+				4EC41A3E2C0C2C0B00100ABA /* APIError.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		4EC41A382C0C28DD00100ABA /* UnsplashLayer */ = {
+			isa = PBXGroup;
+			children = (
+				4EC41A322C0C23CB00100ABA /* NetworkManager.swift */,
+				4EC41A342C0C25C900100ABA /* UnsplashModelDTO.swift */,
+				4EC41A362C0C25FE00100ABA /* EndpointUnsplash.swift */,
+			);
+			path = UnsplashLayer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,11 +194,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EC41A162C0C19E900100ABA /* ImageListViewController.swift in Sources */,
+				4EC41A352C0C25C900100ABA /* UnsplashModelDTO.swift in Sources */,
 				4EC41A122C0C19E900100ABA /* AppDelegate.swift in Sources */,
+				4EC41A372C0C25FE00100ABA /* EndpointUnsplash.swift in Sources */,
 				4EC41A282C0C1C0600100ABA /* ImageListPresenter.swift in Sources */,
+				4EC41A3F2C0C2C0B00100ABA /* APIError.swift in Sources */,
+				4EC41A332C0C23CB00100ABA /* NetworkManager.swift in Sources */,
 				4EC41A2E2C0C1CC400100ABA /* ImageListView.swift in Sources */,
 				4EC41A302C0C1F6600100ABA /* ImageViewCell.swift in Sources */,
 				4EC41A142C0C19E900100ABA /* SceneDelegate.swift in Sources */,
+				4EC41A3D2C0C2B6C00100ABA /* ImageManager.swift in Sources */,
+				4EC41A3B2C0C2ACC00100ABA /* ImageListAssembly.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
