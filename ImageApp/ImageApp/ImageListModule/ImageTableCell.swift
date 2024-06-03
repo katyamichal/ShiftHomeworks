@@ -153,7 +153,7 @@ private extension ImageTableCell {
 
         
         loadedImage.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        loadedImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        loadedImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -inset).isActive = true
         loadedImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset).isActive = true
         loadedImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset).isActive = true
         //loadedImage.heightAnchor.constraint(equalToConstant: imageViewHeight).isActive = true

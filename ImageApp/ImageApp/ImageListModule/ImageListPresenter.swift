@@ -40,13 +40,14 @@ extension ImageListPresenter: IImageListPresenter {
     }
 
     func loadData(with keyword: String) {
-        guard !keyword.isEmpty else {
+        let searchKeyword = keyword.trimmingCharacters(in: .whitespaces)
+        guard !searchKeyword.isEmpty else {
             view?.showAlert(with: .emptyTextField)
             return
         }
         let requestId = UUID()
         viewData.append(ImageListViewData(imageID: requestId, loadingStatus: .loading(progress: 0.0, image: PauseLoadingImages.active)))
-        service.performRequest(with: keyword, id: requestId)
+        service.performRequest(with: searchKeyword, id: requestId)
         if let index = viewData.firstIndex(where: { $0.imageID == requestId }) {
             viewData[index].loadingStatus = .waitToLoad(message: Constants.CellLoadingMessage.waitForLoad)
             view?.update()

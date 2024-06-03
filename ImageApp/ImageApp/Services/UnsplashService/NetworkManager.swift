@@ -6,11 +6,6 @@
 //
 
 import Foundation
-enum URLSessionsIndentifiers {
-    static let unsplashSession = "UnsplashSearchSession"
-    
-}
-
 
 protocol INetworkManager: AnyObject {
     var backgroundCompletionHandler: ((URL?, UUID) -> Void)? { get set }
@@ -26,7 +21,7 @@ final class NetworkManager: NSObject, INetworkManager {
     private let decoder = JSONDecoder()
     
     private lazy var urlSession: URLSession = {
-        let config = URLSessionConfiguration.background(withIdentifier: URLSessionsIndentifiers.unsplashSession)
+        let config = URLSessionConfiguration.background(withIdentifier: Constants.URLSessionsIndentifiers.unsplashSession)
         config.isDiscretionary = true
         config.sessionSendsLaunchEvents = true
         return URLSession(configuration: config, delegate: self, delegateQueue: nil)
@@ -65,7 +60,6 @@ extension NetworkManager: URLSessionDownloadDelegate {
                 backgroundCompletionHandler?(nil, imageId)
             }
         } catch {
-            print("Error reading downloaded data: \(error)")
             backgroundCompletionHandler?(nil, imageId)
         }
     }

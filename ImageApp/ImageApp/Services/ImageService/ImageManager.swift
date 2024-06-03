@@ -6,11 +6,6 @@
 //
 
 import UIKit
-//enum  {
-//
-//    static let imageLoadingSession = "ImageDownloadingSession"
-//}
-
 
 protocol IImageService: AnyObject {
     func fetchImage(with url: URL, id: UUID)
@@ -23,7 +18,7 @@ protocol IImageService: AnyObject {
 
 final class ImageService: NSObject, IImageService {
 
-    private var cache = NSCache<NSURL, UIImage>()
+    private var cache = NSCache<NSURL, NSData>()
     
     var imageBackgroundCompletion: ((UUID, UIImage?, APIError?) -> Void)?
     var progressHandler: ((UUID, Double) -> Void)?
@@ -32,7 +27,7 @@ final class ImageService: NSObject, IImageService {
     private var tasks = [UUID: URLSessionDownloadTask]()
     
     private lazy var urlSession: URLSession = {
-        let config = URLSessionConfiguration.background(withIdentifier: "ImageDownloadingSession")
+        let config = URLSessionConfiguration.background(withIdentifier: Constants.URLSessionsIndentifiers.imageLoadingSession)
         config.isDiscretionary = true
         config.sessionSendsLaunchEvents = true
         return URLSession(configuration: config, delegate: self, delegateQueue: nil)
@@ -40,10 +35,17 @@ final class ImageService: NSObject, IImageService {
 
     
     func fetchImage(with url: URL, id: UUID) {
-        if let cachedImage = cache.object(forKey: url as NSURL) {
-            
+        if let data = cache.object(forKey: url as NSURL) {
+            let image = UIImage(data: data as Data)
+            imageBackgroundCompletion?(id, image, nil)
+            return
         }
+        //
         
+        let cachedImage = cache.object(forKey: url as NSURL)
+        print(cachedImage)
+        
+        //
         let resumeData = tasksLoadingStatus[id]?.resumeData
         let task: URLSessionDownloadTask
         if let resumeData {
@@ -80,7 +82,9 @@ extension ImageService: URLSessionDownloadDelegate {
                 imageBackgroundCompletion?(imageId, nil, .invalidResponse())
                 return
             }
-            //cache.setObject(image, forKey: location as NSURL)
+            
+            cache.setObject(data as NSData, forKey: location as NSURL)
+            print(cache)
             imageBackgroundCompletion?(imageId, image, nil)
         } catch {
             imageBackgroundCompletion?(imageId, nil, .urlSessionError("Error with request"))

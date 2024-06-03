@@ -6,7 +6,18 @@
 //
 
 import Foundation
+
 enum Constants {
+    
+    enum URLSessionsIndentifiers {
+        static let unsplashSession = "UnsplashSearchSession"
+        static let imageLoadingSession = "ImageDownloadingSession"
+    }
+    
+    enum PlaceholderStrings {
+        static let searchBarPlaceholder = "Search height-resolution images"
+    }
+
     enum CellLoadingMessage {
         static let waitForLoad = "Wait for loading image"
         static let failFetchData = "Failed to load data from Unsplash. Check the name you entered and try again. If you want to delete this message, swipe right then"
@@ -34,3 +45,4 @@ enum Constants {
         }
     }
 }
+

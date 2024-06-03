@@ -39,8 +39,11 @@ final class ImageListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableViewDelegates()
-        setupTextField()
+        setupSearchBar()
         presenter.viewDidLoaded(view: self)
+        setupKeyboardBehavior()
+        //setupInputAccessoryViewForTextView()
+        
     }
 }
 // MARK: - IImageView protocol methods
@@ -107,20 +110,20 @@ extension ImageListViewController: UITableViewDataSource {
 }
 
 // MARK: - TextField Delegate Methods
-#warning("responder")
-extension ImageListViewController: UISearchTextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        imageView.searchTextField.resignFirstResponder()
-        return true
-    }
 
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let str = textField.text else {
+extension ImageListViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        imageView.searchBar.resignFirstResponder()
+        guard let str = searchBar.text else {
             return
         }
         presenter.loadData(with: str)
     }
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.enablesReturnKeyAutomatically = false
+    }
 }
+
 // MARK: - Private helper methods
 
 private extension ImageListViewController {
@@ -129,9 +132,26 @@ private extension ImageListViewController {
         imageView.tableView.dataSource = self
     }
     
-    func setupTextField() {
-        imageView.searchTextField.becomeFirstResponder()
-        imageView.searchTextField.delegate = self
+    func setupSearchBar() {
+        imageView.searchBar.becomeFirstResponder()
+        imageView.searchBar.delegate = self
+    }
+    
+    func setupKeyboardBehavior() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardHandeling), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardHandeling), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc
+    func keyboardHandeling(notification: NSNotification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        let keyboardFrame = self.view.convert(keyboardSize, to: view.window)
+        if notification.name == UIResponder.keyboardWillHideNotification {
+            imageView.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        } else {
+            imageView.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardFrame.height, right: 5)
+            imageView.tableView.scrollIndicatorInsets =  imageView.tableView.contentInset
+        }
     }
 }
 
