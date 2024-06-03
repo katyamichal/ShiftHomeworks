@@ -8,8 +8,8 @@
 import UIKit
 
 protocol IImageView: AnyObject {
-  //  func update(at indexPaths: [IndexPath])
     func update()
+    func showAlert(with type: Constants.AlerMessagesType)
 }
 
 final class ImageListViewController: UIViewController {
@@ -45,7 +45,7 @@ final class ImageListViewController: UIViewController {
 
 extension ImageListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter.updateRow(at: indexPath.row)
+        presenter.updateRow(tableView, at: indexPath.row)
     }
 }
 
@@ -67,8 +67,19 @@ extension ImageListViewController: UISearchTextFieldDelegate {
       }
 
     func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let str = textField.text else { return }
+        guard let str = textField.text else {
+            return
+        }
         presenter.loadData(with: str)
+    }
+    
+    func showAlert(with type: Constants.AlerMessagesType) {
+        let alert = UIAlertController(title: type.title,
+                                      message: type.message,
+                                      preferredStyle: .alert)
+        let action = UIAlertAction(title: type.buttonTitle, style: .cancel)
+        alert.addAction(action)
+        self.present(alert, animated: true)
     }
 }
 

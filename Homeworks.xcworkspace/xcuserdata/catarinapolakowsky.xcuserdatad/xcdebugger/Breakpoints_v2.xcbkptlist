@@ -76,8 +76,8 @@
             filePath = "ImageApp/ImageApp/ImageListModule/ImageTableCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
             landmarkName = "currentState"
             landmarkType = "24">
             <Locations>
@@ -184,8 +184,8 @@
             filePath = "ImageApp/ImageApp/ImageListModule/ImageListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
             landmarkName = "ImageListViewController"
             landmarkType = "21">
          </BreakpointContent>

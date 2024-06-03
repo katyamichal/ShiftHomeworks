@@ -10,6 +10,7 @@ import UIKit
 final class ImageTableCell: UITableViewCell {
     
     private let inset: CGFloat = 32
+    private let inset2: CGFloat = 8
     private let imageViewHeight: CGFloat = 300
     private let progressViewHeight: CGFloat = 3
     
@@ -92,6 +93,7 @@ final class ImageTableCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.adjustsFontForContentSizeCategory = true
         label.numberOfLines = 0
+        label.textAlignment = .center
         return label
     }()
     
@@ -128,39 +130,38 @@ private extension ImageTableCell {
     }
     
     func setupConstraints() {
+  
+        
+        activityIndicator.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset).isActive = true
+        activityIndicator.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        activityIndicator.heightAnchor.constraint(equalToConstant: 20).isActive = true
+
+        messageLabel.topAnchor.constraint(equalTo: activityIndicator.bottomAnchor).isActive = true
+        messageLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset).isActive = true
+        messageLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset).isActive = true
+        messageLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -inset).isActive = true
+        
+        pauseLoadingView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset).isActive = true
+        pauseLoadingView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        pauseLoadingView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        pauseLoadingView.widthAnchor.constraint(equalTo:  pauseLoadingView.heightAnchor, multiplier: 1).isActive = true
+        
+        loadingProgressView.topAnchor.constraint(equalTo: pauseLoadingView.bottomAnchor, constant: inset).isActive = true
+        loadingProgressView.centerXAnchor.constraint(equalTo: pauseLoadingView.centerXAnchor).isActive = true
+        loadingProgressView.heightAnchor.constraint(equalToConstant: progressViewHeight).isActive = true
+        loadingProgressView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width - inset).isActive = true
+        loadingProgressView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+
+        
         loadedImage.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         loadedImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
         loadedImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset).isActive = true
         loadedImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset).isActive = true
-        loadedImage.heightAnchor.constraint(equalToConstant: imageViewHeight).isActive = true
-        
-        loadingProgressView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        loadingProgressView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        loadingProgressView.heightAnchor.constraint(equalToConstant: progressViewHeight).isActive = true
-        loadingProgressView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width - inset).isActive = true
-        
-        pauseLoadingView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        pauseLoadingView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        pauseLoadingView.bottomAnchor.constraint(equalTo: loadingProgressView.topAnchor, constant: -inset).isActive = true
-        pauseLoadingView.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        pauseLoadingView.widthAnchor.constraint(equalTo: pauseLoadingView.heightAnchor, multiplier: 1).isActive = true
-        
-        
-        activityIndicator.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        activityIndicator.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        activityIndicator.bottomAnchor.constraint(equalTo: messageLabel.topAnchor, constant: -inset).isActive = true
-        activityIndicator.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        activityIndicator.widthAnchor.constraint(equalTo: activityIndicator.heightAnchor, multiplier: 1).isActive = true
-        
-        messageLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        messageLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        messageLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        
+        //loadedImage.heightAnchor.constraint(equalToConstant: imageViewHeight).isActive = true
     }
     
     private func updateState() {
         switch currentState {
-            
         case .loading(let progress, let image):
             loadingProgressView.isHidden = false
             pauseLoadingView.isHidden = false

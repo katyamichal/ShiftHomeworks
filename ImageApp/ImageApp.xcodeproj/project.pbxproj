@@ -22,6 +22,7 @@
 		4EC41A3D2C0C2B6C00100ABA /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC41A3C2C0C2B6C00100ABA /* ImageManager.swift */; };
 		4EC41A3F2C0C2C0B00100ABA /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC41A3E2C0C2C0B00100ABA /* APIError.swift */; };
 		4EC41A412C0C35E900100ABA /* ImageListViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC41A402C0C35E900100ABA /* ImageListViewData.swift */; };
+		4EC41A452C0CD7AB00100ABA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC41A442C0CD7AB00100ABA /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		4EC41A3C2C0C2B6C00100ABA /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		4EC41A3E2C0C2C0B00100ABA /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		4EC41A402C0C35E900100ABA /* ImageListViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageListViewData.swift; sourceTree = "<group>"; };
+		4EC41A442C0CD7AB00100ABA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 				4EC41A252C0C1BE100100ABA /* App */,
 				4EC41A262C0C1BF000100ABA /* ImageListModule */,
 				4EC41A312C0C23AC00100ABA /* Services */,
+				4EC41A462C0CD85100100ABA /* Helpers */,
 				4EC41A1A2C0C19EC00100ABA /* Assets.xcassets */,
 				4EC41A1C2C0C19EC00100ABA /* LaunchScreen.storyboard */,
 				4EC41A1F2C0C19EC00100ABA /* Info.plist */,
@@ -140,6 +143,14 @@
 				4EC41A2F2C0C1F6600100ABA /* ImageTableCell.swift */,
 			);
 			name = Cell;
+			sourceTree = "<group>";
+		};
+		4EC41A462C0CD85100100ABA /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4EC41A442C0CD7AB00100ABA /* Constants.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +234,7 @@
 				4EC41A2E2C0C1CC400100ABA /* ImageListView.swift in Sources */,
 				4EC41A302C0C1F6600100ABA /* ImageTableCell.swift in Sources */,
 				4EC41A142C0C19E900100ABA /* SceneDelegate.swift in Sources */,
+				4EC41A452C0CD7AB00100ABA /* Constants.swift in Sources */,
 				4EC41A3D2C0C2B6C00100ABA /* ImageManager.swift in Sources */,
 				4EC41A3B2C0C2ACC00100ABA /* ImageListAssembly.swift in Sources */,
 			);
