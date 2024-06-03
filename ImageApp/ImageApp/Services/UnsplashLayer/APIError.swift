@@ -12,5 +12,5 @@ enum APIError: Error {
     case serverError(String = "Invalid API Key")
     case invalidResponse(String = "Invalid response from server")
     case decodingError(String = "Error parsing server response")
-    case invalidURL(String = "INvalid URL")
+    case invalidURL(String = "Invalid URL")
 }

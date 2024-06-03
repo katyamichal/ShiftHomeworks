@@ -40,7 +40,9 @@ final class ImageService: NSObject, IImageService {
 
     
     func fetchImage(with url: URL, id: UUID) {
-        if let cachedImage = cache.object(forKey: url as NSURL) {}
+        if let cachedImage = cache.object(forKey: url as NSURL) {
+            
+        }
         
         let resumeData = tasksLoadingStatus[id]?.resumeData
         let task: URLSessionDownloadTask

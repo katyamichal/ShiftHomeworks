@@ -16,6 +16,6 @@ enum LoadingStatus: Equatable, Hashable {
 }
 
 struct ImageListViewData {
-    var image: UUID
+    var imageID: UUID
     var loadingStatus: LoadingStatus
 }

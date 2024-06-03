@@ -23,6 +23,7 @@
 		4EC41A3F2C0C2C0B00100ABA /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC41A3E2C0C2C0B00100ABA /* APIError.swift */; };
 		4EC41A412C0C35E900100ABA /* ImageListViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC41A402C0C35E900100ABA /* ImageListViewData.swift */; };
 		4EC41A452C0CD7AB00100ABA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC41A442C0CD7AB00100ABA /* Constants.swift */; };
+		4EC41A482C0D84C300100ABA /* IImageListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC41A472C0D84C300100ABA /* IImageListPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		4EC41A3E2C0C2C0B00100ABA /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		4EC41A402C0C35E900100ABA /* ImageListViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageListViewData.swift; sourceTree = "<group>"; };
 		4EC41A442C0CD7AB00100ABA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		4EC41A472C0D84C300100ABA /* IImageListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IImageListPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			children = (
 				4EC41A152C0C19E900100ABA /* ImageListViewController.swift */,
 				4EC41A2D2C0C1CC400100ABA /* ImageListView.swift */,
+				4EC41A472C0D84C300100ABA /* IImageListPresenter.swift */,
 				4EC41A272C0C1C0600100ABA /* ImageListPresenter.swift */,
 				4EC41A402C0C35E900100ABA /* ImageListViewData.swift */,
 				4EC41A3A2C0C2ACC00100ABA /* ImageListAssembly.swift */,
@@ -232,6 +235,7 @@
 				4EC41A3F2C0C2C0B00100ABA /* APIError.swift in Sources */,
 				4EC41A332C0C23CB00100ABA /* NetworkManager.swift in Sources */,
 				4EC41A2E2C0C1CC400100ABA /* ImageListView.swift in Sources */,
+				4EC41A482C0D84C300100ABA /* IImageListPresenter.swift in Sources */,
 				4EC41A302C0C1F6600100ABA /* ImageTableCell.swift in Sources */,
 				4EC41A142C0C19E900100ABA /* SceneDelegate.swift in Sources */,
 				4EC41A452C0CD7AB00100ABA /* Constants.swift in Sources */,

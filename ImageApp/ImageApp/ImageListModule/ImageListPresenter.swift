@@ -7,33 +7,24 @@
 
 import UIKit
 
-protocol IImageListPresenter: AnyObject {
-    func viewDidLoaded(view: IImageView)
-    func getRowCountInSection() -> Int
-    func rowForCell(tableView: UITableView, at index: IndexPath) -> UITableViewCell
-    func loadData(with keyword: String)
-    func updateRow(_ tableView: UITableView, at index: Int)
-}
-
 final class ImageListPresenter {
+    
     private weak var view: IImageView?
     private var viewData: [ImageListViewData] = []
     private let service: INetworkManager
     private let imageService: IImageService
+    private var progress: [UUID: Float] = [:]
     
-    private var isLoading: [UUID: Bool] = [:]
-    
+    // MARK: - Init
+
     init(service: INetworkManager, imageService: IImageService) {
         self.service = service
         self.imageService = imageService
         setupComplitionHandlers()
     }
-    
-    enum PauseLoadingImages {
-        static let paused = UIImage(systemName: "pause.circle")
-        static let active = UIImage(systemName: "xmark.circle")
-    }
 }
+
+// MARK: - IImageListPresenter protocol methods
 
 extension ImageListPresenter: IImageListPresenter {
     func viewDidLoaded(view: IImageView) {
@@ -47,41 +38,65 @@ extension ImageListPresenter: IImageListPresenter {
     func getRowCountInSection() -> Int {
         viewData.count
     }
-    
+
     func loadData(with keyword: String) {
         guard !keyword.isEmpty else {
             view?.showAlert(with: .emptyTextField)
             return
         }
         let requestId = UUID()
-        viewData.append(ImageListViewData(image: requestId, loadingStatus: .loading(progress: 0.0, image: PauseLoadingImages.active)))
+        viewData.append(ImageListViewData(imageID: requestId, loadingStatus: .loading(progress: 0.0, image: PauseLoadingImages.active)))
         service.performRequest(with: keyword, id: requestId)
-        isLoading[requestId] = true
-        if let index = viewData.firstIndex(where: { $0.image == requestId }) {
+        if let index = viewData.firstIndex(where: { $0.imageID == requestId }) {
             viewData[index].loadingStatus = .waitToLoad(message: Constants.CellLoadingMessage.waitForLoad)
             view?.update()
         }
     }
+    
     // configure the pause and resume image loading ----> must create button
-    func updateRow(_ tableView: UITableView, at index: Int) {
-//        if let index = viewData.firstIndex(where: { $0.image == viewData[index].image }) {
-            let id = viewData[index].image
+    func updateRow(at index: Int) {
+            let id = viewData[index].imageID
             let loadingStatus = viewData[index].loadingStatus
             switch loadingStatus {
             case .loading:
                 viewData[index].loadingStatus = .paused(image: PauseLoadingImages.paused)
                 imageService.pauseDownloading(with: id)
             case .paused:
+                guard let currentProgress = progress[id] else {
+                   return
+                }
+                viewData[index].loadingStatus = .loading(progress: currentProgress, image: PauseLoadingImages.active)
                 imageService.resumeDownloading(with: id)
+                
             case .failed, .waitToLoad, .completed, .nonActive:
                 break
-            //}
-            view?.update()
+        }
+        view?.update()
+    }
+
+    func permitDeleting(at index: IndexPath) -> Bool {
+        let loadingStatus = viewData[index.row].loadingStatus
+        switch loadingStatus {
+        case .loading, .waitToLoad, .paused, .nonActive:
+           return false
+        case .failed, .completed:
+           return true
         }
     }
+    
+    func deleteRow(at index: IndexPath) {
+        viewData.remove(at: index.row)
+        view?.deleteRow(at: index)
+    }
 }
+// MARK: - Private helper methods
 
 private extension ImageListPresenter {
+    enum PauseLoadingImages {
+        static let paused = UIImage(systemName: "pause.circle")
+        static let active = UIImage(systemName: "xmark.circle")
+    }
+    
     func cell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ImageTableCell.reuseIdentifier, for: indexPath) as? ImageTableCell else {
             return UITableViewCell()
@@ -107,7 +122,7 @@ private extension ImageListPresenter {
                 self?.imageService.fetchImage(with: location, id: imageId)
             } else {
                 DispatchQueue.main.async {
-                    if let index = self?.viewData.firstIndex(where: { $0.image == imageId }) {
+                    if let index = self?.viewData.firstIndex(where: { $0.imageID == imageId }) {
                         self?.viewData[index].loadingStatus = .failed(message: Constants.CellLoadingMessage.failFetchData)
                     }
                     self?.view?.update()
@@ -120,7 +135,7 @@ private extension ImageListPresenter {
         imageService.imageBackgroundCompletion = { [weak self] imageId, image, error in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                guard let index = self.viewData.firstIndex(where: { $0.image == imageId }) else { return }
+                guard let index = self.viewData.firstIndex(where: { $0.imageID == imageId }) else { return }
                 if let image = image {
                     self.viewData[index].loadingStatus = .completed(image: image)
                 } else {
@@ -131,13 +146,12 @@ private extension ImageListPresenter {
         }
     }
 
-    // MARK: - Progress
-
     func configureDownloadingProssesHandler() {
         imageService.progressHandler = { [weak self] (imageId, progressValue) in
             DispatchQueue.main.async {
-                if let index = self?.viewData.firstIndex(where: { $0.image == imageId }) {
+                if let index = self?.viewData.firstIndex(where: { $0.imageID == imageId }) {
                     self?.viewData[index].loadingStatus = .loading(progress: Float(progressValue), image: PauseLoadingImages.active)
+                    self?.progress[imageId] = Float(progressValue)
                 }
                 self?.view?.update()
             }

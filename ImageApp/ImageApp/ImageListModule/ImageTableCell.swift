@@ -131,7 +131,6 @@ private extension ImageTableCell {
     
     func setupConstraints() {
   
-        
         activityIndicator.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset).isActive = true
         activityIndicator.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         activityIndicator.heightAnchor.constraint(equalToConstant: 20).isActive = true
