@@ -9,15 +9,9 @@ import UIKit
 
 final class ImageTableCell: UITableViewCell {
     
-    private let inset: CGFloat = 32
-    private let inset2: CGFloat = 8
-    private let imageViewHeight: CGFloat = 300
+    private let spacing: CGFloat = 16
+    private let inset: CGFloat = 8
     private let progressViewHeight: CGFloat = 3
-    
-    private enum LoadingImageViewStatus: String{
-        case paused = "pause"
-        case downloading = "xmark.circle"
-    }
     
     static var reuseIdentifier: String {
         return String(describing: ImageTableCell.self)
@@ -43,6 +37,18 @@ final class ImageTableCell: UITableViewCell {
     
     // MARK: - UI Elements
     
+    private lazy var loadingStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.alignment = .fill
+        stackView.spacing = spacing
+        stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: inset, trailing: inset)
+        stackView.isLayoutMarginsRelativeArrangement = true
+        return stackView
+    }()
+    
     private lazy var loadedImage: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -56,26 +62,15 @@ final class ImageTableCell: UITableViewCell {
         progressView.translatesAutoresizingMaskIntoConstraints = false
         progressView.tintColor = .systemPink
         progressView.progressTintColor = .systemBlue
+        progressView.heightAnchor.constraint(equalToConstant: progressViewHeight).isActive = true
         return progressView
     }()
-    //
-    //    private lazy var pauseLoadingButton: UIButton = {
-    //        let button = UIButton()
-    //        button.translatesAutoresizingMaskIntoConstraints = false
-    //        button.tintColor = .systemBlue
-    //        let font = UIFont.systemFont(ofSize: 17)
-    //        let configuration = UIImage.SymbolConfiguration(font: font)
-    //        let unselectedImage = UIImage(systemName: "pause", withConfiguration: configuration)
-    //        let selectedImage = UIImage(systemName: "xmark.circle", withConfiguration: configuration)
-    //        button.setImage(unselectedImage, for: .normal)
-    //        button.setImage(selectedImage, for: .selected)
-    //        return button
-    //    }()
-    
+
     private lazy var pauseLoadingView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.tintColor = .systemBlue
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
@@ -106,10 +101,6 @@ final class ImageTableCell: UITableViewCell {
         messageLabel.text = nil
         super.prepareForReuse()
     }
-    //
-    //    func setupActionForPauseLoadigButton(target: Any, action: Selector, control event: UIControl.Event) {
-    //        pauseLoadingButton.addTarget(target, action: action, for: event)
-    //    }
 }
 
 // MARK: - Setup methods
@@ -122,41 +113,19 @@ private extension ImageTableCell {
     }
     
     func setupViews() {
-        contentView.addSubview(loadedImage)
-        contentView.addSubview(loadingProgressView)
-        contentView.addSubview(pauseLoadingView)
-        contentView.addSubview(messageLabel)
-        contentView.addSubview(activityIndicator)
+        contentView.addSubview(loadingStackView)
+        loadingStackView.addArrangedSubview(messageLabel)
+        loadingStackView.addArrangedSubview(activityIndicator)
+        loadingStackView.addArrangedSubview(pauseLoadingView)
+        loadingStackView.addArrangedSubview(loadingProgressView)
+        loadingStackView.addArrangedSubview(loadedImage)
     }
     
     func setupConstraints() {
-  
-        activityIndicator.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset).isActive = true
-        activityIndicator.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        activityIndicator.heightAnchor.constraint(equalToConstant: 20).isActive = true
-
-        messageLabel.topAnchor.constraint(equalTo: activityIndicator.bottomAnchor).isActive = true
-        messageLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset).isActive = true
-        messageLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset).isActive = true
-        messageLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -inset).isActive = true
-        
-        pauseLoadingView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset).isActive = true
-        pauseLoadingView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        pauseLoadingView.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        pauseLoadingView.widthAnchor.constraint(equalTo:  pauseLoadingView.heightAnchor, multiplier: 1).isActive = true
-        
-        loadingProgressView.topAnchor.constraint(equalTo: pauseLoadingView.bottomAnchor, constant: inset).isActive = true
-        loadingProgressView.centerXAnchor.constraint(equalTo: pauseLoadingView.centerXAnchor).isActive = true
-        loadingProgressView.heightAnchor.constraint(equalToConstant: progressViewHeight).isActive = true
-        loadingProgressView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width - inset).isActive = true
-        loadingProgressView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-
-        
-        loadedImage.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        loadedImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -inset).isActive = true
-        loadedImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset).isActive = true
-        loadedImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset).isActive = true
-        //loadedImage.heightAnchor.constraint(equalToConstant: imageViewHeight).isActive = true
+        loadingStackView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        loadingStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        loadingStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        loadingStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
     }
     
     private func updateState() {
@@ -183,6 +152,7 @@ private extension ImageTableCell {
             loadingProgressView.isHidden = true
             pauseLoadingView.isHidden = true
             loadedImage.isHidden = true
+            messageLabel.isHidden = false
             messageLabel.text = message
             activityIndicator.isHidden = true
             

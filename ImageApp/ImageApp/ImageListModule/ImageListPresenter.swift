@@ -11,13 +11,13 @@ final class ImageListPresenter {
     
     private weak var view: IImageView?
     private var viewData: [ImageListViewData] = []
-    private let service: INetworkManager
+    private let service: INetworkService
     private let imageService: IImageService
     private var progress: [UUID: Float] = [:]
     
     // MARK: - Init
 
-    init(service: INetworkManager, imageService: IImageService) {
+    init(service: INetworkService, imageService: IImageService) {
         self.service = service
         self.imageService = imageService
         setupComplitionHandlers()
@@ -27,6 +27,7 @@ final class ImageListPresenter {
 // MARK: - IImageListPresenter protocol methods
 
 extension ImageListPresenter: IImageListPresenter {
+    
     func viewDidLoaded(view: IImageView) {
         self.view = view
     }
@@ -86,8 +87,21 @@ extension ImageListPresenter: IImageListPresenter {
     }
     
     func deleteRow(at index: IndexPath) {
+        print(index)
         viewData.remove(at: index.row)
         view?.deleteRow(at: index)
+    }
+    
+    func heightForRow(at index: Int) -> CGFloat {
+        let loadingStatus = viewData[index].loadingStatus
+        switch loadingStatus {
+        case .loading, .waitToLoad, .paused:
+            return 100
+        case .failed, .completed:
+           return 200
+        case .nonActive:
+            return 0
+        }
     }
 }
 // MARK: - Private helper methods

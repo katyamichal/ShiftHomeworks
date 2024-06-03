@@ -30,7 +30,6 @@ final class ImageListView: UIView {
         let searchBar = UISearchBar()
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchBar.placeholder = Constants.PlaceholderStrings.searchBarPlaceholder
-       
         return searchBar
     }()
     

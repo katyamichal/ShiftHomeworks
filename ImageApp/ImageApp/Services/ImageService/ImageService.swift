@@ -40,12 +40,6 @@ final class ImageService: NSObject, IImageService {
             imageBackgroundCompletion?(id, image, nil)
             return
         }
-        //
-        
-        let cachedImage = cache.object(forKey: url as NSURL)
-        print(cachedImage)
-        
-        //
         let resumeData = tasksLoadingStatus[id]?.resumeData
         let task: URLSessionDownloadTask
         if let resumeData {
@@ -82,9 +76,9 @@ extension ImageService: URLSessionDownloadDelegate {
                 imageBackgroundCompletion?(imageId, nil, .invalidResponse())
                 return
             }
-            
-            cache.setObject(data as NSData, forKey: location as NSURL)
-            print(cache)
+            if let currentUrl = downloadTask.currentRequest?.url {
+                cache.setObject(data as NSData, forKey: currentUrl as NSURL)
+            }
             imageBackgroundCompletion?(imageId, image, nil)
         } catch {
             imageBackgroundCompletion?(imageId, nil, .urlSessionError("Error with request"))

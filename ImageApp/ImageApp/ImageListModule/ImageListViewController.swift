@@ -35,17 +35,16 @@ final class ImageListViewController: UIViewController {
     override func loadView() {
         view = ImageListView()
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableViewDelegates()
         setupSearchBar()
         presenter.viewDidLoaded(view: self)
         setupKeyboardBehavior()
-        //setupInputAccessoryViewForTextView()
-        
     }
 }
+
 // MARK: - IImageView protocol methods
 
 extension ImageListViewController: IImageView {
@@ -94,6 +93,10 @@ extension ImageListViewController: UITableViewDelegate {
         deleteAction.image = UIImage(systemName: "trash")
         deleteAction.backgroundColor = .systemRed
         return deleteAction
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        presenter.heightForRow(at: indexPath.row)
     }
 }
 

@@ -7,16 +7,16 @@
 
 import Foundation
 
-protocol INetworkManager: AnyObject {
+protocol INetworkService: AnyObject {
     var backgroundCompletionHandler: ((URL?, UUID) -> Void)? { get set }
     var progressHandler: ((UUID, Double) -> Void)? { get set }
     func performRequest(with keyword: String, id: UUID)
 }
 
-final class NetworkManager: NSObject, INetworkManager {
+final class NetworkService: NSObject, INetworkService {
     var backgroundCompletionHandler: ((URL?, UUID) -> Void)?
     var progressHandler: ((UUID, Double) -> Void)?
-        
+    
     private var tasks = [UUID: URLSessionDownloadTask]()
     private let decoder = JSONDecoder()
     
@@ -27,12 +27,8 @@ final class NetworkManager: NSObject, INetworkManager {
         return URLSession(configuration: config, delegate: self, delegateQueue: nil)
     }()
     
-
-    override init() {
-        super.init()
-    }
-    
     func performRequest(with keyword: String, id: UUID) {
+        
         guard let url = createURL(with: keyword, id: id) else {
             backgroundCompletionHandler?(nil, id)
             return
@@ -42,11 +38,9 @@ final class NetworkManager: NSObject, INetworkManager {
         task.resume()
         tasks.updateValue(task, forKey: id)
     }
-                                
-
 }
 
-extension NetworkManager: URLSessionDownloadDelegate {
+extension NetworkService: URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         guard let imageId = tasks.first(where: { $0.value == downloadTask })?.key else {return}
         
@@ -54,7 +48,6 @@ extension NetworkManager: URLSessionDownloadDelegate {
             let data = try Data(contentsOf: location)
             let searchResults = try decoder.decode(UnsplashSearchResults.self, from: data)
             if let firstImageURL = searchResults.results.first?.urls.regular, let imageURL = URL(string: firstImageURL) {
-                print(imageURL)
                 backgroundCompletionHandler?(imageURL, imageId)
             } else {
                 backgroundCompletionHandler?(nil, imageId)
@@ -63,9 +56,27 @@ extension NetworkManager: URLSessionDownloadDelegate {
             backgroundCompletionHandler?(nil, imageId)
         }
     }
+    
+//    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+//        guard let response = task.response as? HTTPURLResponse else {
+//            // server error
+//            //  backgroundCompletionHandler?()
+//            return
+//        }
+//        
+//        switch response.statusCode {
+//        case 300...399:
+//                
+//            //
+//          //  400 -- invalidResponse
+//            // 500 - server error
+//        }
+//        
+//    }
 }
 
-private extension NetworkManager {
+private extension NetworkService {
+    
     func createURL(with keyword: String, id: UUID) -> URL? {
         let token = "hpBPCZ8mTx5CmLuQ2uxkPEi5RVJkQHC1t_ke31oL_lE"
         var urlComponents = URLComponents()

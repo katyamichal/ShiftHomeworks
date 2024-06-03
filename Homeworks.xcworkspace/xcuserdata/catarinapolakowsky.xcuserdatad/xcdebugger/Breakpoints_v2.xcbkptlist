@@ -76,8 +76,8 @@
             filePath = "ImageApp/ImageApp/ImageListModule/ImageTableCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
             landmarkName = "currentState"
             landmarkType = "24">
             <Locations>
@@ -332,6 +332,150 @@
                   offsetFromSymbolStart = "1128">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A54863BD-4590-4BEA-B05D-AD61AE33ADF9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ImageApp/ImageApp/Services/ImageService/ImageService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "fetchImage(with:id:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "32E10C8C-6AE9-4413-A41B-382FB2D54CA3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ImageApp/ImageApp/Services/ImageService/ImageService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "fetchImage(with:id:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "45EDC608-9A07-4496-84D6-356B745B5D6D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ImageApp/ImageApp/Services/ImageService/ImageService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "urlSession(_:downloadTask:didFinishDownloadingTo:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "45EDC608-9A07-4496-84D6-356B745B5D6D - ff5e3d89b24ee31b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ImageApp.ImageService.urlSession(_: __C.NSURLSession, downloadTask: __C.NSURLSessionDownloadTask, didFinishDownloadingTo: Foundation.URL) -&gt; ()"
+                  moduleName = "ImageApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/catarinapolakowsky/ShiftHomeworks/ImageApp/ImageApp/Services/ImageService/ImageService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "87"
+                  endingLineNumber = "87"
+                  offsetFromSymbolStart = "1774">
+               </Location>
+               <Location
+                  uuid = "45EDC608-9A07-4496-84D6-356B745B5D6D - ff5e3d89b24ee31b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ImageApp.ImageService.urlSession(_: __C.NSURLSession, downloadTask: __C.NSURLSessionDownloadTask, didFinishDownloadingTo: Foundation.URL) -&gt; ()"
+                  moduleName = "ImageApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/catarinapolakowsky/ShiftHomeworks/ImageApp/ImageApp/Services/ImageService/ImageService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "87"
+                  endingLineNumber = "87"
+                  offsetFromSymbolStart = "1989">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E5E4F8DD-E84D-4A03-905A-A9ED88526A17"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ImageApp/ImageApp/ImageListModule/ImageListPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "configureImageCompletionHandler()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E5E4F8DD-E84D-4A03-905A-A9ED88526A17 - 3dc004c96264e878"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 (Foundation.UUID, Swift.Optional&lt;__C.UIImage&gt;, Swift.Optional&lt;ImageApp.APIError&gt;) -&gt; () in ImageApp.ImageListPresenter.configureImageCompletionHandler() -&gt; ()"
+                  moduleName = "ImageApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/catarinapolakowsky/ShiftHomeworks/ImageApp/ImageApp/ImageListModule/ImageListPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "157"
+                  endingLineNumber = "157"
+                  offsetFromSymbolStart = "972">
+               </Location>
+               <Location
+                  uuid = "E5E4F8DD-E84D-4A03-905A-A9ED88526A17 - 3dc004c96264e878"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 (Foundation.UUID, Swift.Optional&lt;__C.UIImage&gt;, Swift.Optional&lt;ImageApp.APIError&gt;) -&gt; () in ImageApp.ImageListPresenter.configureImageCompletionHandler() -&gt; ()"
+                  moduleName = "ImageApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/catarinapolakowsky/ShiftHomeworks/ImageApp/ImageApp/ImageListModule/ImageListPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "157"
+                  endingLineNumber = "157"
+                  offsetFromSymbolStart = "522">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "45BF3C8D-707A-44ED-80F9-790DC9D8D410"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ImageApp/ImageApp/ImageListModule/ImageListPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "updateRow(at:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

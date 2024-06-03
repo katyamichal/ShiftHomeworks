@@ -9,12 +9,11 @@ import UIKit
 enum ImageListAssembly {
 
     struct Dependencies {
-        let service: INetworkManager
+        let service: INetworkService
         let imageService: IImageService
     }
     
     static func makeImageListModule(dependencies: Dependencies) -> UIViewController {
-        
         let presenter = ImageListPresenter(service: dependencies.service, imageService: dependencies.imageService)
         let viewController = ImageListViewController(presenter: presenter)
         return viewController
