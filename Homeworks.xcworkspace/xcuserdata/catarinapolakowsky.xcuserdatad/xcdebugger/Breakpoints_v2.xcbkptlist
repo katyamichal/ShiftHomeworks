@@ -229,22 +229,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E5E4F8DD-E84D-4A03-905A-A9ED88526A17"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ImageApp/ImageApp/ImageListModule/ImageListPresenter.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
-            landmarkName = "configureImageCompletionHandler()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "45BF3C8D-707A-44ED-80F9-790DC9D8D410"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -252,8 +236,8 @@
             filePath = "ImageApp/ImageApp/ImageListModule/ImageListPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "updateRow(at:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -261,64 +245,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5A174B29-87FE-4BED-BC6A-F03C885B34EE"
-            shouldBeEnabled = "Yes"
+            uuid = "C85579F4-8B20-488B-BFC3-1DCEA00F41D1"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ImageApp/ImageApp/Services/UnsplashService/NetworkService.swift"
+            filePath = "ImageApp/ImageApp/Services/NetworkMonitor.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "performRequest(with:id:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "5A174B29-87FE-4BED-BC6A-F03C885B34EE - 719bf3633b07d377"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ImageApp.NetworkService.performRequest(with: Swift.String, id: Foundation.UUID) -&gt; ()"
-                  moduleName = "ImageApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/catarinapolakowsky/ShiftHomeworks/ImageApp/ImageApp/Services/UnsplashService/NetworkService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "34"
-                  endingLineNumber = "34"
-                  offsetFromSymbolStart = "388">
-               </Location>
-               <Location
-                  uuid = "5A174B29-87FE-4BED-BC6A-F03C885B34EE - 719bf3633b07d3d2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ImageApp.NetworkService.performRequest(with: Swift.String, id: Foundation.UUID) -&gt; ()"
-                  moduleName = "ImageApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/catarinapolakowsky/ShiftHomeworks/ImageApp/ImageApp/Services/UnsplashService/NetworkService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "37"
-                  endingLineNumber = "37"
-                  offsetFromSymbolStart = "262">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "8F48022A-B904-46D7-B908-CB1C57465019"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ImageApp/ImageApp/ImageListModule/ImageListPresenter.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
-            landmarkName = "configureErrorResponse(with:)"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "startMonitoring()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

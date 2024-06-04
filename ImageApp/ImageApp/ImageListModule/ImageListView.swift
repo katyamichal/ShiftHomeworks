@@ -45,9 +45,13 @@ final class ImageListView: UIView {
 private extension ImageListView {
     func setupView() {
         backgroundColor = .systemBackground
+        setupViews()
+        setupConstraints()
+    }
+    
+    func setupViews() {
         addSubview(searchBar)
         addSubview(tableView)
-        setupConstraints()
     }
     
     func setupConstraints() {

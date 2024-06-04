@@ -16,7 +16,7 @@ final class ImageListPresenter {
     private var progress: [UUID: Float] = [:]
     
     // MARK: - Init
-
+    
     init(service: INetworkService, imageService: IImageService) {
         self.service = service
         self.imageService = imageService
@@ -39,7 +39,7 @@ extension ImageListPresenter: IImageListPresenter {
     func getRowCountInSection() -> Int {
         viewData.count
     }
-
+    
     func loadData(with keyword: String) {
         let searchKeyword = keyword.trimmingCharacters(in: .whitespaces)
         guard !searchKeyword.isEmpty else {
@@ -51,43 +51,38 @@ extension ImageListPresenter: IImageListPresenter {
         service.performRequest(with: searchKeyword, id: requestId)
         if let index = viewData.firstIndex(where: { $0.imageID == requestId }) {
             viewData[index].loadingStatus = .waitToLoad(message: Constants.CellLoadingMessage.waitForLoad)
-            view?.update()
+            view?.updateView()
         }
     }
     
-    // configure the pause and resume image loading ----> must create button
     func updateRow(at index: Int) {
-            let id = viewData[index].imageID
-            let loadingStatus = viewData[index].loadingStatus
-            switch loadingStatus {
-            case .loading:
-                viewData[index].loadingStatus = .paused(image: PauseLoadingImages.paused)
-                imageService.pauseDownloading(with: id)
-            case .paused:
-                guard let currentProgress = progress[id] else {
-                   return
-                }
-                viewData[index].loadingStatus = .loading(progress: currentProgress, image: PauseLoadingImages.active)
-                imageService.resumeDownloading(with: id)
-                
-            case .failed, .waitToLoad, .completed, .nonActive:
-                break
+        let id = viewData[index].imageID
+        let loadingStatus = viewData[index].loadingStatus
+        switch loadingStatus {
+        case .loading:
+            viewData[index].loadingStatus = .paused(image: PauseLoadingImages.paused)
+            imageService.pauseDownloading(with: id)
+        case .paused:
+            guard let currentProgress = progress[id] else { return }
+            viewData[index].loadingStatus = .loading(progress: currentProgress, image: PauseLoadingImages.active)
+            imageService.resumeDownloading(with: id)
+        case .failed, .waitToLoad, .completed, .nonActive:
+            break
         }
-        view?.update()
+        view?.updateView()
     }
-
+    
     func permitDeleting(at index: IndexPath) -> Bool {
         let loadingStatus = viewData[index.row].loadingStatus
         switch loadingStatus {
         case .loading, .waitToLoad, .paused, .nonActive:
-           return false
+            return false
         case .failed, .completed:
-           return true
+            return true
         }
     }
     
     func deleteRow(at index: IndexPath) {
-        print(index)
         viewData.remove(at: index.row)
         view?.deleteRow(at: index)
     }
@@ -98,7 +93,7 @@ extension ImageListPresenter: IImageListPresenter {
         case .loading, .waitToLoad, .paused:
             return 100
         case .failed, .completed:
-           return 200
+            return 200
         case .nonActive:
             return 0
         }
@@ -141,8 +136,8 @@ private extension ImageListPresenter {
                     if let index = self.viewData.firstIndex(where: { $0.imageID == imageId }) {
                         let failedMessage = self.configureErrorResponse(with: error!)
                         self.viewData[index].loadingStatus = .failed(message: failedMessage)
+                        self.view?.updateView()
                     }
-                    self.view?.update()
                 }
             }
         }
@@ -159,7 +154,7 @@ private extension ImageListPresenter {
                     let failedMessage = self.configureErrorResponse(with: error!)
                     self.viewData[index].loadingStatus = .failed(message: failedMessage)
                 }
-                self.view?.update()
+                self.view?.updateView()
             }
         }
     }
@@ -172,7 +167,7 @@ private extension ImageListPresenter {
                     self.viewData[index].loadingStatus = .loading(progress: Float(progressValue), image: PauseLoadingImages.active)
                     self.progress[imageId] = Float(progressValue)
                 }
-                self.view?.update()
+                self.view?.updateView()
             }
         }
     }

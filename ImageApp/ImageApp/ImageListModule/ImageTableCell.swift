@@ -64,7 +64,7 @@ final class ImageTableCell: UITableViewCell {
         progressView.heightAnchor.constraint(equalToConstant: progressViewHeight).isActive = true
         return progressView
     }()
-
+    
     private lazy var pauseLoadingView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -130,6 +130,7 @@ private extension ImageTableCell {
     
     private func updateState() {
         switch currentState {
+            
         case .loading(let progress, let image):
             loadingProgressView.isHidden = false
             pauseLoadingView.isHidden = false

@@ -8,13 +8,13 @@
 import UIKit
 
 protocol IImageView: AnyObject {
-    func update()
+    func updateView()
     func showAlert(with type: Constants.AlerMessagesType)
     func deleteRow(at indexPath: IndexPath)
 }
 
 final class ImageListViewController: UIViewController {
-
+    
     private var imageView: ImageListView { return self.view as! ImageListView }
     private let presenter: IImageListPresenter
     
@@ -29,7 +29,7 @@ final class ImageListViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     // MARK: - Cycle
     
     override func loadView() {
@@ -48,7 +48,7 @@ final class ImageListViewController: UIViewController {
 // MARK: - IImageView protocol methods
 
 extension ImageListViewController: IImageView {
-    func update() {
+    func updateView() {
         imageView.tableView.reloadData()
     }
     
@@ -59,9 +59,7 @@ extension ImageListViewController: IImageView {
     }
     
     func showAlert(with type: Constants.AlerMessagesType) {
-        let alert = UIAlertController(title: type.title,
-                                      message: type.message,
-                                      preferredStyle: .alert)
+        let alert = UIAlertController(title: type.title, message: type.message, preferredStyle: .alert)
         let action = UIAlertAction(title: type.buttonTitle, style: .cancel)
         alert.addAction(action)
         self.present(alert, animated: true)
@@ -80,19 +78,10 @@ extension ImageListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-            guard let deleteAction = createDeleteAction(tableView, at: indexPath) else { return nil }
-            let swipe = UISwipeActionsConfiguration(actions: [deleteAction])
-            swipe.performsFirstActionWithFullSwipe = false
-            return swipe
-    }
-    
-    private func createDeleteAction(_ tableView: UITableView, at indexPath: IndexPath) -> UIContextualAction? {
-        let deleteAction = UIContextualAction(style: .normal, title: nil) { _, _, _ in
-            self.presenter.deleteRow(at: indexPath)
-        }
-        deleteAction.image = UIImage(systemName: Constants.UIElementNameStrings.deleteActionImage)
-        deleteAction.backgroundColor = .systemRed
-        return deleteAction
+        guard let deleteAction = createDeleteAction(tableView, at: indexPath) else { return nil }
+        let swipe = UISwipeActionsConfiguration(actions: [deleteAction])
+        swipe.performsFirstActionWithFullSwipe = false
+        return swipe
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -115,15 +104,16 @@ extension ImageListViewController: UITableViewDataSource {
 // MARK: - TextField Delegate Methods
 
 extension ImageListViewController: UISearchBarDelegate {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.enablesReturnKeyAutomatically = false
+    }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         imageView.searchBar.resignFirstResponder()
         guard let str = searchBar.text else {
             return
         }
         presenter.loadData(with: str)
-    }
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchBar.enablesReturnKeyAutomatically = false
     }
 }
 
@@ -140,6 +130,15 @@ private extension ImageListViewController {
         imageView.searchBar.delegate = self
     }
     
+    func createDeleteAction(_ tableView: UITableView, at indexPath: IndexPath) -> UIContextualAction? {
+        let deleteAction = UIContextualAction(style: .normal, title: nil) { _, _, _ in
+            self.presenter.deleteRow(at: indexPath)
+        }
+        deleteAction.image = UIImage(systemName: Constants.UIElementNameStrings.deleteActionImage)
+        deleteAction.backgroundColor = .systemRed
+        return deleteAction
+    }
+    
     func setupKeyboardBehavior() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardHandeling), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardHandeling), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -151,18 +150,18 @@ private extension ImageListViewController {
               let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
             return
         }
-          let isKeyboardShowing = notification.name == UIResponder.keyboardWillShowNotification
-          let adjustedContentInset: UIEdgeInsets
-          if isKeyboardShowing {
-              adjustedContentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardFrame.height, right: 0)
-          } else {
-              adjustedContentInset = .zero
-          }
-        
-          UIView.animate(withDuration: 0.3) {
-              self.imageView.tableView.contentInset = adjustedContentInset
-              self.imageView.tableView.scrollIndicatorInsets = adjustedContentInset
-          }
+        let isKeyboardShowing = notification.name == UIResponder.keyboardWillShowNotification
+        let adjustedContentInset: UIEdgeInsets
+        if isKeyboardShowing {
+            adjustedContentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardFrame.height, right: 0)
+        } else {
+            adjustedContentInset = .zero
+        }
+        let animationDuration: Double = 0.2
+        UIView.animate(withDuration: animationDuration) {
+            self.imageView.tableView.contentInset = adjustedContentInset
+            self.imageView.tableView.scrollIndicatorInsets = adjustedContentInset
+        }
     }
 }
 

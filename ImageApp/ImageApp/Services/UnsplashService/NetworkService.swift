@@ -47,8 +47,7 @@ final class NetworkService: NSObject, INetworkService {
 
 extension NetworkService: URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-        guard let imageId = tasks.first(where: { $0.value == downloadTask })?.key else {return}
-        
+        guard let imageId = tasks.first(where: { $0.value == downloadTask })?.key else { return }
         do {
             let data = try Data(contentsOf: location)
             let searchResults = try decoder.decode(UnsplashSearchResults.self, from: data)
@@ -63,12 +62,14 @@ extension NetworkService: URLSessionDownloadDelegate {
     }
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        guard let imageId = tasks.first(where: { $0.value == task })?.key else {return}
+        guard let imageId = tasks.first(where: { $0.value == task })?.key else { return }
         guard let response = task.response as? HTTPURLResponse else {
             return
         }
         switch response.statusCode {
-        case 300...399, 400...499:
+        case 300...399:
+            backgroundCompletionHandler?(nil, imageId, .urlSessionError("\(response.statusCode)"))
+        case 400...499:
             backgroundCompletionHandler?(nil, imageId, .invalidResponse("\(response.statusCode)"))
         case 500...599:
             backgroundCompletionHandler?(nil, imageId, .serverError("\(response.statusCode)"))
@@ -77,7 +78,6 @@ extension NetworkService: URLSessionDownloadDelegate {
         }
     }
 }
-
 
 private extension NetworkService {
     func createURL(with keyword: String, id: UUID) -> URL? {

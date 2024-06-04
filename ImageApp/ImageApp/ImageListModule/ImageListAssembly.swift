@@ -7,7 +7,7 @@
 
 import UIKit
 enum ImageListAssembly {
-
+    
     struct Dependencies {
         let service: INetworkService
         let imageService: IImageService
