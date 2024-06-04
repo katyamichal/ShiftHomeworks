@@ -81,7 +81,7 @@ extension ImageService: URLSessionDownloadDelegate {
             }
             imageBackgroundCompletion?(imageId, image, nil)
         } catch {
-            imageBackgroundCompletion?(imageId, nil, .urlSessionError("Error with request"))
+            imageBackgroundCompletion?(imageId, nil, .invalidResponse())
         }
     }
     

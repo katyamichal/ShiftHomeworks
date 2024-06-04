@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 enum APIError: Error {
     case urlSessionError(String)
     case noInternetConnection(String = "No Internet Connection")

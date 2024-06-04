@@ -5,7 +5,7 @@
 //  Created by Catarina Polakowsky on 02.06.2024.
 //
 
-import Foundation
+import UIKit
 
 enum Constants {
     
@@ -17,11 +17,19 @@ enum Constants {
     enum PlaceholderStrings {
         static let searchBarPlaceholder = "Search height-resolution images"
     }
+    
+    enum UIElementNameStrings {
+        static let deleteActionImage = "trash"
+        static let pausedImage = "pause.circle"
+        static let activeImage = "xmark.circle"
+    }
 
     enum CellLoadingMessage {
-        static let waitForLoad = "Wait for loading image"
-        static let failFetchData = "Failed to load data from Unsplash. Check the name you entered and try again. If you want to delete this message, swipe right then"
-        static let failFetchImage = "Failed to load image. If you want to delete this message, swipe right then"
+        static let noInternetConnection = "No internet connection. Please check your connection and try again."
+        static let waitForLoad = "Please wait, loading image..."
+        static let failFetchData = "Could not load image. Please check the name and try again. Swipe right to delete this message."
+        static let urlSessionError = "Oops! Something went wrong while loading the image. Please try again."
+        static let serverError = "Our server is currently unavailable. Please try again later."
     }
     
     enum AlerMessagesType {
@@ -30,7 +38,7 @@ enum Constants {
         var title: String {
             switch self {
             case .emptyTextField:
-                return "The empty field"
+                return "The text field is empty"
             }
         }
         

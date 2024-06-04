@@ -108,8 +108,8 @@ extension ImageListPresenter: IImageListPresenter {
 
 private extension ImageListPresenter {
     enum PauseLoadingImages {
-        static let paused = UIImage(systemName: "pause.circle")
-        static let active = UIImage(systemName: "xmark.circle")
+        static let paused = UIImage(systemName: Constants.UIElementNameStrings.pausedImage)
+        static let active = UIImage(systemName: Constants.UIElementNameStrings.activeImage)
     }
     
     func cell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
@@ -132,20 +132,22 @@ private extension ImageListPresenter {
     }
     
     func configureServiceCompletionHandler() {
-        service.backgroundCompletionHandler = { [weak self] (location, imageId) in
-            if let location {
-                self?.imageService.fetchImage(with: location, id: imageId)
+        service.backgroundCompletionHandler = { [weak self] (imageUrl, imageId, error) in
+            guard let self = self else { return }
+            if let imageUrl {
+                self.imageService.fetchImage(with: imageUrl, id: imageId)
             } else {
                 DispatchQueue.main.async {
-                    if let index = self?.viewData.firstIndex(where: { $0.imageID == imageId }) {
-                        self?.viewData[index].loadingStatus = .failed(message: Constants.CellLoadingMessage.failFetchData)
+                    if let index = self.viewData.firstIndex(where: { $0.imageID == imageId }) {
+                        let failedMessage = self.configureErrorResponse(with: error!)
+                        self.viewData[index].loadingStatus = .failed(message: failedMessage)
                     }
-                    self?.view?.update()
+                    self.view?.update()
                 }
             }
         }
     }
-        
+    
     func configureImageCompletionHandler() {
         imageService.imageBackgroundCompletion = { [weak self] imageId, image, error in
             guard let self = self else { return }
@@ -154,22 +156,37 @@ private extension ImageListPresenter {
                 if let image = image {
                     self.viewData[index].loadingStatus = .completed(image: image)
                 } else {
-                    self.viewData[index].loadingStatus = .failed(message: Constants.CellLoadingMessage.failFetchImage)
+                    let failedMessage = self.configureErrorResponse(with: error!)
+                    self.viewData[index].loadingStatus = .failed(message: failedMessage)
                 }
                 self.view?.update()
             }
         }
     }
-
+    
     func configureDownloadingProssesHandler() {
         imageService.progressHandler = { [weak self] (imageId, progressValue) in
+            guard let self = self else { return }
             DispatchQueue.main.async {
-                if let index = self?.viewData.firstIndex(where: { $0.imageID == imageId }) {
-                    self?.viewData[index].loadingStatus = .loading(progress: Float(progressValue), image: PauseLoadingImages.active)
-                    self?.progress[imageId] = Float(progressValue)
+                if let index = self.viewData.firstIndex(where: { $0.imageID == imageId }) {
+                    self.viewData[index].loadingStatus = .loading(progress: Float(progressValue), image: PauseLoadingImages.active)
+                    self.progress[imageId] = Float(progressValue)
                 }
-                self?.view?.update()
+                self.view?.update()
             }
+        }
+    }
+    
+    func configureErrorResponse(with type: APIError) -> String {
+        switch type {
+        case .noInternetConnection:
+            return Constants.CellLoadingMessage.noInternetConnection
+        case .invalidURL, .decodingError, .invalidResponse:
+            return Constants.CellLoadingMessage.failFetchData
+        case .urlSessionError:
+            return Constants.CellLoadingMessage.urlSessionError
+        case .serverError:
+            return Constants.CellLoadingMessage.serverError
         }
     }
 }

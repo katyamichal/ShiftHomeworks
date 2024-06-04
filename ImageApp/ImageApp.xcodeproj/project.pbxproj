@@ -23,6 +23,7 @@
 		4EC41A412C0C35E900100ABA /* ImageListViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC41A402C0C35E900100ABA /* ImageListViewData.swift */; };
 		4EC41A452C0CD7AB00100ABA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC41A442C0CD7AB00100ABA /* Constants.swift */; };
 		4EC41A482C0D84C300100ABA /* IImageListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC41A472C0D84C300100ABA /* IImageListPresenter.swift */; };
+		4EC41A4A2C0DFD0B00100ABA /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC41A492C0DFD0B00100ABA /* NetworkMonitor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		4EC41A402C0C35E900100ABA /* ImageListViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageListViewData.swift; sourceTree = "<group>"; };
 		4EC41A442C0CD7AB00100ABA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4EC41A472C0D84C300100ABA /* IImageListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IImageListPresenter.swift; sourceTree = "<group>"; };
+		4EC41A492C0DFD0B00100ABA /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,9 @@
 			children = (
 				4EC41A382C0C28DD00100ABA /* UnsplashService */,
 				4EC41A422C0C5B2700100ABA /* ImageService */,
+				4EC41A342C0C25C900100ABA /* UnsplashModelDTO.swift */,
+				4EC41A3E2C0C2C0B00100ABA /* APIError.swift */,
+				4EC41A492C0DFD0B00100ABA /* NetworkMonitor.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -123,8 +128,6 @@
 			isa = PBXGroup;
 			children = (
 				4EC41A322C0C23CB00100ABA /* NetworkService.swift */,
-				4EC41A342C0C25C900100ABA /* UnsplashModelDTO.swift */,
-				4EC41A3E2C0C2C0B00100ABA /* APIError.swift */,
 			);
 			path = UnsplashService;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				4EC41A282C0C1C0600100ABA /* ImageListPresenter.swift in Sources */,
 				4EC41A3F2C0C2C0B00100ABA /* APIError.swift in Sources */,
 				4EC41A332C0C23CB00100ABA /* NetworkService.swift in Sources */,
+				4EC41A4A2C0DFD0B00100ABA /* NetworkMonitor.swift in Sources */,
 				4EC41A2E2C0C1CC400100ABA /* ImageListView.swift in Sources */,
 				4EC41A482C0D84C300100ABA /* IImageListPresenter.swift in Sources */,
 				4EC41A302C0C1F6600100ABA /* ImageTableCell.swift in Sources */,

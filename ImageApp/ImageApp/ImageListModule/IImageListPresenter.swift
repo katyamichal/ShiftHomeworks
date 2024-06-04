@@ -7,9 +7,17 @@
 
 import UIKit
 
-protocol IImageListPresenter: AnyObject {
+typealias IImageListPresenter = IImageListViewLifeCycle & IImageListLoading & IImageTableViewHandler
+
+protocol IImageListViewLifeCycle: AnyObject {
     func viewDidLoaded(view: IImageView)
+}
+
+protocol IImageListLoading: AnyObject {
     func loadData(with keyword: String)
+}
+
+protocol IImageTableViewHandler: AnyObject {
     func getRowCountInSection() -> Int
     func rowForCell(tableView: UITableView, at index: IndexPath) -> UITableViewCell
     func updateRow(at index: Int)

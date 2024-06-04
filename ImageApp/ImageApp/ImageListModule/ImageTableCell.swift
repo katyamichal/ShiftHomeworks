@@ -60,7 +60,6 @@ final class ImageTableCell: UITableViewCell {
     private lazy var loadingProgressView: UIProgressView = {
         let progressView = UIProgressView()
         progressView.translatesAutoresizingMaskIntoConstraints = false
-        progressView.tintColor = .systemPink
         progressView.progressTintColor = .systemBlue
         progressView.heightAnchor.constraint(equalToConstant: progressViewHeight).isActive = true
         return progressView
@@ -80,6 +79,7 @@ final class ImageTableCell: UITableViewCell {
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.style = .medium
         activityIndicator.color = .systemBlue
+        activityIndicator.hidesWhenStopped = true
         return activityIndicator
     }()
     
@@ -137,7 +137,6 @@ private extension ImageTableCell {
             loadingProgressView.progress = progress
             loadedImage.isHidden = true
             messageLabel.isHidden = true
-            activityIndicator.isHidden = true
             activityIndicator.stopAnimating()
             
         case .completed(let image):
@@ -146,7 +145,6 @@ private extension ImageTableCell {
             loadingProgressView.isHidden = true
             pauseLoadingView.isHidden = true
             messageLabel.isHidden = true
-            activityIndicator.isHidden = true
             
         case .failed(let message):
             loadingProgressView.isHidden = true
@@ -154,14 +152,12 @@ private extension ImageTableCell {
             loadedImage.isHidden = true
             messageLabel.isHidden = false
             messageLabel.text = message
-            activityIndicator.isHidden = true
             
         case .nonActive:
             loadingProgressView.isHidden = true
             pauseLoadingView.isHidden = true
             loadedImage.isHidden = true
             messageLabel.isHidden = true
-            activityIndicator.isHidden = true
             
         case .paused(let image):
             loadingProgressView.isHidden = false
@@ -169,7 +165,6 @@ private extension ImageTableCell {
             pauseLoadingView.image = image
             loadedImage.isHidden = true
             messageLabel.isHidden = true
-            activityIndicator.isHidden = true
             
         case .waitToLoad(let message):
             loadingProgressView.isHidden = true
@@ -177,7 +172,6 @@ private extension ImageTableCell {
             loadedImage.isHidden = true
             messageLabel.text = message
             messageLabel.isHidden = false
-            activityIndicator.isHidden = false
             activityIndicator.startAnimating()
         }
     }

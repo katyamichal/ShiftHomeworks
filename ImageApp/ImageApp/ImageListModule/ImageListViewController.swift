@@ -90,7 +90,7 @@ extension ImageListViewController: UITableViewDelegate {
         let deleteAction = UIContextualAction(style: .normal, title: nil) { _, _, _ in
             self.presenter.deleteRow(at: indexPath)
         }
-        deleteAction.image = UIImage(systemName: "trash")
+        deleteAction.image = UIImage(systemName: Constants.UIElementNameStrings.deleteActionImage)
         deleteAction.backgroundColor = .systemRed
         return deleteAction
     }
@@ -147,14 +147,22 @@ private extension ImageListViewController {
     
     @objc
     func keyboardHandeling(notification: NSNotification) {
-        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
-        let keyboardFrame = self.view.convert(keyboardSize, to: view.window)
-        if notification.name == UIResponder.keyboardWillHideNotification {
-            imageView.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        } else {
-            imageView.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardFrame.height, right: 5)
-            imageView.tableView.scrollIndicatorInsets =  imageView.tableView.contentInset
+        guard let userInfo = notification.userInfo,
+              let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+            return
         }
+          let isKeyboardShowing = notification.name == UIResponder.keyboardWillShowNotification
+          let adjustedContentInset: UIEdgeInsets
+          if isKeyboardShowing {
+              adjustedContentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardFrame.height, right: 0)
+          } else {
+              adjustedContentInset = .zero
+          }
+        
+          UIView.animate(withDuration: 0.3) {
+              self.imageView.tableView.contentInset = adjustedContentInset
+              self.imageView.tableView.scrollIndicatorInsets = adjustedContentInset
+          }
     }
 }
 
