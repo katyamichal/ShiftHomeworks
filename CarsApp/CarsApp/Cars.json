@@ -1,0 +1,136 @@
+
+{
+    "cars": [
+        {
+            "id": 1,
+            "manufacturer": "Example Motors",
+            "body": [
+                {
+                    "type": "sedan",
+                    "price": 25000,
+                    "image": "sedan_image"
+                },
+                {
+                    "type": "hatchback",
+                    "price": 22000,
+                    "image": "hatchback_image"
+                },
+                {
+                    "type": "SUV",
+                    "price": 30000,
+                    "image": "suv_image"
+                },
+                {
+                    "type": "coupe",
+                    "price": 28000,
+                    "image": "coupe_image"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "manufacturer": "Speedy Autos",
+            "body": [
+                {
+                    "type": "sedan",
+                    "price": 28000,
+                    "image": "sedan_image"
+                },
+                {
+                    "type": "hatchback",
+                    "price": 24000,
+                    "image": "hatchback_image"
+                },
+                {
+                    "type": "SUV",
+                    "price": 32000,
+                    "image": "suv_image"
+                },
+                {
+                    "type": "coupe",
+                    "price": 30000,
+                    "image": "coupe_image"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "manufacturer": "City Cruisers",
+            "body": [
+                {
+                    "type": "sedan",
+                    "price": 27000,
+                    "image": "sedan_image"
+                },
+                {
+                    "type": "hatchback",
+                    "price": 23000,
+                    "image": "hatchback_image"
+                },
+                {
+                    "type": "SUV",
+                    "price": 31000,
+                    "image": "suv_image"
+                },
+                {
+                    "type": "coupe",
+                    "price": 29000,
+                    "image": "coupe3_image"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "manufacturer": "Luxury Cars Inc.",
+            "body": [
+                {
+                    "type": "sedan",
+                    "price": 40000,
+                    "image": "sedan_image"
+                },
+                {
+                    "type": "hatchback",
+                    "price": 35000,
+                    "image": "hatchback_image"
+                },
+                {
+                    "type": "SUV",
+                    "price": 45000,
+                    "image": "suv_image"
+                },
+                {
+                    "type": "coupe",
+                    "price": 42000,
+                    "image": "coupe_image"
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "manufacturer": "Eco Wheels",
+            "body": [
+                {
+                    "type": "sedan",
+                    "price": 23000,
+                    "image": "sedan_image"
+                },
+                {
+                    "type": "hatchback",
+                    "price": 20000,
+                    "image": "hatchback_image"
+                },
+                {
+                    "type": "SUV",
+                    "price": 27000,
+                    "image": "suv_image"
+                },
+                {
+                    "type": "coupe",
+                    "price": 25000,
+                    "image": "coupe_image"
+                }
+            ]
+        }
+    ]
+}
+
