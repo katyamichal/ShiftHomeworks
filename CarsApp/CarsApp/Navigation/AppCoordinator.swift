@@ -10,8 +10,8 @@ import UIKit
 final class AppCoordinator: Coordinator {
     var parentCoordinator: Coordinator?
     var childCoordinator: [Coordinator] = []
-    let window: UIWindow
     
+    private let window: UIWindow
     private let factory: CarFactory
     private var navigationController: UINavigationController?
     private let service: CarServiceProtocol

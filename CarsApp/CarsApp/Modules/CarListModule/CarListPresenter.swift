@@ -42,8 +42,8 @@ extension CarListPresenter: ICarListPresenter {
 private extension CarListPresenter {
     func getCars() {
         guard let jsonCars = carService.loadCarsFromJSON() else { return }
-        jsonCars.forEach { car in
-            cars.append(CarListViewData(with: car.id, with: car.manufacturer))
+        cars = jsonCars.map { car in
+            CarListViewData(with: car.id, with: car.manufacturer)
         }
     }
 }
