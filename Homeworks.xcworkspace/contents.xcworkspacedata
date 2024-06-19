@@ -14,6 +14,6 @@
       location = "group:CollectionApp/CollectionApp.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:CarsApp/CarsApp.xcodeproj">
+      location = "group:ImageApp/ImageApp.xcodeproj">
    </FileRef>
 </Workspace>
