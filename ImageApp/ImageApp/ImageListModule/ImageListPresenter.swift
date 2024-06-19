@@ -8,7 +8,6 @@
 import UIKit
 
 final class ImageListPresenter {
-    
     private weak var view: IImageView?
     private var viewData: [ImageListViewData] = []
     private let service: INetworkService
@@ -27,6 +26,23 @@ final class ImageListPresenter {
 // MARK: - IImageListPresenter protocol methods
 
 extension ImageListPresenter: IImageListPresenter {
+    func prepareForLoading(with keyword: String) {
+        guard checkForEmptyTextField(with: keyword) else {
+            return
+        }
+        let requestId = generateRequestID()
+        appendNewLoadingStatus(with: requestId, and: .loading(progress: 0.0, image: PauseLoadingImages.active))
+        view?.isReadyForLoading(with: keyword, and: requestId)
+    }
+    
+    func loadData(with keyword: String, and id: UUID) {
+        service.performRequest(with: keyword, id: id)
+        updateLoadingStatus(with: id, .waitToLoad(message: Constants.CellLoadingMessage.waitForLoad))
+    }
+    
+    func updateViewData(with id: UUID) {
+        viewData.append(ImageListViewData(imageID: id, loadingStatus: .loading(progress: 0.0, image: PauseLoadingImages.active)))
+    }
     
     func viewDidLoaded(view: IImageView) {
         self.view = view
@@ -38,21 +54,6 @@ extension ImageListPresenter: IImageListPresenter {
     
     func getRowCountInSection() -> Int {
         viewData.count
-    }
-    
-    func loadData(with keyword: String) {
-        let searchKeyword = keyword.trimmingCharacters(in: .whitespaces)
-        guard !searchKeyword.isEmpty else {
-            view?.showAlert(with: .emptyTextField)
-            return
-        }
-        let requestId = UUID()
-        viewData.append(ImageListViewData(imageID: requestId, loadingStatus: .loading(progress: 0.0, image: PauseLoadingImages.active)))
-        service.performRequest(with: searchKeyword, id: requestId)
-        if let index = viewData.firstIndex(where: { $0.imageID == requestId }) {
-            viewData[index].loadingStatus = .waitToLoad(message: Constants.CellLoadingMessage.waitForLoad)
-            view?.updateView()
-        }
     }
     
     func updateRow(at index: Int) {
@@ -116,6 +117,30 @@ private extension ImageListPresenter {
         return cell
     }
     
+    func checkForEmptyTextField(with keyword: String) -> Bool {
+        let searchKeyword = keyword.trimmingCharacters(in: .whitespaces)
+        guard !searchKeyword.isEmpty else {
+            view?.showAlert(with: .emptyTextField)
+            return false
+        }
+        return true
+    }
+    
+    func generateRequestID() -> UUID {
+        return UUID()
+    }
+    
+    func appendNewLoadingStatus(with id: UUID, and status: LoadingStatus) {
+        viewData.append(ImageListViewData(imageID: id, loadingStatus: .loading(progress: 0.0, image: PauseLoadingImages.active)))
+    }
+    
+    func updateLoadingStatus(with id: UUID, _ status: LoadingStatus) {
+        if let index = viewData.firstIndex(where: { $0.imageID == id }) {
+            viewData[index].loadingStatus = status
+            view?.updateView()
+        }
+    }
+    
     func loadImage(with url: URL, imageId: UUID) {
         imageService.fetchImage(with: url, id: imageId)
     }
@@ -132,10 +157,10 @@ private extension ImageListPresenter {
             if let imageUrl {
                 self.imageService.fetchImage(with: imageUrl, id: imageId)
             } else {
-                DispatchQueue.main.async {
-                    if let index = self.viewData.firstIndex(where: { $0.imageID == imageId }) {
-                        let failedMessage = self.configureErrorResponse(with: error!)
-                        self.viewData[index].loadingStatus = .failed(message: failedMessage)
+                if let index = self.viewData.firstIndex(where: { $0.imageID == imageId }) {
+                    let failedMessage = self.configureErrorResponse(with: error!)
+                    self.viewData[index].loadingStatus = .failed(message: failedMessage)
+                    DispatchQueue.main.async {
                         self.view?.updateView()
                     }
                 }
@@ -146,14 +171,14 @@ private extension ImageListPresenter {
     func configureImageCompletionHandler() {
         imageService.imageBackgroundCompletion = { [weak self] imageId, image, error in
             guard let self = self else { return }
+            guard let index = self.viewData.firstIndex(where: { $0.imageID == imageId }) else { return }
+            if let image = image {
+                self.viewData[index].loadingStatus = .completed(image: image)
+            } else {
+                let failedMessage = self.configureErrorResponse(with: error!)
+                self.viewData[index].loadingStatus = .failed(message: failedMessage)
+            }
             DispatchQueue.main.async {
-                guard let index = self.viewData.firstIndex(where: { $0.imageID == imageId }) else { return }
-                if let image = image {
-                    self.viewData[index].loadingStatus = .completed(image: image)
-                } else {
-                    let failedMessage = self.configureErrorResponse(with: error!)
-                    self.viewData[index].loadingStatus = .failed(message: failedMessage)
-                }
                 self.view?.updateView()
             }
         }
@@ -162,12 +187,12 @@ private extension ImageListPresenter {
     func configureDownloadingProssesHandler() {
         imageService.progressHandler = { [weak self] (imageId, progressValue) in
             guard let self = self else { return }
-            DispatchQueue.main.async {
-                if let index = self.viewData.firstIndex(where: { $0.imageID == imageId }) {
-                    self.viewData[index].loadingStatus = .loading(progress: Float(progressValue), image: PauseLoadingImages.active)
-                    self.progress[imageId] = Float(progressValue)
+            if let index = self.viewData.firstIndex(where: { $0.imageID == imageId }) {
+                self.viewData[index].loadingStatus = .loading(progress: Float(progressValue), image: PauseLoadingImages.active)
+                self.progress[imageId] = Float(progressValue)
+                DispatchQueue.main.async {
+                    self.view?.updateView()
                 }
-                self.view?.updateView()
             }
         }
     }

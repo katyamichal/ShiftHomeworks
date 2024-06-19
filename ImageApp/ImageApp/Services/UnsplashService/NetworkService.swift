@@ -9,14 +9,12 @@ import Foundation
 
 protocol INetworkService: AnyObject {
     var backgroundCompletionHandler: ((URL?, UUID, APIError?) -> Void)? { get set }
-    var progressHandler: ((UUID, Double) -> Void)? { get set }
     func performRequest(with keyword: String, id: UUID)
 }
 
 final class NetworkService: NSObject, INetworkService {
     
     var backgroundCompletionHandler: ((URL?, UUID, APIError?) -> Void)?
-    var progressHandler: ((UUID, Double) -> Void)?
     
     private var tasks = [UUID: URLSessionDownloadTask]()
     private let decoder = JSONDecoder()

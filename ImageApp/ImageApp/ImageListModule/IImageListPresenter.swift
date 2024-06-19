@@ -14,7 +14,9 @@ protocol IImageListViewLifeCycle: AnyObject {
 }
 
 protocol IImageListLoading: AnyObject {
-    func loadData(with keyword: String)
+    func loadData(with keyword: String, and id: UUID)
+    func prepareForLoading(with keyword: String)
+    func updateViewData(with id: UUID)
 }
 
 protocol IImageListTableViewHandler: AnyObject {

@@ -59,8 +59,8 @@ final class ImageService: NSObject, IImageService {
     }
     
     func pauseDownloading(with id: UUID) {
-        guard let status = tasksLoadingStatus[id] else { return }
-        guard let pausedTask = tasks[id] else { return }
+        guard let status = tasksLoadingStatus[id], let pausedTask = tasks[id] else { return }
+//        guard let pausedTask = tasks[id] else { return }
         pausedTask.cancel { [weak self] resumedData in
             self?.tasksLoadingStatus.updateValue((url: status.url, paused: true, resumeData: resumedData), forKey: id)
         }

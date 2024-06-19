@@ -11,6 +11,7 @@ protocol IImageView: AnyObject {
     func updateView()
     func showAlert(with type: Constants.AlerMessagesType)
     func deleteRow(at indexPath: IndexPath)
+    func isReadyForLoading(with keyword: String, and id: UUID)
 }
 
 final class ImageListViewController: UIViewController {
@@ -50,6 +51,10 @@ final class ImageListViewController: UIViewController {
 extension ImageListViewController: IImageView {
     func updateView() {
         imageView.tableView.reloadData()
+    }
+    
+    func isReadyForLoading(with keyword: String, and id: UUID) {
+        presenter.loadData(with: keyword, and: id)
     }
     
     func deleteRow(at indexPath: IndexPath) {
@@ -113,7 +118,7 @@ extension ImageListViewController: UISearchBarDelegate {
         guard let str = searchBar.text else {
             return
         }
-        presenter.loadData(with: str)
+        presenter.prepareForLoading(with: str)
     }
 }
 
